@@ -457,3 +457,17 @@ footer p {
         padding-bottom: 30px;
     }
 }
+
+/* --- 10. Custom Dashboard Style --- */
+.dashboard-embed {
+    width: 100%;
+    margin: 20px 0;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    overflow: hidden; /* This keeps the corners rounded */
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.dashboard-embed iframe {
+    display: block; /* Removes tiny gaps at the bottom */
+}
