@@ -194,12 +194,18 @@ nav ul li a:hover::after {
 }
 
 /* --- 5.5 Project Cards --- */
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 40px;
+    align-items: stretch; /* 🔥 KEY FIX */
 }
-
+.project-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* 🔥 VERY IMPORTANT */
+}
 .project-card {
     background: var(--card-bg-color);
     border-radius: 5px;
