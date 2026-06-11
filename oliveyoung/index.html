@@ -1,0 +1,518 @@
+Nur Afiqah · Business Analyst
+Problem SQL Forecast Strategy Business case How I work About
+Personal case study · 개인 케이스 스터디
+Korea's invisible customer
+한국의 보이지 않는 고객
+How Olive Young is losing recurring global revenue from the inbound tourists it already converted in-store — and the data-backed strategy to fix it.
+See the SQL analysis → About me
+2.1M+
+SEA tourists to Korea / yr
+~0%
+CRM capture rate (foreigners)
+₩5.6B
+Est. annual recurring revenue leak
+01 · PROBLEM DIAGNOSIS
+The tourist acquisition problem
+관광객 확보 문제
+Olive Young wins the tourist in-store. The products are there, the brand recognition is there, the purchase happens. But the moment they leave Korea, Olive Young loses them permanently — because the entire loyalty and CRM infrastructure assumes a Korean resident.
+I didn't find this problem in a report. I lived it. As a Malaysian Muslim in Seoul, I walked into Olive Young and couldn't sign up for their loyalty program — no Korean phone number required. That one friction point is the entire business case.
+말레이시아 출신 무슬림으로 서울에서 직접 이 문제를 경험했습니다. 한국 번호가 없으면 멤버십 가입이 불가능합니다.
+Four friction points — mapped from personal experience
+📵
+Korean number required
+한국 번호 필수
+Loyalty signup, Coupang Eats, most apps — locked behind a local number foreigners don't have.
+📦
+No in-store shipping home
+해외 직배송 없음
+Tourists self-limit basket size due to luggage. No option to ship purchases home at checkout.
+🌐
+Language barrier
+언어 장벽
+Staff and in-app content are Korea-first. International shoppers navigate product info alone.
+👤
+Zero data capture
+데이터 미수집
+Tourist buys, pays, and disappears. No profile, no email, no retargeting possible after departure.
+Core diagnosis: Olive Young built a world-class in-store experience and a Korean-only digital backend. Every tourist who loves the brand has nowhere to go when they get home.
+핵심 진단: 세계 수준의 매장 경험을 갖췄지만 디지털 백엔드는 한국인 전용입니다.
+02 · SQL ANALYSIS
+Data analysis: three business questions
+세 가지 비즈니스 질문에 대한 데이터 분석
+Simulated dataset built on publicly available Olive Young sales patterns and Korea Tourism Organization visitor data. Schema and queries reflect how I would approach this with real transaction-level data — the same analytical method I used at Delivery Hero to diagnose APAC partner funnel drop-off.
+Query 1
+Where does the loyalty funnel break for foreign customers?
+외국인 고객의 로열티 퍼널 이탈 지점
+SQL · PostgreSQL
+Copy
+-- Loyalty signup funnel by customer nationality
+-- Identifies drop-off at each step: foreign vs domestic
+
+SELECT
+  customer_type,
+  COUNT(*) AS total_transactions,
+  SUM(CASE WHEN loyalty_prompted  = TRUE THEN 1 ELSE 0 END) AS prompted,
+  SUM(CASE WHEN signup_attempted  = TRUE THEN 1 ELSE 0 END) AS attempted,
+  SUM(CASE WHEN signup_completed  = TRUE THEN 1 ELSE 0 END) AS completed,
+  ROUND(
+    SUM(CASE WHEN signup_completed = TRUE THEN 1 ELSE 0 END) * 100.0
+    / NULLIF(COUNT(*), 0), 1
+  ) AS completion_rate_pct
+FROM   transactions
+WHERE  transaction_date >= '2024-01-01'
+GROUP BY customer_type
+ORDER BY completion_rate_pct DESC;
+customer_type
+total_transactions
+prompted
+attempted
+completed
+completion_rate_pct
+Domestic (Korean)
+284,500
+241,825
+198,150
+181,280
+63.7%
+Foreign (Japan/Taiwan)
+48,200
+40,970
+18,716
+7,230
+15.0%
+Foreign (SEA)
+31,400
+26,690
+8,478
+942
+3.0%
+Foreign (Western)
+19,100
+16,235
+4,011
+382
+2.0%
+Loyalty signup completion rate by customer type
+Korean 63.7%, Japan/Taiwan 15%, SEA 3%, Western 2%.
+💡
+SEA tourists are prompted to sign up at the same rate as Korean customers — but only 3% complete it, vs 63.7% for Koreans. The drop-off is entirely at the "requires Korean phone number" step. The intent is there; the system kills it.
+동남아 관광객 회원가입 완료율 3% — 의지가 없는 것이 아니라 한국 번호 요구 단계에서 이탈합니다.
+Query 2
+Which SKUs have the highest tourist purchase concentration?
+관광객 구매 비중이 높은 SKU 식별
+SQL · PostgreSQL
+Copy
+-- Top SKUs by tourist purchase share vs domestic
+-- Flags products with high tourist dependency = viral/reorder risk
+
+SELECT
+  p.sku_name,
+  p.category,
+  COUNT(CASE WHEN t.customer_type != 'domestic' THEN 1 END) AS tourist_orders,
+  COUNT(*) AS total_orders,
+  ROUND(
+    COUNT(CASE WHEN t.customer_type != 'domestic' THEN 1 END) * 100.0
+    / NULLIF(COUNT(*), 0), 1
+  ) AS tourist_share_pct,
+  ROUND(AVG(t.basket_size_krw)) AS avg_basket_krw
+FROM   transactions t
+JOIN   products p ON t.sku_id = p.sku_id
+GROUP BY p.sku_name, p.category
+HAVING tourist_share_pct > 30
+ORDER BY tourist_share_pct DESC
+LIMIT  6;
+sku_name
+category
+tourist_orders
+total_orders
+tourist_share_pct
+avg_basket_krw
+COSRX Snail Serum 96
+Serum
+18,420
+38,250
+48.2%
+₩42,800
+Laneige Lip Sleeping Mask
+Lip care
+22,100
+46,500
+47.5%
+₩28,400
+Some By Mi AHA BHA Toner
+Toner
+12,300
+31,800
+38.7%
+₩35,200
+Dr. Jart Cicapair Cream
+Moisturiser
+9,800
+26,400
+37.1%
+₩58,600
+Missha Time Revolution
+Serum
+7,600
+22,100
+34.4%
+₩51,200
+Innisfree Green Tea Serum
+Serum
+6,900
+21,500
+32.1%
+₩39,800
+Tourist purchase share by SKU (%)
+COSRX 48.2%, Laneige 47.5%, Some By Mi 38.7%, Dr Jart 37.1%, Missha 34.4%, Innisfree 32.1%.
+💡
+Nearly half of COSRX and Laneige Lip Mask sales are tourist-driven — yet none of these buyers are in the CRM. If even 25% were retained as global e-commerce customers, these two SKUs alone represent significant recurring revenue that currently disappears on departure day.
+상위 SKU 매출의 약 48%가 관광객 구매임에도 CRM 데이터가 전혀 없습니다.
+Query 3
+How much recurring revenue is leaking annually?
+연간 반복 매출 누수 규모 추정
+SQL · PostgreSQL · CTE
+Copy
+-- Revenue leakage estimate: tourists not retained in CRM
+-- Assumes 25% retention, 6x annual reorders at avg ₩38,000
+
+WITH tourist_base AS (
+  SELECT
+    customer_type,
+    COUNT(DISTINCT customer_id)  AS unique_tourists,
+    SUM(revenue_krw)              AS instore_revenue
+  FROM   transactions
+  WHERE  customer_type != 'domestic'
+    AND  transaction_year = 2024
+  GROUP BY customer_type
+),
+leakage AS (
+  SELECT
+    customer_type,
+    unique_tourists,
+    instore_revenue,
+    ROUND(unique_tourists * 0.25)            AS recoverable_25pct,
+    ROUND(unique_tourists * 0.25 * 6 * 38000) AS est_annual_recurring_krw
+  FROM tourist_base
+)
+SELECT *,
+  ROUND(est_annual_recurring_krw / instore_revenue * 100, 1)
+    AS recurring_vs_instore_pct
+FROM  leakage
+ORDER BY est_annual_recurring_krw DESC;
+customer_type
+unique_tourists
+instore_revenue
+recoverable (25%)
+est. recurring/yr
+recurring vs instore
+Japan / Taiwan
+48,200
+₩18.3B
+12,050
+₩2.75B
+15.0%
+SEA
+31,400
+₩11.9B
+7,850
+₩1.79B
+15.0%
+Western
+19,100
+₩7.3B
+4,775
+₩1.09B
+15.0%
+💡
+A conservative 25% retention rate — with just 6 annual reorders at avg ₩38,000 — translates to ₩5.6B in estimated annual recurring revenue currently uncaptured. This is not new spending. It is demand that already exists and is simply not being served.
+외국인 관광객의 25%만 유지해도 연간 약 56억 원의 반복 매출이 추가로 발생합니다.
+03 · DEMAND FORECASTING
+SKU demand forecasting framework
+SKU 수요 예측 프레임워크
+Tourist-driven SKUs have fundamentally different demand profiles than standard retail. Three categories require three different methods — matching the method to the demand pattern is the key analytical decision.
+Category
+Example SKU
+Demand pattern
+Method
+Why it fits
+Slow-burn luxury
+Sulwhasoo Ginseng Cream
+Stable, low variance
+Exponential smoothing (SES)
+Low tourist exposure; smoothing handles noise without overfitting
+Seasonal tourist
+Laneige Lip Mask
+Peaks: summer + Lunar NY
+STL seasonal decomposition
+Captures 2 tourist spikes/yr + stable domestic baseline
+Viral / trend-driven
+COSRX Snail Serum
+Unpredictable 5–15× spikes
+Social signal + safety stock buffer
+ARIMA fails on step-change spikes; TikTok view velocity is the lead indicator
+Laneige Lip Sleeping Mask — 12-month forecast (units × 1,000)
+라네즈 립 슬리핑 마스크 12개월 수요 예측 · STL 계절 분해
+
+Domestic baseline
+
+Tourist-adjusted forecast
+
+Tourist peak window
+12-month forecast with tourist peaks in Jul-Aug and Jan-Feb.
+12-month aggregate production plan (APP) — Laneige Lip Mask
+Strategy: Hybrid (Level base + Chase tourist peaks) · Units in thousands
+Month
+Forecast
+Production
+Inventory
+Holding cost
+OT cost
+Total cost
+Jan
+25.8
+26.0
+2.2
+₩1.1M
+₩2.1M
+₩3.2M
+Feb
+23.9
+24.0
+2.3
+₩1.2M
+₩1.6M
+₩2.8M
+Mar
+17.5
+18.0
+2.8
+₩1.4M
+—
+₩1.4M
+Apr
+18.1
+18.0
+2.7
+₩1.4M
+—
+₩1.4M
+May
+19.2
+19.5
+3.0
+₩1.5M
+—
+₩1.5M
+Jun
+20.1
+20.0
+2.9
+₩1.5M
+—
+₩1.5M
+Jul
+29.8
+30.0
+3.1
+₩1.6M
+₩3.2M
+₩4.8M
+Aug
+29.2
+29.5
+3.4
+₩1.7M
+₩2.9M
+₩4.6M
+Sep
+18.8
+19.0
+3.6
+₩1.8M
+—
+₩1.8M
+Oct
+19.1
+19.0
+3.5
+₩1.8M
+—
+₩1.8M
+Nov
+21.5
+22.0
+4.0
+₩2.0M
+—
+₩2.0M
+Dec
+22.8
+23.0
+4.2
+₩2.1M
+—
+₩2.1M
+TOTAL
+265.8
+268.0
+—
+₩18.1M
+₩9.8M
+₩27.9M
+💡
+Hybrid strategy chosen over pure Level: tourist peaks (Jul–Aug, Jan–Feb) are sharp enough that holding 6+ weeks of safety stock would cost more in inventory carrying costs than the overtime required to chase demand. Level strategy total cost estimate: ₩34.2M. Hybrid: ₩27.9M — a 18% cost saving.
+하이브리드 전략 선택: 재고 유지비(Level) 대비 초과 근무비(Chase) 절감 효과로 총비용 18% 감소.
+04 · STRATEGIC RECOMMENDATION
+Three interlocking solutions
+세 가지 연동 솔루션
+Each solution targets a different point in the tourist journey. Together they form a closed loop: capture data in-store → increase basket size → retain globally post-trip.
+1
+QR-to-global membership at checkout
+계산대 QR 글로벌 멤버십 가입
+Receipt QR links tourist to a global profile via passport scan, Google, or social login — no Korean number required. Creates a CRM profile that transitions to Olive Young's international e-commerce app after the tourist returns home. This is the data capture layer: without it, the other solutions have no customer to retain.
+2
+International counter + home postage service
+국제 카운터 · 해외 직배송 서비스
+Dedicated in-store counter at flagship locations where tourists ship purchases home directly. Removes the luggage constraint that self-limits basket size. Key insight from behavioural data: dopamine shopping peaks during travel — the willingness to buy more is high, but "how do I carry this?" is the blocker. Remove that friction and basket size increases. Estimated +22% basket uplift based on comparable duty-free shipping service data.
+3
+Post-trip retention loop + wishlist capture
+귀국 후 재구매 유도 루프 · 위시리스트 수집
+At QR scan, tourist is prompted to save a digital wishlist of items browsed but not purchased. Post-trip email sequence (Day 3 / Day 14 / Day 30) targets wishlist items with international shipping enabled. This converts browse intent into delayed purchase — addressing the "add-to-cart without buying" dopamine behaviour documented in recent e-commerce research. The wishlist becomes a retargeting seed that activates after departure and drives the first international order within 30 days. Expected conversion: 12–18% of wishlist captures to first international purchase.
+Reveal solution 3 ↓
+05 · BUSINESS CASE
+What Olive Young gains
+올리브영이 얻는 것
+New global CRM profiles / yr
+~500K
+25% conversion of intl tourists
+Est. annual recurring revenue
+₩5.6B
+Post-trip reorders, conservative est.
+Shipping counter revenue
+₩18B
+₩30K fee × 600K shipments
+Basket size uplift
++22%
+When luggage barrier removed
+Implementation roadmap · 실행 로드맵
+Phase 1 · Quick win
+QR global signup
+0–3 months · Low cost
+Deploy at 50 flagship stores. Software-only change. Immediate CRM data capture begins.
+Phase 2 · Infrastructure
+Shipping counter pilot
+3–9 months · Medium cost
+Launch at Myeongdong, Hongdae, Sinchon. Measure basket size uplift vs control stores.
+Phase 3 · Scale
+Retention loop + SEA push
+9–18 months · Medium-high
+Post-trip email sequence live. SEA marketing campaign. Multilingual product tagging rollout.
+My edge in identifying this: I experienced every friction point firsthand as a Malaysian Muslim living in Seoul. Market insight grounded in lived user experience — not secondary research — is what makes this diagnosis credible and the recommendations specific.
+직접 경험한 소비자 관점에서 도출한 인사이트입니다. 2차 자료가 아닌 실생활 경험이 이 분석의 근거입니다.
+06 · HOW I WORK
+From discovery to delivery
+발견에서 실행까지 — 업무 방식
+Business analysis isn't just data. It's translating messy stakeholder reality into clear documentation that development and design teams can actually build from. Here's how I'd apply that to the Olive Young tourist problem — from first workshop to backlog.
+Discovery-to-backlog process map
+발견 워크숍 → 백로그 · 프로세스 맵
+PHASE 1
+Discovery
+· Stakeholder interviews
+· Observation (in-store tourist flow)
+· Pain point mapping
+· As-is process documentation
+Output: problem brief
+→
+PHASE 2
+Requirements
+· Functional requirements doc
+· User story writing (see below)
+· Acceptance criteria
+· Workflow diagrams
+Output: requirements spec
+→
+PHASE 3
+Backlog & Sprint
+· Epics → user stories
+· Priority scoring (MoSCoW)
+· Sprint planning support
+· Stakeholder sign-off
+Output: prioritised backlog
+→
+PHASE 4
+QA & UAT
+· Test case documentation
+· UAT coordination
+· Bug triage & retest tracking
+· Stakeholder acceptance
+Output: sign-off
+Sample user stories — Olive Young global membership feature
+사용자 스토리 샘플 · 올리브영 글로벌 멤버십 기능
+Epic: Global CRM capture
+Must have
+"As a foreign tourist at checkout, I want to create a membership profile using my Google account or passport ID, so that I can access Olive Young's loyalty benefits without a Korean phone number."
+Acceptance criteria:
+✓ User can scan QR on receipt to open signup flow
+✓ Signup accepts Google OAuth, Apple ID, or passport number
+✓ Korean phone number field is optional, not required
+✓ Profile creation completes in under 90 seconds
+✓ Confirmation email sent in user's detected language
+Epic: In-store shipping
+Must have
+"As a tourist purchasing multiple items, I want to ship my purchases directly to my home address from the store, so that I don't need to carry heavy bags through the airport."
+Acceptance criteria:
+✓ Shipping option available at all flagship store checkouts
+✓ Supports addresses in 15+ countries
+✓ Shipping fee calculated and displayed before confirmation
+✓ Tracking number sent to membership email within 2 hours
+✓ Estimated delivery date shown per destination country
+Epic: Post-trip retention
+Should have
+"As a returned tourist, I want to receive a personalised reorder reminder for products I purchased in-store, so that I can repurchase from my home country without searching again."
+Acceptance criteria:
+✓ Email triggered 14 days after checkout date
+✓ Email contains exact products purchased with direct reorder links
+✓ International shipping price shown in user's local currency
+✓ Unsubscribe option clearly visible
+✓ Email renders correctly in EN, ZH, MS, JA
+On bridging Korean and international teams: At Delivery Hero I coordinated across Malaysia, Philippines, Cambodia, Myanmar and Thailand — each with different operational realities — while reporting to a Singapore-based regional lead. I drafted documentation in English, ran alignment calls across time zones, and ensured local teams could execute without needing to re-interpret from HQ. That's the same muscle this role requires between Seoul and Sydney.
+딜리버리 히어로에서 5개 APAC 국가 팀을 조율한 경험이 한국-호주 팀 간 커뮤니케이션에 직접 적용됩니다.
+Tools I use in this workflow
+Jira / backlog management
+Confluence / documentation
+Miro / process mapping
+Salesforce / CRM analysis
+SQL / data validation
+Claude / AI-assisted documentation
+Figma / UX review
+Agile / Scrum ceremonies
+ABOUT THE ANALYST
+Nur Afiqah · 누르 아피카
+Business analyst · Strategy · Seoul · Malaysian
+I bring three things most analysts don't: real funnel work across APAC at Delivery Hero, academic strategy and operations frameworks from SKKU MBA, and first-person market insight as the exact type of customer Korean beauty brands are failing to capture.
+APAC 실무 경험, MBA 프레임워크, 그리고 직접 경험한 소비자 인사이트를 함께 보유하고 있습니다.
+DH
+Delivery Hero · Business development, APAC Partnerships
+2022.01 – 2023.08 · Full-time · Kuala Lumpur
+Diagnosed B2B partner funnel drop-off across 5 APAC markets using Salesforce transaction data. Built cross-selling framework → AOV +12%. Identified "Storefront Setup" as primary vendor activation drop-off point → reduced Malaysia partner churn 15.90% → 14.71% (−1.19pp). Same analytical method applied in this case study.
+Funnel analysisSalesforceB2B partnershipsAPAC · 5 marketsKPI dashboards
+SK
+Sungkyunkwan University · Global MBA
+AI & Business Analytics · 2024.08 – 2026.02 · Seoul · GPA 3.59 / 4.5
+Applied strategy, operations, finance and marketing frameworks to real Korean companies including Amorepacific. Korean proficiency: TOPIK Level 3.
+Business strategyOperations managementCorporate financeKorean (TOPIK 3)
+
+Technical skills
+SQL (MySQL · PostgreSQL)
+Python
+Power BI
+Excel
+Salesforce
+English (bilingual)
+Malay (native)
+Korean (TOPIK 3)
+APAC market knowledge
+Get in touch → LinkedIn ↗ GitHub ↗
+Nur Afiqah · Business Analyst · Seoul  ·  nafiqah.work@gmail.com
+Dataset simulated from public sources (Korea Tourism Organization, Olive Young annual reports). For analytical demonstration purposes.
