@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Report · Korea's Invisible Customer · Nur Afiqah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#1A2A4C;--accent:#29B6F6;--light:#F8F9FA;--border:#e9ecef;--text:#343A40;--muted:#6c757d;--font-h:'Playfair Display',serif;--font-b:'Lato',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--font-b);background:#fff;color:var(--text);line-height:1.8;}
+.report-nav{background:var(--primary);padding:12px 40px;display:flex;align-items:center;justify-content:space-between;print-color-adjust:exact;}
+.report-nav a{color:rgba(255,255,255,.7);font-size:.85rem;text-decoration:none;}
+.report-nav a:hover{color:#fff;}
+.lang-toggle{display:flex;gap:8px;}
+.lang-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.7);font-family:var(--font-b);font-size:.78rem;padding:5px 14px;border-radius:4px;cursor:pointer;}
+.lang-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+.print-btn{background:var(--accent);border:none;color:#fff;font-family:var(--font-b);font-size:.78rem;font-weight:700;padding:6px 16px;border-radius:4px;cursor:pointer;}
+.report{max-width:820px;margin:0 auto;padding:60px 50px;}
+.cover{text-align:center;padding:50px 0 40px;border-bottom:2px solid var(--primary);margin-bottom:40px;}
+.cover-tag{font-size:.72rem;font-weight:700;letter-spacing:.12em;color:var(--accent);margin-bottom:.75rem;}
+.cover h1{font-family:var(--font-h);font-size:2.6rem;font-weight:700;color:var(--primary);line-height:1.2;margin-bottom:.4rem;}
+.cover h1 em{color:var(--accent);font-style:normal;}
+.cover-ko{font-size:.9rem;color:var(--muted);margin-bottom:1.5rem;}
+.cover-meta{font-size:.82rem;color:var(--muted);line-height:2;}
+.cover-meta strong{color:var(--text);}
+.section-hdr{margin:2.5rem 0 1rem;}
+.section-hdr h2{font-family:var(--font-h);font-size:1.6rem;font-weight:700;color:var(--primary);border-bottom:2px solid var(--accent);padding-bottom:.4rem;display:inline-block;}
+.section-hdr .ko{font-size:.8rem;color:var(--muted);margin-top:3px;}
+p.body-text{font-size:.92rem;color:var(--text);line-height:1.85;margin-bottom:.9rem;}
+.hl{background:rgba(41,182,246,.06);border-left:3px solid var(--accent);padding:.85rem 1.1rem;font-size:.88rem;color:var(--text);line-height:1.8;margin:1.25rem 0;border-radius:0 6px 6px 0;}
+.hl-ko{font-size:.76rem;color:var(--muted);margin-top:4px;display:block;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin:1.25rem 0;}
+.metric-box{background:var(--light);border:1px solid var(--border);border-radius:6px;padding:1rem;border-top:3px solid var(--accent);text-align:center;}
+.m-val{font-family:var(--font-h);font-size:1.6rem;font-weight:700;color:var(--primary);}
+.m-label{font-size:.72rem;color:var(--muted);margin-bottom:3px;}
+.m-note{font-size:.72rem;color:var(--muted);margin-top:2px;}
+table.rep{width:100%;font-size:.82rem;border-collapse:collapse;margin:1rem 0;}
+table.rep th{background:var(--primary);color:#fff;padding:7px 11px;text-align:left;font-weight:700;font-size:.74rem;}
+table.rep td{padding:6px 11px;border-bottom:1px solid var(--border);color:var(--text);}
+table.rep tr:nth-child(even) td{background:var(--light);}
+table.rep tr:last-child td{border-bottom:none;}
+.ref-item{display:flex;gap:10px;padding:.7rem 0;border-bottom:1px solid var(--border);font-size:.82rem;}
+.ref-item:last-child{border-bottom:none;}
+.ref-n{font-weight:700;color:var(--primary);min-width:20px;}
+.assumption-grid{display:grid;gap:.75rem;margin:1rem 0;}
+.ass-row{display:grid;grid-template-columns:180px 1fr;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--border);font-size:.82rem;}
+.ass-row:last-child{border-bottom:none;}
+.ass-key{font-weight:700;color:var(--primary);}
+.ass-val{color:var(--muted);line-height:1.6;}
+.step-rep{display:flex;gap:12px;margin-bottom:1rem;}
+.sn{min-width:26px;height:26px;background:var(--primary);color:#fff;font-size:.78rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.st{font-family:var(--font-h);font-size:1rem;color:var(--primary);margin-bottom:2px;}
+.sd{font-size:.85rem;color:var(--muted);line-height:1.7;}
+.page-break{page-break-before:always;margin-top:2rem;}
+.disclaimer{font-size:.74rem;color:var(--muted);text-align:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;}
+.tag{display:inline-block;font-size:.7rem;padding:2px 8px;border-radius:12px;margin:2px;font-weight:700;}
+.tp{background:rgba(26,42,76,.08);color:var(--primary);}
+.tg{background:#e8f5e9;color:#2e7d32;}
+.tam{background:#fff8e1;color:#e65100;}
+.tr{background:#fdecea;color:#c62828;}
+.ta{background:rgba(41,182,246,.12);color:#0a7ab5;}
+
+/* Language toggle */
+.ko-content{display:none;}
+.en-content{display:block;}
+body.show-ko .ko-content{display:block;}
+body.show-ko .en-content{display:none;}
+
+@media print{
+  .report-nav{display:none;}
+  .report{padding:30px 40px;}
+  .page-break{page-break-before:always;}
+  body{font-size:13px;}
+}
+</style>
+</head>
+<body>
+
+<div class="report-nav">
+  <a href="index.html">← Back to case study</a>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en',this)">English</button>
+    <button class="lang-btn" onclick="setLang('ko',this)">한국어</button>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨 Print / Save PDF</button>
+</div>
+
+<div class="report">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-tag">BUSINESS ANALYSIS CASE STUDY</div>
+    <h1>Korea's <em>Invisible</em> Customer</h1>
+    <p class="cover-ko">한국의 보이지 않는 고객 · 인바운드 관광객 수익화 전략 분석</p>
+    <p class="en-content" style="font-size:.9rem;color:var(--muted);max-width:520px;margin:.75rem auto 1.5rem;line-height:1.7">How Olive Young is losing recurring global revenue from inbound tourists it already converted in-store — a data-backed diagnosis and strategic recommendation.</p>
+    <p class="ko-content" style="font-size:.9rem;color:var(--muted);max-width:520px;margin:.75rem auto 1.5rem;line-height:1.7">올리브영이 매장에서 이미 확보한 인바운드 관광객으로부터 글로벌 반복 매출을 놓치는 이유 — 데이터 기반 진단과 전략적 권고안.</p>
+    <div class="cover-meta">
+      <div><strong>Analyst:</strong> Nur Afiqah Binti Ahmad Shukri</div>
+      <div><strong>Background:</strong> MBA in AI & Business Analytics, Sungkyunkwan University · ex-Delivery Hero APAC</div>
+      <div><strong>Date:</strong> June 2026 &nbsp;·&nbsp; <strong>Status:</strong> Personal portfolio case study</div>
+      <div><strong>Contact:</strong> nafiqah.work@gmail.com &nbsp;·&nbsp; nafiqahwork.github.io</div>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="section-hdr"><h2 class="en-content">Executive Summary</h2><h2 class="ko-content">핵심 요약</h2></div>
+  <div class="en-content">
+    <p class="body-text">Olive Young is South Korea's leading health and beauty retailer, operating over 1,300 stores nationwide and a global app available in 180+ countries. Despite strong in-store conversion among international tourists — who represent a significant and growing share of total foot traffic — the brand captures near-zero post-visit data from foreign customers due to a critical systems gap: its loyalty and CRM infrastructure requires a Korean phone number to register.</p>
+    <p class="body-text">This case study diagnoses the problem using SQL funnel analysis, quantifies the revenue leakage at an estimated ₩5.6B in annual recurring revenue, and proposes three interlocking solutions to convert one-time tourist purchases into lifetime global subscriptions.</p>
+  </div>
+  <div class="ko-content">
+    <p class="body-text">올리브영은 전국 1,300개 이상의 매장을 운영하는 한국 최대 헬스앤뷰티 리테일러로, 180개국 이상에서 글로벌 앱을 제공합니다. 외국인 관광객의 매장 내 구매 전환율은 높으나, 로열티 및 CRM 시스템이 한국 전화번호 등록을 요구하는 구조적 문제로 인해 외국인 고객의 사후 데이터가 거의 수집되지 않습니다.</p>
+    <p class="body-text">본 케이스 스터디는 SQL 퍼널 분석을 통해 문제를 진단하고, 연간 약 56억 원의 반복 매출 누수를 추정하며, 일회성 관광객 구매를 글로벌 장기 구독으로 전환하기 위한 세 가지 연동 솔루션을 제안합니다.</p>
+  </div>
+
+  <div class="two-col" style="grid-template-columns:repeat(4,1fr)">
+    <div class="metric-box"><div class="m-label">SEA tourists/yr</div><div class="m-val">2.1M+</div><div class="m-note">KTO 2023</div></div>
+    <div class="metric-box"><div class="m-label">CRM capture rate</div><div class="m-val">~0%</div><div class="m-note">Foreign visitors</div></div>
+    <div class="metric-box"><div class="m-label">Revenue leakage</div><div class="m-val">₩5.6B</div><div class="m-note">Annual est.</div></div>
+    <div class="metric-box"><div class="m-label">Basket uplift potential</div><div class="m-val">+22%</div><div class="m-note">If shipping offered</div></div>
+  </div>
+
+  <!-- PROBLEM -->
+  <div class="section-hdr page-break"><h2 class="en-content">1. Problem Diagnosis</h2><h2 class="ko-content">1. 문제 진단</h2><div class="ko-content" style="font-size:.8rem;color:var(--muted);margin-top:3px">관광객 확보 문제</div></div>
+  <div class="hl">
+    <span class="en-content">I didn't find this problem in a report. As a Malaysian Muslim living in Seoul, I walked into Olive Young and couldn't sign up for their loyalty program — no Korean phone number, no access. That friction point is the entire business case.</span>
+    <span class="ko-content">저는 말레이시아 출신 무슬림으로 서울에서 직접 이 문제를 경험했습니다. 올리브영에서 한국 번호 없이는 회원 가입이 불가능합니다.</span>
+  </div>
+  <div class="en-content"><p class="body-text">Olive Young wins the tourist in-store. The products are compelling, brand recognition strong, purchase conversion high. However, the moment the tourist leaves Korea, the brand loses them permanently. Four structural friction points prevent post-visit retention:</p></div>
+  <div class="ko-content"><p class="body-text">올리브영은 매장 내에서 관광객을 확보합니다. 제품력과 브랜드 인지도가 높고 구매 전환율도 좋습니다. 그러나 관광객이 한국을 떠나는 순간 브랜드는 그들을 영구적으로 잃게 됩니다. 네 가지 구조적 문제가 사후 재방문 전환을 방해합니다:</p></div>
+
+  <table class="rep">
+    <thead><tr><th>Pain point <span style="opacity:.5">/ 문제</span></th><th>Impact <span style="opacity:.5">/ 영향</span></th><th>Root cause <span style="opacity:.5">/ 원인</span></th></tr></thead>
+    <tbody>
+      <tr><td>Korean number required for loyalty signup / 한국 번호 필수</td><td>~0% foreign CRM capture</td><td>System design assumes Korean residents only</td></tr>
+      <tr><td>No in-store international shipping / 해외 직배송 없음</td><td>Tourists self-limit basket size</td><td>No infrastructure for tourist logistics</td></tr>
+      <tr><td>Language barrier / 언어 장벽</td><td>Reduced product discovery</td><td>Korea-first UX and staff training</td></tr>
+      <tr><td>Zero post-visit data / 데이터 미수집</td><td>No retargeting possible</td><td>No profile created during transaction</td></tr>
+    </tbody>
+  </table>
+
+  <!-- SQL ANALYSIS -->
+  <div class="section-hdr page-break"><h2 class="en-content">2. SQL Analysis: Quantifying the Gap</h2><h2 class="ko-content">2. SQL 분석: 격차 정량화</h2></div>
+  <div class="en-content"><p class="body-text">Three SQL queries against a simulated transaction dataset (seeded from KTO visitor data and Olive Young sales patterns) quantify the problem at each level.</p></div>
+  <div class="ko-content"><p class="body-text">KTO 방문자 데이터와 올리브영 판매 패턴을 기반으로 시뮬레이션된 거래 데이터셋에 대한 세 가지 SQL 쿼리로 각 단계의 문제를 정량화합니다.</p></div>
+
+  <p style="font-size:.8rem;font-weight:700;color:var(--muted);margin:.75rem 0 .4rem;letter-spacing:.05em">QUERY 1: LOYALTY FUNNEL DROP-OFF</p>
+  <table class="rep">
+    <thead><tr><th>Customer type</th><th>Transactions</th><th>Prompted</th><th>Attempted</th><th>Completed</th><th>Completion rate</th></tr></thead>
+    <tbody>
+      <tr><td>Domestic (Korean)</td><td>284,500</td><td>241,825</td><td>198,150</td><td>181,280</td><td><span class="tag tg">63.7%</span></td></tr>
+      <tr><td>Foreign (Japan/Taiwan)</td><td>48,200</td><td>40,970</td><td>18,716</td><td>7,230</td><td><span class="tag tam">15.0%</span></td></tr>
+      <tr><td>Foreign (SEA)</td><td>31,400</td><td>26,690</td><td>8,478</td><td>942</td><td><span class="tag tr">3.0%</span></td></tr>
+      <tr><td>Foreign (Western)</td><td>19,100</td><td>16,235</td><td>4,011</td><td>382</td><td><span class="tag tr">2.0%</span></td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem"><em>Finding: SEA tourists are prompted at 85% rate (same as Korean customers) but complete signup at only 3%. The bottleneck is the Korean phone number requirement — not intent.</em></p>
+
+  <p style="font-size:.8rem;font-weight:700;color:var(--muted);margin:.75rem 0 .4rem;letter-spacing:.05em">QUERY 2: HIGH-RISK SKUs (TOURIST DEPENDENCY)</p>
+  <table class="rep">
+    <thead><tr><th>SKU</th><th>Tourist orders</th><th>Total orders</th><th>Tourist share</th><th>Avg basket</th></tr></thead>
+    <tbody>
+      <tr><td>COSRX Snail Serum 96</td><td>18,420</td><td>38,250</td><td><span class="tag tr">48.2%</span></td><td>₩42,800</td></tr>
+      <tr><td>Laneige Lip Sleeping Mask</td><td>22,100</td><td>46,500</td><td><span class="tag tr">47.5%</span></td><td>₩28,400</td></tr>
+      <tr><td>Some By Mi AHA BHA Toner</td><td>12,300</td><td>31,800</td><td><span class="tag tam">38.7%</span></td><td>₩35,200</td></tr>
+      <tr><td>Dr. Jart Cicapair Cream</td><td>9,800</td><td>26,400</td><td><span class="tag tam">37.1%</span></td><td>₩58,600</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:.8rem;font-weight:700;color:var(--muted);margin:.75rem 0 .4rem;letter-spacing:.05em">QUERY 3: ANNUAL REVENUE LEAKAGE (CTE MODEL)</p>
+  <table class="rep">
+    <thead><tr><th>Segment</th><th>Tourists</th><th>In-store revenue</th><th>Recoverable (25%)</th><th>Est. recurring/yr</th></tr></thead>
+    <tbody>
+      <tr><td>Japan / Taiwan</td><td>48,200</td><td>₩18.3B</td><td>12,050</td><td><span class="tag tg">₩2.75B</span></td></tr>
+      <tr><td>SEA</td><td>31,400</td><td>₩11.9B</td><td>7,850</td><td><span class="tag tg">₩1.79B</span></td></tr>
+      <tr><td>Western</td><td>19,100</td><td>₩7.3B</td><td>4,775</td><td><span class="tag ta">₩1.09B</span></td></tr>
+      <tr><td><strong>TOTAL</strong></td><td><strong>98,700</strong></td><td><strong>₩37.5B</strong></td><td><strong>24,675</strong></td><td><strong>₩5.63B</strong></td></tr>
+    </tbody>
+  </table>
+
+  <!-- FORECASTING -->
+  <div class="section-hdr page-break"><h2 class="en-content">3. Demand Forecasting</h2><h2 class="ko-content">3. 수요 예측</h2></div>
+  <div class="en-content"><p class="body-text">Tourist-driven SKUs require segmented forecasting approaches. A single method fails because demand patterns differ fundamentally across categories.</p></div>
+  <div class="ko-content"><p class="body-text">관광객 중심 SKU는 수요 패턴이 근본적으로 다르기 때문에 세분화된 예측 방법이 필요합니다.</p></div>
+  <table class="rep">
+    <thead><tr><th>Category</th><th>Example SKU</th><th>Pattern</th><th>Method</th></tr></thead>
+    <tbody>
+      <tr><td>Slow-burn luxury</td><td>Sulwhasoo Ginseng Cream</td><td>Stable, low variance</td><td>Exponential smoothing (SES)</td></tr>
+      <tr><td>Seasonal tourist</td><td>Laneige Lip Mask</td><td>Peaks: summer + Lunar NY</td><td>STL seasonal decomposition</td></tr>
+      <tr><td>Viral / trend</td><td>COSRX Snail Serum</td><td>Unpredictable 5–15× spikes</td><td>Social signal + safety stock buffer</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:.82rem;color:var(--muted);margin:1rem 0"><strong>APP result (Laneige Lip Mask, Hybrid strategy):</strong> Total cost ₩27.9M vs Level strategy ₩34.2M — 18% saving. Tourist peaks (Jul–Aug, Jan–Feb) are concentrated enough that overtime is cheaper than carrying 6+ weeks of safety stock.</p>
+
+  <!-- STRATEGY -->
+  <div class="section-hdr"><h2 class="en-content">4. Strategic Recommendations</h2><h2 class="ko-content">4. 전략적 권고안</h2></div>
+  <div class="step-rep"><div class="sn">1</div><div><div class="st">QR-to-global membership at checkout / 계산대 QR 글로벌 멤버십</div><div class="sd en-content">Receipt QR creates global profile via passport or Google login. No Korean number required. Transitions to international e-commerce post-return. Phase 1: 50 flagship stores, software-only, 0–3 months.</div><div class="sd ko-content">영수증 QR을 통해 여권 또는 구글 로그인으로 글로벌 프로필 생성. 한국 번호 불필요. 귀국 후 국제 이커머스로 연결. 1단계: 주요 매장 50곳, 소프트웨어만 변경, 0~3개월.</div></div></div>
+  <div class="step-rep"><div class="sn">2</div><div><div class="st">International shipping counter / 국제 카운터 · 해외 직배송</div><div class="sd en-content">In-store shipping at flagship locations removes luggage friction. Estimated +22% basket uplift. Phase 2: Myeongdong, Hongdae, Sinchon pilot, 3–9 months.</div><div class="sd ko-content">주요 매장 내 해외 직배송 카운터로 수하물 부담 해소. 바구니 크기 약 22% 증가 예상. 2단계: 명동, 홍대, 신촌 파일럿, 3~9개월.</div></div></div>
+  <div class="step-rep"><div class="sn">3</div><div><div class="st">Post-trip retention loop / 귀국 후 재구매 유도</div><div class="sd en-content">Wishlist captured at QR scan. Day 3/14/30 email sequence. Expected 12–18% wishlist-to-purchase conversion. Phase 3: 9–18 months with SEA marketing push.</div><div class="sd ko-content">QR 스캔 시 위시리스트 수집. 귀국 후 3/14/30일 이메일 시퀀스. 위시리스트 구매 전환율 12~18% 예상. 3단계: 9~18개월, 동남아 마케팅 확대.</div></div></div>
+
+  <!-- REFERENCES -->
+  <div class="section-hdr page-break"><h2 class="en-content">5. References</h2><h2 class="ko-content">5. 참고 자료</h2></div>
+  <div class="ref-item"><div class="ref-n">1</div><div><strong>Korea Tourism Organization (KTO)</strong> — 2023 Annual Tourism Statistics. Inbound visitor volume by nationality. kto.visitkorea.or.kr</div></div>
+  <div class="ref-item"><div class="ref-n">2</div><div><strong>CJ Olive Networks Annual Report 2023</strong> — Olive Young domestic performance, global app launch in 180+ countries.</div></div>
+  <div class="ref-item"><div class="ref-n">3</div><div><strong>Korea Culture and Tourism Institute (KCTI)</strong> — Tourist Spending Survey 2023. kcti.re.kr</div></div>
+  <div class="ref-item"><div class="ref-n">4</div><div><strong>DinarStandard — Global Islamic Economy Report 2023</strong> — Halal cosmetics market: $70B, projected $130B by 2030.</div></div>
+  <div class="ref-item"><div class="ref-n">5</div><div><strong>Delivery Hero Malaysia — Internal analytics 2022–2023</strong> — Personal work experience. AOV +12%, partner churn −1.19pp cited as methodology reference.</div></div>
+
+  <!-- ASSUMPTIONS -->
+  <div class="section-hdr"><h2 class="en-content">6. Declared Assumptions</h2><h2 class="ko-content">6. 가정 사항</h2></div>
+  <div class="assumption-grid">
+    <div class="ass-row"><div class="ass-key">SQL dataset</div><div class="ass-val">~383K simulated transactions. Completion rates seeded from loyalty UX benchmarks (domestic 60–70%). SEA 3% derived from observed phone-number friction.</div></div>
+    <div class="ass-row"><div class="ass-key">₩380K avg tourist spend</div><div class="ass-val">Derived from KCTI total retail spend × beauty category share estimate (~15%).</div></div>
+    <div class="ass-row"><div class="ass-key">25% retention rate</div><div class="ass-val">Conservative. Industry e-commerce re-engagement: 20–35% for travel-triggered purchases. Applied lower bound.</div></div>
+    <div class="ass-row"><div class="ass-key">6 annual reorders</div><div class="ass-val">Skincare repurchase cycle ~2 months. 6 reorders/yr = repurchase every 2 months post-return.</div></div>
+    <div class="ass-row"><div class="ass-key">+22% basket uplift</div><div class="ass-val">Based on duty-free shipping uplift data from Japan and Singapore airport retail (18–26% range, midpoint applied).</div></div>
+    <div class="ass-row"><div class="ass-key">₩18B shipping revenue</div><div class="ass-val">₩30K avg fee (competitive with EMS/K-Post) × 600K shipments (10% of international transactions).</div></div>
+  </div>
+
+  <div class="disclaimer">
+    This is a personal portfolio case study. Dataset is simulated for analytical demonstration. Not affiliated with Olive Young or CJ Olive Networks.<br>
+    Nur Afiqah Binti Ahmad Shukri · nafiqah.work@gmail.com · nafiqahwork.github.io · June 2026
+  </div>
+</div>
+
+<script>
+function setLang(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (lang === 'ko') document.body.classList.add('show-ko');
+  else document.body.classList.remove('show-ko');
+}
+</script>
+</body>
+</html>
