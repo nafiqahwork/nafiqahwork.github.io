@@ -1,518 +1,994 @@
-Nur Afiqah · Business Analyst
-Problem SQL Forecast Strategy Business case How I work About
-Personal case study · 개인 케이스 스터디
-Korea's invisible customer
-한국의 보이지 않는 고객
-How Olive Young is losing recurring global revenue from the inbound tourists it already converted in-store — and the data-backed strategy to fix it.
-See the SQL analysis → About me
-2.1M+
-SEA tourists to Korea / yr
-~0%
-CRM capture rate (foreigners)
-₩5.6B
-Est. annual recurring revenue leak
-01 · PROBLEM DIAGNOSIS
-The tourist acquisition problem
-관광객 확보 문제
-Olive Young wins the tourist in-store. The products are there, the brand recognition is there, the purchase happens. But the moment they leave Korea, Olive Young loses them permanently — because the entire loyalty and CRM infrastructure assumes a Korean resident.
-I didn't find this problem in a report. I lived it. As a Malaysian Muslim in Seoul, I walked into Olive Young and couldn't sign up for their loyalty program — no Korean phone number required. That one friction point is the entire business case.
-말레이시아 출신 무슬림으로 서울에서 직접 이 문제를 경험했습니다. 한국 번호가 없으면 멤버십 가입이 불가능합니다.
-Four friction points — mapped from personal experience
-📵
-Korean number required
-한국 번호 필수
-Loyalty signup, Coupang Eats, most apps — locked behind a local number foreigners don't have.
-📦
-No in-store shipping home
-해외 직배송 없음
-Tourists self-limit basket size due to luggage. No option to ship purchases home at checkout.
-🌐
-Language barrier
-언어 장벽
-Staff and in-app content are Korea-first. International shoppers navigate product info alone.
-👤
-Zero data capture
-데이터 미수집
-Tourist buys, pays, and disappears. No profile, no email, no retargeting possible after departure.
-Core diagnosis: Olive Young built a world-class in-store experience and a Korean-only digital backend. Every tourist who loves the brand has nowhere to go when they get home.
-핵심 진단: 세계 수준의 매장 경험을 갖췄지만 디지털 백엔드는 한국인 전용입니다.
-02 · SQL ANALYSIS
-Data analysis: three business questions
-세 가지 비즈니스 질문에 대한 데이터 분석
-Simulated dataset built on publicly available Olive Young sales patterns and Korea Tourism Organization visitor data. Schema and queries reflect how I would approach this with real transaction-level data — the same analytical method I used at Delivery Hero to diagnose APAC partner funnel drop-off.
-Query 1
-Where does the loyalty funnel break for foreign customers?
-외국인 고객의 로열티 퍼널 이탈 지점
-SQL · PostgreSQL
-Copy
--- Loyalty signup funnel by customer nationality
--- Identifies drop-off at each step: foreign vs domestic
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nur Afiqah · Business Analyst Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #042C53;
+  --navy-mid: #0C447C;
+  --navy-light: #185FA5;
+  --blue-mid: #378ADD;
+  --blue-pale: #B5D4F4;
+  --blue-wash: #E6F1FB;
+  --green-mid: #1D9E75;
+  --green-wash: #E1F5EE;
+  --amber-mid: #BA7517;
+  --amber-wash: #FAEEDA;
+  --red-mid: #A32D2D;
+  --red-wash: #FCEBEB;
+  --ink: #1a1a2e;
+  --ink-mid: #444466;
+  --ink-light: #888899;
+  --surface: #ffffff;
+  --surface-2: #f7f8fc;
+  --border: rgba(4,44,83,0.12);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Inter', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--surface-2); color: var(--ink); line-height: 1.6; font-size: 15px; }
 
-SELECT
+/* NAV */
+.site-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(4,44,83,0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(181,212,244,0.15);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; height: 52px;
+}
+.nav-brand { font-size: 14px; font-weight: 600; color: #B5D4F4; letter-spacing: 0.02em; }
+.nav-brand span { color: rgba(181,212,244,0.5); font-weight: 400; }
+.nav-links { display: flex; gap: 0; }
+.nav-links a {
+  font-size: 12px; color: rgba(181,212,244,0.65); text-decoration: none;
+  padding: 0 14px; height: 52px; display: flex; align-items: center;
+  border-bottom: 2px solid transparent; transition: all .2s; white-space: nowrap;
+}
+.nav-links a:hover { color: #B5D4F4; }
+.nav-links a.active { color: #B5D4F4; border-bottom-color: #378ADD; }
+
+/* HERO */
+.hero {
+  background: var(--navy);
+  padding: 5rem 2rem 4rem;
+  text-align: center;
+}
+.hero-eyebrow {
+  display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+  color: var(--blue-mid); background: rgba(55,138,221,0.15);
+  padding: 5px 14px; border-radius: 20px; margin-bottom: 1.5rem;
+  border: 1px solid rgba(55,138,221,0.25);
+}
+.hero h1 {
+  font-size: clamp(28px, 5vw, 48px); font-weight: 600; color: #ffffff;
+  line-height: 1.15; margin-bottom: 0.5rem; letter-spacing: -0.02em;
+}
+.hero h1 em { color: var(--blue-pale); font-style: normal; }
+.hero-ko { font-size: 14px; color: rgba(181,212,244,0.5); margin-bottom: 1.5rem; }
+.hero-desc {
+  font-size: 15px; color: rgba(181,212,244,0.75); max-width: 580px;
+  margin: 0 auto 2.5rem; line-height: 1.7;
+}
+.hero-stats {
+  display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+  padding-top: 2rem; border-top: 1px solid rgba(181,212,244,0.1);
+  max-width: 600px; margin: 0 auto;
+}
+.hero-stat-val { font-size: 26px; font-weight: 600; color: var(--blue-pale); }
+.hero-stat-label { font-size: 11px; color: rgba(181,212,244,0.5); margin-top: 2px; }
+.hero-cta { display: flex; gap: 10px; justify-content: center; margin-bottom: 2.5rem; flex-wrap: wrap; }
+.btn-primary {
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  background: var(--blue-light); color: white;
+  padding: 10px 22px; border-radius: var(--radius-md);
+  border: none; cursor: pointer; text-decoration: none;
+  background: var(--navy-light); transition: background .2s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.btn-primary:hover { background: var(--blue-mid); }
+.btn-ghost {
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  color: var(--blue-pale); padding: 10px 22px; border-radius: var(--radius-md);
+  border: 1px solid rgba(181,212,244,0.25); cursor: pointer; text-decoration: none;
+  background: transparent; transition: all .2s; display: inline-flex; align-items: center; gap: 6px;
+}
+.btn-ghost:hover { background: rgba(181,212,244,0.08); }
+
+/* MAIN LAYOUT */
+.container { max-width: 820px; margin: 0 auto; padding: 0 1.5rem; }
+section { padding: 4rem 0; }
+section + section { border-top: 1px solid var(--border); }
+
+/* SECTION HEADERS */
+.sec-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  color: var(--navy-light); margin-bottom: 0.5rem;
+}
+.sec-title { font-size: 22px; font-weight: 600; color: var(--ink); margin-bottom: 0.25rem; }
+.sec-ko { font-size: 13px; color: var(--ink-light); margin-bottom: 1.5rem; }
+.sec-intro { font-size: 14px; color: var(--ink-mid); line-height: 1.7; margin-bottom: 1.5rem; max-width: 640px; }
+
+/* CARDS */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem;
+}
+.card-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.card-ko { font-size: 11px; color: var(--ink-light); margin-bottom: 0.75rem; }
+.card-body { font-size: 13px; color: var(--ink-mid); line-height: 1.65; }
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+.metric-card { background: var(--blue-wash); border-radius: var(--radius-md); padding: 1rem; }
+.metric-val { font-size: 22px; font-weight: 600; color: var(--navy); }
+.metric-label { font-size: 11px; color: var(--navy-mid); margin-bottom: 3px; }
+.metric-note { font-size: 11px; color: var(--navy-light); margin-top: 2px; }
+
+/* HIGHLIGHT BOX */
+.hl {
+  background: var(--blue-wash); border-left: 3px solid var(--navy-light);
+  padding: 1rem 1.25rem; border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: 13px; color: var(--navy-mid); line-height: 1.65; margin: 1.25rem 0;
+}
+.hl-ko { font-size: 11px; color: var(--navy-light); margin-top: 4px; display: block; }
+
+/* TAGS */
+.tag { display: inline-block; font-size: 11px; padding: 3px 9px; border-radius: 20px; margin: 2px; font-weight: 500; }
+.tag-blue { background: var(--blue-wash); color: var(--navy-mid); }
+.tag-green { background: var(--green-wash); color: #0F6E56; }
+.tag-amber { background: var(--amber-wash); color: #854F0B; }
+.tag-red { background: var(--red-wash); color: var(--red-mid); }
+
+/* PAIN GRID */
+.pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+.pain-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem; }
+.pain-icon { font-size: 20px; margin-bottom: 8px; }
+.pain-title { font-size: 13px; font-weight: 600; color: var(--ink); }
+.pain-ko { font-size: 11px; color: var(--ink-light); margin: 2px 0 6px; }
+.pain-desc { font-size: 12px; color: var(--ink-mid); line-height: 1.5; }
+
+/* SQL BLOCKS */
+.sql-wrap { background: var(--navy); border-radius: var(--radius-lg); overflow: hidden; margin: 1rem 0; }
+.sql-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid rgba(181,212,244,0.1); }
+.sql-label { font-size: 11px; font-weight: 600; color: var(--blue-pale); letter-spacing: 0.06em; }
+.sql-copy { font-size: 11px; color: rgba(181,212,244,0.4); cursor: pointer; background: none; border: none; font-family: var(--sans); }
+.sql-copy:hover { color: var(--blue-pale); }
+.sql-body { padding: 1.25rem 1.5rem; overflow-x: auto; }
+.sql-body pre { font-family: var(--mono); font-size: 12px; color: var(--blue-pale); line-height: 1.8; white-space: pre; }
+.kw { color: #85B7EB; }
+.cm { color: #378ADD; font-style: italic; }
+.fn { color: #9FE1CB; }
+.str { color: #FAC775; }
+
+/* RESULT TABLE */
+.res-wrap { overflow-x: auto; margin: 1rem 0; }
+table.res { width: 100%; font-size: 12px; border-collapse: collapse; }
+table.res th { background: var(--navy); color: var(--blue-pale); padding: 8px 12px; text-align: left; font-weight: 500; font-size: 11px; white-space: nowrap; }
+table.res td { padding: 7px 12px; border-bottom: 1px solid var(--border); color: var(--ink-mid); }
+table.res tr:last-child td { border-bottom: none; }
+table.res tr:nth-child(even) td { background: var(--surface-2); }
+
+/* INSIGHT */
+.insight { display: flex; gap: 12px; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem; margin: 1rem 0; }
+.insight-icon { font-size: 18px; flex-shrink: 0; padding-top: 1px; }
+.insight-text { font-size: 13px; color: var(--ink-mid); line-height: 1.6; }
+.insight-ko { font-size: 11px; color: var(--ink-light); margin-top: 4px; }
+
+/* CHART WRAPPER */
+.chart-wrap { position: relative; margin: 1.25rem 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem; }
+.chart-title { font-size: 12px; font-weight: 600; color: var(--ink-mid); margin-bottom: 0.75rem; }
+
+/* FORECAST TABLE */
+.forecast-table { width: 100%; font-size: 12px; border-collapse: collapse; }
+.forecast-table th { background: var(--navy); color: var(--blue-pale); padding: 7px 10px; text-align: right; font-weight: 500; font-size: 11px; }
+.forecast-table th:first-child { text-align: left; }
+.forecast-table td { padding: 6px 10px; border-bottom: 1px solid var(--border); text-align: right; color: var(--ink-mid); font-family: var(--mono); font-size: 11px; }
+.forecast-table td:first-child { text-align: left; font-family: var(--sans); font-weight: 500; color: var(--ink); }
+.forecast-table tr:last-child td { border-bottom: none; font-weight: 600; background: var(--blue-wash); color: var(--navy-mid); font-family: var(--sans); }
+.peak { color: var(--red-mid) !important; font-weight: 600 !important; }
+
+/* STEPS */
+.steps { display: flex; flex-direction: column; gap: 1rem; }
+.step { display: flex; gap: 14px; }
+.step-num { min-width: 30px; height: 30px; background: var(--navy); color: var(--blue-pale); font-size: 12px; font-weight: 600; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.step-title { font-size: 14px; font-weight: 600; color: var(--ink); }
+.step-ko { font-size: 11px; color: var(--ink-light); margin: 2px 0 5px; }
+.step-desc { font-size: 13px; color: var(--ink-mid); line-height: 1.6; }
+
+/* BLUR TEASER */
+.blur-wrap { position: relative; margin: 1rem 0; }
+.blur-inner { filter: blur(5px); user-select: none; pointer-events: none; }
+.blur-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.blur-overlay button { background: var(--navy); color: var(--blue-pale); font-family: var(--sans); font-size: 12px; font-weight: 500; padding: 9px 20px; border: none; border-radius: var(--radius-md); cursor: pointer; transition: background .2s; }
+.blur-overlay button:hover { background: var(--navy-light); }
+
+/* ROADMAP */
+.roadmap { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+.roadmap-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem; }
+.roadmap-phase { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: var(--navy-light); margin-bottom: 4px; }
+.roadmap-title { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.roadmap-time { font-size: 11px; color: var(--ink-light); margin-bottom: 8px; }
+.roadmap-action { font-size: 12px; color: var(--ink-mid); line-height: 1.5; }
+
+/* EXPERIENCE */
+.exp-card { display: flex; gap: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 10px; }
+.exp-av { min-width: 42px; height: 42px; border-radius: 50%; background: var(--blue-wash); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: var(--navy-mid); flex-shrink: 0; }
+.exp-title { font-size: 14px; font-weight: 600; color: var(--ink); }
+.exp-sub { font-size: 11px; color: var(--ink-light); margin: 2px 0 6px; }
+.exp-body { font-size: 13px; color: var(--ink-mid); line-height: 1.6; }
+
+/* LEGEND */
+.legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 8px; font-size: 11px; color: var(--ink-mid); }
+.legend-item { display: flex; align-items: center; gap: 5px; }
+.legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+/* FOOTER */
+footer { background: var(--navy); color: rgba(181,212,244,0.5); text-align: center; padding: 2rem; font-size: 12px; }
+footer a { color: var(--blue-pale); text-decoration: none; }
+
+/* DIVIDER */
+hr.soft { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .site-nav { padding: 0 1rem; }
+  .nav-links a { padding: 0 8px; font-size: 11px; }
+  .hero { padding: 3rem 1.25rem 2.5rem; }
+  .hero-stats { gap: 1.5rem; }
+  section { padding: 2.5rem 0; }
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-brand">Nur Afiqah <span>· Business Analyst</span></div>
+  <div class="nav-links">
+    <a href="#problem">Problem</a>
+    <a href="#sql">SQL</a>
+    <a href="#forecast">Forecast</a>
+    <a href="#strategy">Strategy</a>
+    <a href="#impact">Business case</a>
+    <a href="#process">How I work</a>
+    <a href="#about">About</a>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-eyebrow">Personal case study · 개인 케이스 스터디</div>
+  <h1>Korea's <em>invisible</em> customer</h1>
+  <p class="hero-ko">한국의 보이지 않는 고객</p>
+  <p class="hero-desc">How Olive Young is losing recurring global revenue from the inbound tourists it already converted in-store — and the data-backed strategy to fix it.</p>
+  <div class="hero-cta">
+    <a href="#sql" class="btn-primary">See the SQL analysis →</a>
+    <a href="#about" class="btn-ghost">About me</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-val">2.1M+</div>
+      <div class="hero-stat-label">SEA tourists to Korea / yr</div>
+    </div>
+    <div>
+      <div class="hero-stat-val">~0%</div>
+      <div class="hero-stat-label">CRM capture rate (foreigners)</div>
+    </div>
+    <div>
+      <div class="hero-stat-val">₩5.6B</div>
+      <div class="hero-stat-label">Est. annual recurring revenue leak</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="container">
+    <p class="sec-eyebrow">01 · PROBLEM DIAGNOSIS</p>
+    <h2 class="sec-title">The tourist acquisition problem</h2>
+    <p class="sec-ko">관광객 확보 문제</p>
+    <p class="sec-intro">Olive Young wins the tourist in-store. The products are there, the brand recognition is there, the purchase happens. But the moment they leave Korea, Olive Young loses them permanently — because the entire loyalty and CRM infrastructure assumes a Korean resident.</p>
+
+    <div class="hl">
+      I didn't find this problem in a report. I lived it. As a Malaysian Muslim in Seoul, I walked into Olive Young and couldn't sign up for their loyalty program — no Korean phone number required. That one friction point is the entire business case.
+      <span class="hl-ko">말레이시아 출신 무슬림으로 서울에서 직접 이 문제를 경험했습니다. 한국 번호가 없으면 멤버십 가입이 불가능합니다.</span>
+    </div>
+
+    <p style="font-size:13px;font-weight:600;color:var(--ink);margin:1.5rem 0 0.75rem">Four friction points — mapped from personal experience</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">📵</div>
+        <div class="pain-title">Korean number required</div>
+        <div class="pain-ko">한국 번호 필수</div>
+        <div class="pain-desc">Loyalty signup, Coupang Eats, most apps — locked behind a local number foreigners don't have.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📦</div>
+        <div class="pain-title">No in-store shipping home</div>
+        <div class="pain-ko">해외 직배송 없음</div>
+        <div class="pain-desc">Tourists self-limit basket size due to luggage. No option to ship purchases home at checkout.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🌐</div>
+        <div class="pain-title">Language barrier</div>
+        <div class="pain-ko">언어 장벽</div>
+        <div class="pain-desc">Staff and in-app content are Korea-first. International shoppers navigate product info alone.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">👤</div>
+        <div class="pain-title">Zero data capture</div>
+        <div class="pain-ko">데이터 미수집</div>
+        <div class="pain-desc">Tourist buys, pays, and disappears. No profile, no email, no retargeting possible after departure.</div>
+      </div>
+    </div>
+
+    <div class="hl">
+      Core diagnosis: Olive Young built a world-class in-store experience and a Korean-only digital backend. Every tourist who loves the brand has nowhere to go when they get home.
+      <span class="hl-ko">핵심 진단: 세계 수준의 매장 경험을 갖췄지만 디지털 백엔드는 한국인 전용입니다.</span>
+    </div>
+  </div>
+</section>
+
+<!-- SQL ANALYSIS -->
+<section id="sql">
+  <div class="container">
+    <p class="sec-eyebrow">02 · SQL ANALYSIS</p>
+    <h2 class="sec-title">Data analysis: three business questions</h2>
+    <p class="sec-ko">세 가지 비즈니스 질문에 대한 데이터 분석</p>
+    <p class="sec-intro">Simulated dataset built on publicly available Olive Young sales patterns and Korea Tourism Organization visitor data. Schema and queries reflect how I would approach this with real transaction-level data — the same analytical method I used at Delivery Hero to diagnose APAC partner funnel drop-off.</p>
+
+    <!-- QUERY 1 -->
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+        <span class="tag tag-blue" style="font-size:12px">Query 1</span>
+        <span class="card-title" style="margin:0">Where does the loyalty funnel break for foreign customers?</span>
+      </div>
+      <p class="card-ko">외국인 고객의 로열티 퍼널 이탈 지점</p>
+
+      <div class="sql-wrap">
+        <div class="sql-header">
+          <span class="sql-label">SQL · PostgreSQL</span>
+          <button class="sql-copy" onclick="copySQL(this, 'q1')">Copy</button>
+        </div>
+        <div class="sql-body">
+          <pre id="q1"><span class="cm">-- Loyalty signup funnel by customer nationality</span>
+<span class="cm">-- Identifies drop-off at each step: foreign vs domestic</span>
+
+<span class="kw">SELECT</span>
   customer_type,
-  COUNT(*) AS total_transactions,
-  SUM(CASE WHEN loyalty_prompted  = TRUE THEN 1 ELSE 0 END) AS prompted,
-  SUM(CASE WHEN signup_attempted  = TRUE THEN 1 ELSE 0 END) AS attempted,
-  SUM(CASE WHEN signup_completed  = TRUE THEN 1 ELSE 0 END) AS completed,
-  ROUND(
-    SUM(CASE WHEN signup_completed = TRUE THEN 1 ELSE 0 END) * 100.0
-    / NULLIF(COUNT(*), 0), 1
-  ) AS completion_rate_pct
-FROM   transactions
-WHERE  transaction_date >= '2024-01-01'
-GROUP BY customer_type
-ORDER BY completion_rate_pct DESC;
-customer_type
-total_transactions
-prompted
-attempted
-completed
-completion_rate_pct
-Domestic (Korean)
-284,500
-241,825
-198,150
-181,280
-63.7%
-Foreign (Japan/Taiwan)
-48,200
-40,970
-18,716
-7,230
-15.0%
-Foreign (SEA)
-31,400
-26,690
-8,478
-942
-3.0%
-Foreign (Western)
-19,100
-16,235
-4,011
-382
-2.0%
-Loyalty signup completion rate by customer type
-Korean 63.7%, Japan/Taiwan 15%, SEA 3%, Western 2%.
-💡
-SEA tourists are prompted to sign up at the same rate as Korean customers — but only 3% complete it, vs 63.7% for Koreans. The drop-off is entirely at the "requires Korean phone number" step. The intent is there; the system kills it.
-동남아 관광객 회원가입 완료율 3% — 의지가 없는 것이 아니라 한국 번호 요구 단계에서 이탈합니다.
-Query 2
-Which SKUs have the highest tourist purchase concentration?
-관광객 구매 비중이 높은 SKU 식별
-SQL · PostgreSQL
-Copy
--- Top SKUs by tourist purchase share vs domestic
--- Flags products with high tourist dependency = viral/reorder risk
+  <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total_transactions,
+  <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> loyalty_prompted  = <span class="str">TRUE</span> <span class="kw">THEN</span> 1 <span class="kw">ELSE</span> 0 <span class="kw">END</span>) <span class="kw">AS</span> prompted,
+  <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> signup_attempted  = <span class="str">TRUE</span> <span class="kw">THEN</span> 1 <span class="kw">ELSE</span> 0 <span class="kw">END</span>) <span class="kw">AS</span> attempted,
+  <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> signup_completed  = <span class="str">TRUE</span> <span class="kw">THEN</span> 1 <span class="kw">ELSE</span> 0 <span class="kw">END</span>) <span class="kw">AS</span> completed,
+  <span class="fn">ROUND</span>(
+    <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> signup_completed = <span class="str">TRUE</span> <span class="kw">THEN</span> 1 <span class="kw">ELSE</span> 0 <span class="kw">END</span>) * 100.0
+    / <span class="fn">NULLIF</span>(<span class="fn">COUNT</span>(*), 0), 1
+  ) <span class="kw">AS</span> completion_rate_pct
+<span class="kw">FROM</span>   transactions
+<span class="kw">WHERE</span>  transaction_date >= <span class="str">'2024-01-01'</span>
+<span class="kw">GROUP BY</span> customer_type
+<span class="kw">ORDER BY</span> completion_rate_pct <span class="kw">DESC</span>;</pre>
+        </div>
+      </div>
 
-SELECT
+      <div class="res-wrap">
+        <table class="res">
+          <thead><tr><th>customer_type</th><th>total_transactions</th><th>prompted</th><th>attempted</th><th>completed</th><th>completion_rate_pct</th></tr></thead>
+          <tbody>
+            <tr><td>Domestic (Korean)</td><td>284,500</td><td>241,825</td><td>198,150</td><td>181,280</td><td><span class="tag tag-green">63.7%</span></td></tr>
+            <tr><td>Foreign (Japan/Taiwan)</td><td>48,200</td><td>40,970</td><td>18,716</td><td>7,230</td><td><span class="tag tag-amber">15.0%</span></td></tr>
+            <tr><td>Foreign (SEA)</td><td>31,400</td><td>26,690</td><td>8,478</td><td>942</td><td><span class="tag tag-red">3.0%</span></td></tr>
+            <tr><td>Foreign (Western)</td><td>19,100</td><td>16,235</td><td>4,011</td><td>382</td><td><span class="tag tag-red">2.0%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-title">Loyalty signup completion rate by customer type</div>
+        <div style="position:relative;height:180px"><canvas id="c1" role="img" aria-label="Bar chart showing loyalty completion: Korean 63.7%, Japan/Taiwan 15%, SEA 3%, Western 2%">Korean 63.7%, Japan/Taiwan 15%, SEA 3%, Western 2%.</canvas></div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon">💡</div>
+        <div>
+          <div class="insight-text">SEA tourists are prompted to sign up at the same rate as Korean customers — but only 3% complete it, vs 63.7% for Koreans. The drop-off is entirely at the "requires Korean phone number" step. The intent is there; the system kills it.</div>
+          <div class="insight-ko">동남아 관광객 회원가입 완료율 3% — 의지가 없는 것이 아니라 한국 번호 요구 단계에서 이탈합니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUERY 2 -->
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+        <span class="tag tag-blue" style="font-size:12px">Query 2</span>
+        <span class="card-title" style="margin:0">Which SKUs have the highest tourist purchase concentration?</span>
+      </div>
+      <p class="card-ko">관광객 구매 비중이 높은 SKU 식별</p>
+
+      <div class="sql-wrap">
+        <div class="sql-header">
+          <span class="sql-label">SQL · PostgreSQL</span>
+          <button class="sql-copy" onclick="copySQL(this, 'q2')">Copy</button>
+        </div>
+        <div class="sql-body">
+          <pre id="q2"><span class="cm">-- Top SKUs by tourist purchase share vs domestic</span>
+<span class="cm">-- Flags products with high tourist dependency = viral/reorder risk</span>
+
+<span class="kw">SELECT</span>
   p.sku_name,
   p.category,
-  COUNT(CASE WHEN t.customer_type != 'domestic' THEN 1 END) AS tourist_orders,
-  COUNT(*) AS total_orders,
-  ROUND(
-    COUNT(CASE WHEN t.customer_type != 'domestic' THEN 1 END) * 100.0
-    / NULLIF(COUNT(*), 0), 1
-  ) AS tourist_share_pct,
-  ROUND(AVG(t.basket_size_krw)) AS avg_basket_krw
-FROM   transactions t
-JOIN   products p ON t.sku_id = p.sku_id
-GROUP BY p.sku_name, p.category
-HAVING tourist_share_pct > 30
-ORDER BY tourist_share_pct DESC
-LIMIT  6;
-sku_name
-category
-tourist_orders
-total_orders
-tourist_share_pct
-avg_basket_krw
-COSRX Snail Serum 96
-Serum
-18,420
-38,250
-48.2%
-₩42,800
-Laneige Lip Sleeping Mask
-Lip care
-22,100
-46,500
-47.5%
-₩28,400
-Some By Mi AHA BHA Toner
-Toner
-12,300
-31,800
-38.7%
-₩35,200
-Dr. Jart Cicapair Cream
-Moisturiser
-9,800
-26,400
-37.1%
-₩58,600
-Missha Time Revolution
-Serum
-7,600
-22,100
-34.4%
-₩51,200
-Innisfree Green Tea Serum
-Serum
-6,900
-21,500
-32.1%
-₩39,800
-Tourist purchase share by SKU (%)
-COSRX 48.2%, Laneige 47.5%, Some By Mi 38.7%, Dr Jart 37.1%, Missha 34.4%, Innisfree 32.1%.
-💡
-Nearly half of COSRX and Laneige Lip Mask sales are tourist-driven — yet none of these buyers are in the CRM. If even 25% were retained as global e-commerce customers, these two SKUs alone represent significant recurring revenue that currently disappears on departure day.
-상위 SKU 매출의 약 48%가 관광객 구매임에도 CRM 데이터가 전혀 없습니다.
-Query 3
-How much recurring revenue is leaking annually?
-연간 반복 매출 누수 규모 추정
-SQL · PostgreSQL · CTE
-Copy
--- Revenue leakage estimate: tourists not retained in CRM
--- Assumes 25% retention, 6x annual reorders at avg ₩38,000
+  <span class="fn">COUNT</span>(<span class="kw">CASE WHEN</span> t.customer_type != <span class="str">'domestic'</span> <span class="kw">THEN</span> 1 <span class="kw">END</span>) <span class="kw">AS</span> tourist_orders,
+  <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total_orders,
+  <span class="fn">ROUND</span>(
+    <span class="fn">COUNT</span>(<span class="kw">CASE WHEN</span> t.customer_type != <span class="str">'domestic'</span> <span class="kw">THEN</span> 1 <span class="kw">END</span>) * 100.0
+    / <span class="fn">NULLIF</span>(<span class="fn">COUNT</span>(*), 0), 1
+  ) <span class="kw">AS</span> tourist_share_pct,
+  <span class="fn">ROUND</span>(<span class="fn">AVG</span>(t.basket_size_krw)) <span class="kw">AS</span> avg_basket_krw
+<span class="kw">FROM</span>   transactions t
+<span class="kw">JOIN</span>   products p <span class="kw">ON</span> t.sku_id = p.sku_id
+<span class="kw">GROUP BY</span> p.sku_name, p.category
+<span class="kw">HAVING</span> tourist_share_pct > 30
+<span class="kw">ORDER BY</span> tourist_share_pct <span class="kw">DESC</span>
+<span class="kw">LIMIT</span>  6;</pre>
+        </div>
+      </div>
 
-WITH tourist_base AS (
-  SELECT
+      <div class="res-wrap">
+        <table class="res">
+          <thead><tr><th>sku_name</th><th>category</th><th>tourist_orders</th><th>total_orders</th><th>tourist_share_pct</th><th>avg_basket_krw</th></tr></thead>
+          <tbody>
+            <tr><td>COSRX Snail Serum 96</td><td>Serum</td><td>18,420</td><td>38,250</td><td><span class="tag tag-red">48.2%</span></td><td>₩42,800</td></tr>
+            <tr><td>Laneige Lip Sleeping Mask</td><td>Lip care</td><td>22,100</td><td>46,500</td><td><span class="tag tag-red">47.5%</span></td><td>₩28,400</td></tr>
+            <tr><td>Some By Mi AHA BHA Toner</td><td>Toner</td><td>12,300</td><td>31,800</td><td><span class="tag tag-amber">38.7%</span></td><td>₩35,200</td></tr>
+            <tr><td>Dr. Jart Cicapair Cream</td><td>Moisturiser</td><td>9,800</td><td>26,400</td><td><span class="tag tag-amber">37.1%</span></td><td>₩58,600</td></tr>
+            <tr><td>Missha Time Revolution</td><td>Serum</td><td>7,600</td><td>22,100</td><td><span class="tag tag-amber">34.4%</span></td><td>₩51,200</td></tr>
+            <tr><td>Innisfree Green Tea Serum</td><td>Serum</td><td>6,900</td><td>21,500</td><td><span class="tag tag-blue">32.1%</span></td><td>₩39,800</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-title">Tourist purchase share by SKU (%)</div>
+        <div style="position:relative;height:220px"><canvas id="c2" role="img" aria-label="Horizontal bar chart of tourist share by SKU from 32% to 48%">COSRX 48.2%, Laneige 47.5%, Some By Mi 38.7%, Dr Jart 37.1%, Missha 34.4%, Innisfree 32.1%.</canvas></div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon">💡</div>
+        <div>
+          <div class="insight-text">Nearly half of COSRX and Laneige Lip Mask sales are tourist-driven — yet none of these buyers are in the CRM. If even 25% were retained as global e-commerce customers, these two SKUs alone represent significant recurring revenue that currently disappears on departure day.</div>
+          <div class="insight-ko">상위 SKU 매출의 약 48%가 관광객 구매임에도 CRM 데이터가 전혀 없습니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUERY 3 -->
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+        <span class="tag tag-blue" style="font-size:12px">Query 3</span>
+        <span class="card-title" style="margin:0">How much recurring revenue is leaking annually?</span>
+      </div>
+      <p class="card-ko">연간 반복 매출 누수 규모 추정</p>
+
+      <div class="sql-wrap">
+        <div class="sql-header">
+          <span class="sql-label">SQL · PostgreSQL · CTE</span>
+          <button class="sql-copy" onclick="copySQL(this, 'q3')">Copy</button>
+        </div>
+        <div class="sql-body">
+          <pre id="q3"><span class="cm">-- Revenue leakage estimate: tourists not retained in CRM</span>
+<span class="cm">-- Assumes 25% retention, 6x annual reorders at avg ₩38,000</span>
+
+<span class="kw">WITH</span> tourist_base <span class="kw">AS</span> (
+  <span class="kw">SELECT</span>
     customer_type,
-    COUNT(DISTINCT customer_id)  AS unique_tourists,
-    SUM(revenue_krw)              AS instore_revenue
-  FROM   transactions
-  WHERE  customer_type != 'domestic'
-    AND  transaction_year = 2024
-  GROUP BY customer_type
+    <span class="fn">COUNT</span>(<span class="kw">DISTINCT</span> customer_id)  <span class="kw">AS</span> unique_tourists,
+    <span class="fn">SUM</span>(revenue_krw)              <span class="kw">AS</span> instore_revenue
+  <span class="kw">FROM</span>   transactions
+  <span class="kw">WHERE</span>  customer_type != <span class="str">'domestic'</span>
+    <span class="kw">AND</span>  transaction_year = 2024
+  <span class="kw">GROUP BY</span> customer_type
 ),
-leakage AS (
-  SELECT
+leakage <span class="kw">AS</span> (
+  <span class="kw">SELECT</span>
     customer_type,
     unique_tourists,
     instore_revenue,
-    ROUND(unique_tourists * 0.25)            AS recoverable_25pct,
-    ROUND(unique_tourists * 0.25 * 6 * 38000) AS est_annual_recurring_krw
-  FROM tourist_base
+    <span class="fn">ROUND</span>(unique_tourists * 0.25)            <span class="kw">AS</span> recoverable_25pct,
+    <span class="fn">ROUND</span>(unique_tourists * 0.25 * 6 * 38000) <span class="kw">AS</span> est_annual_recurring_krw
+  <span class="kw">FROM</span> tourist_base
 )
-SELECT *,
-  ROUND(est_annual_recurring_krw / instore_revenue * 100, 1)
-    AS recurring_vs_instore_pct
-FROM  leakage
-ORDER BY est_annual_recurring_krw DESC;
-customer_type
-unique_tourists
-instore_revenue
-recoverable (25%)
-est. recurring/yr
-recurring vs instore
-Japan / Taiwan
-48,200
-₩18.3B
-12,050
-₩2.75B
-15.0%
-SEA
-31,400
-₩11.9B
-7,850
-₩1.79B
-15.0%
-Western
-19,100
-₩7.3B
-4,775
-₩1.09B
-15.0%
-💡
-A conservative 25% retention rate — with just 6 annual reorders at avg ₩38,000 — translates to ₩5.6B in estimated annual recurring revenue currently uncaptured. This is not new spending. It is demand that already exists and is simply not being served.
-외국인 관광객의 25%만 유지해도 연간 약 56억 원의 반복 매출이 추가로 발생합니다.
-03 · DEMAND FORECASTING
-SKU demand forecasting framework
-SKU 수요 예측 프레임워크
-Tourist-driven SKUs have fundamentally different demand profiles than standard retail. Three categories require three different methods — matching the method to the demand pattern is the key analytical decision.
-Category
-Example SKU
-Demand pattern
-Method
-Why it fits
-Slow-burn luxury
-Sulwhasoo Ginseng Cream
-Stable, low variance
-Exponential smoothing (SES)
-Low tourist exposure; smoothing handles noise without overfitting
-Seasonal tourist
-Laneige Lip Mask
-Peaks: summer + Lunar NY
-STL seasonal decomposition
-Captures 2 tourist spikes/yr + stable domestic baseline
-Viral / trend-driven
-COSRX Snail Serum
-Unpredictable 5–15× spikes
-Social signal + safety stock buffer
-ARIMA fails on step-change spikes; TikTok view velocity is the lead indicator
-Laneige Lip Sleeping Mask — 12-month forecast (units × 1,000)
-라네즈 립 슬리핑 마스크 12개월 수요 예측 · STL 계절 분해
+<span class="kw">SELECT</span> *,
+  <span class="fn">ROUND</span>(est_annual_recurring_krw / instore_revenue * 100, 1)
+    <span class="kw">AS</span> recurring_vs_instore_pct
+<span class="kw">FROM</span>  leakage
+<span class="kw">ORDER BY</span> est_annual_recurring_krw <span class="kw">DESC</span>;</pre>
+        </div>
+      </div>
 
-Domestic baseline
+      <div class="res-wrap">
+        <table class="res">
+          <thead><tr><th>customer_type</th><th>unique_tourists</th><th>instore_revenue</th><th>recoverable (25%)</th><th>est. recurring/yr</th><th>recurring vs instore</th></tr></thead>
+          <tbody>
+            <tr><td>Japan / Taiwan</td><td>48,200</td><td>₩18.3B</td><td>12,050</td><td><span class="tag tag-green">₩2.75B</span></td><td>15.0%</td></tr>
+            <tr><td>SEA</td><td>31,400</td><td>₩11.9B</td><td>7,850</td><td><span class="tag tag-green">₩1.79B</span></td><td>15.0%</td></tr>
+            <tr><td>Western</td><td>19,100</td><td>₩7.3B</td><td>4,775</td><td><span class="tag tag-blue">₩1.09B</span></td><td>15.0%</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-Tourist-adjusted forecast
+      <div class="insight">
+        <div class="insight-icon">💡</div>
+        <div>
+          <div class="insight-text">A conservative 25% retention rate — with just 6 annual reorders at avg ₩38,000 — translates to ₩5.6B in estimated annual recurring revenue currently uncaptured. This is not new spending. It is demand that already exists and is simply not being served.</div>
+          <div class="insight-ko">외국인 관광객의 25%만 유지해도 연간 약 56억 원의 반복 매출이 추가로 발생합니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-Tourist peak window
-12-month forecast with tourist peaks in Jul-Aug and Jan-Feb.
-12-month aggregate production plan (APP) — Laneige Lip Mask
-Strategy: Hybrid (Level base + Chase tourist peaks) · Units in thousands
-Month
-Forecast
-Production
-Inventory
-Holding cost
-OT cost
-Total cost
-Jan
-25.8
-26.0
-2.2
-₩1.1M
-₩2.1M
-₩3.2M
-Feb
-23.9
-24.0
-2.3
-₩1.2M
-₩1.6M
-₩2.8M
-Mar
-17.5
-18.0
-2.8
-₩1.4M
-—
-₩1.4M
-Apr
-18.1
-18.0
-2.7
-₩1.4M
-—
-₩1.4M
-May
-19.2
-19.5
-3.0
-₩1.5M
-—
-₩1.5M
-Jun
-20.1
-20.0
-2.9
-₩1.5M
-—
-₩1.5M
-Jul
-29.8
-30.0
-3.1
-₩1.6M
-₩3.2M
-₩4.8M
-Aug
-29.2
-29.5
-3.4
-₩1.7M
-₩2.9M
-₩4.6M
-Sep
-18.8
-19.0
-3.6
-₩1.8M
-—
-₩1.8M
-Oct
-19.1
-19.0
-3.5
-₩1.8M
-—
-₩1.8M
-Nov
-21.5
-22.0
-4.0
-₩2.0M
-—
-₩2.0M
-Dec
-22.8
-23.0
-4.2
-₩2.1M
-—
-₩2.1M
-TOTAL
-265.8
-268.0
-—
-₩18.1M
-₩9.8M
-₩27.9M
-💡
-Hybrid strategy chosen over pure Level: tourist peaks (Jul–Aug, Jan–Feb) are sharp enough that holding 6+ weeks of safety stock would cost more in inventory carrying costs than the overtime required to chase demand. Level strategy total cost estimate: ₩34.2M. Hybrid: ₩27.9M — a 18% cost saving.
-하이브리드 전략 선택: 재고 유지비(Level) 대비 초과 근무비(Chase) 절감 효과로 총비용 18% 감소.
-04 · STRATEGIC RECOMMENDATION
-Three interlocking solutions
-세 가지 연동 솔루션
-Each solution targets a different point in the tourist journey. Together they form a closed loop: capture data in-store → increase basket size → retain globally post-trip.
-1
-QR-to-global membership at checkout
-계산대 QR 글로벌 멤버십 가입
-Receipt QR links tourist to a global profile via passport scan, Google, or social login — no Korean number required. Creates a CRM profile that transitions to Olive Young's international e-commerce app after the tourist returns home. This is the data capture layer: without it, the other solutions have no customer to retain.
-2
-International counter + home postage service
-국제 카운터 · 해외 직배송 서비스
-Dedicated in-store counter at flagship locations where tourists ship purchases home directly. Removes the luggage constraint that self-limits basket size. Key insight from behavioural data: dopamine shopping peaks during travel — the willingness to buy more is high, but "how do I carry this?" is the blocker. Remove that friction and basket size increases. Estimated +22% basket uplift based on comparable duty-free shipping service data.
-3
-Post-trip retention loop + wishlist capture
-귀국 후 재구매 유도 루프 · 위시리스트 수집
-At QR scan, tourist is prompted to save a digital wishlist of items browsed but not purchased. Post-trip email sequence (Day 3 / Day 14 / Day 30) targets wishlist items with international shipping enabled. This converts browse intent into delayed purchase — addressing the "add-to-cart without buying" dopamine behaviour documented in recent e-commerce research. The wishlist becomes a retargeting seed that activates after departure and drives the first international order within 30 days. Expected conversion: 12–18% of wishlist captures to first international purchase.
-Reveal solution 3 ↓
-05 · BUSINESS CASE
-What Olive Young gains
-올리브영이 얻는 것
-New global CRM profiles / yr
-~500K
-25% conversion of intl tourists
-Est. annual recurring revenue
-₩5.6B
-Post-trip reorders, conservative est.
-Shipping counter revenue
-₩18B
-₩30K fee × 600K shipments
-Basket size uplift
-+22%
-When luggage barrier removed
-Implementation roadmap · 실행 로드맵
-Phase 1 · Quick win
-QR global signup
-0–3 months · Low cost
-Deploy at 50 flagship stores. Software-only change. Immediate CRM data capture begins.
-Phase 2 · Infrastructure
-Shipping counter pilot
-3–9 months · Medium cost
-Launch at Myeongdong, Hongdae, Sinchon. Measure basket size uplift vs control stores.
-Phase 3 · Scale
-Retention loop + SEA push
-9–18 months · Medium-high
-Post-trip email sequence live. SEA marketing campaign. Multilingual product tagging rollout.
-My edge in identifying this: I experienced every friction point firsthand as a Malaysian Muslim living in Seoul. Market insight grounded in lived user experience — not secondary research — is what makes this diagnosis credible and the recommendations specific.
-직접 경험한 소비자 관점에서 도출한 인사이트입니다. 2차 자료가 아닌 실생활 경험이 이 분석의 근거입니다.
-06 · HOW I WORK
-From discovery to delivery
-발견에서 실행까지 — 업무 방식
-Business analysis isn't just data. It's translating messy stakeholder reality into clear documentation that development and design teams can actually build from. Here's how I'd apply that to the Olive Young tourist problem — from first workshop to backlog.
-Discovery-to-backlog process map
-발견 워크숍 → 백로그 · 프로세스 맵
-PHASE 1
-Discovery
-· Stakeholder interviews
-· Observation (in-store tourist flow)
-· Pain point mapping
-· As-is process documentation
-Output: problem brief
-→
-PHASE 2
-Requirements
-· Functional requirements doc
-· User story writing (see below)
-· Acceptance criteria
-· Workflow diagrams
-Output: requirements spec
-→
-PHASE 3
-Backlog & Sprint
-· Epics → user stories
-· Priority scoring (MoSCoW)
-· Sprint planning support
-· Stakeholder sign-off
-Output: prioritised backlog
-→
-PHASE 4
-QA & UAT
-· Test case documentation
-· UAT coordination
-· Bug triage & retest tracking
-· Stakeholder acceptance
-Output: sign-off
-Sample user stories — Olive Young global membership feature
-사용자 스토리 샘플 · 올리브영 글로벌 멤버십 기능
-Epic: Global CRM capture
-Must have
-"As a foreign tourist at checkout, I want to create a membership profile using my Google account or passport ID, so that I can access Olive Young's loyalty benefits without a Korean phone number."
-Acceptance criteria:
-✓ User can scan QR on receipt to open signup flow
-✓ Signup accepts Google OAuth, Apple ID, or passport number
-✓ Korean phone number field is optional, not required
-✓ Profile creation completes in under 90 seconds
-✓ Confirmation email sent in user's detected language
-Epic: In-store shipping
-Must have
-"As a tourist purchasing multiple items, I want to ship my purchases directly to my home address from the store, so that I don't need to carry heavy bags through the airport."
-Acceptance criteria:
-✓ Shipping option available at all flagship store checkouts
-✓ Supports addresses in 15+ countries
-✓ Shipping fee calculated and displayed before confirmation
-✓ Tracking number sent to membership email within 2 hours
-✓ Estimated delivery date shown per destination country
-Epic: Post-trip retention
-Should have
-"As a returned tourist, I want to receive a personalised reorder reminder for products I purchased in-store, so that I can repurchase from my home country without searching again."
-Acceptance criteria:
-✓ Email triggered 14 days after checkout date
-✓ Email contains exact products purchased with direct reorder links
-✓ International shipping price shown in user's local currency
-✓ Unsubscribe option clearly visible
-✓ Email renders correctly in EN, ZH, MS, JA
-On bridging Korean and international teams: At Delivery Hero I coordinated across Malaysia, Philippines, Cambodia, Myanmar and Thailand — each with different operational realities — while reporting to a Singapore-based regional lead. I drafted documentation in English, ran alignment calls across time zones, and ensured local teams could execute without needing to re-interpret from HQ. That's the same muscle this role requires between Seoul and Sydney.
-딜리버리 히어로에서 5개 APAC 국가 팀을 조율한 경험이 한국-호주 팀 간 커뮤니케이션에 직접 적용됩니다.
-Tools I use in this workflow
-Jira / backlog management
-Confluence / documentation
-Miro / process mapping
-Salesforce / CRM analysis
-SQL / data validation
-Claude / AI-assisted documentation
-Figma / UX review
-Agile / Scrum ceremonies
-ABOUT THE ANALYST
-Nur Afiqah · 누르 아피카
-Business analyst · Strategy · Seoul · Malaysian
-I bring three things most analysts don't: real funnel work across APAC at Delivery Hero, academic strategy and operations frameworks from SKKU MBA, and first-person market insight as the exact type of customer Korean beauty brands are failing to capture.
-APAC 실무 경험, MBA 프레임워크, 그리고 직접 경험한 소비자 인사이트를 함께 보유하고 있습니다.
-DH
-Delivery Hero · Business development, APAC Partnerships
-2022.01 – 2023.08 · Full-time · Kuala Lumpur
-Diagnosed B2B partner funnel drop-off across 5 APAC markets using Salesforce transaction data. Built cross-selling framework → AOV +12%. Identified "Storefront Setup" as primary vendor activation drop-off point → reduced Malaysia partner churn 15.90% → 14.71% (−1.19pp). Same analytical method applied in this case study.
-Funnel analysisSalesforceB2B partnershipsAPAC · 5 marketsKPI dashboards
-SK
-Sungkyunkwan University · Global MBA
-AI & Business Analytics · 2024.08 – 2026.02 · Seoul · GPA 3.59 / 4.5
-Applied strategy, operations, finance and marketing frameworks to real Korean companies including Amorepacific. Korean proficiency: TOPIK Level 3.
-Business strategyOperations managementCorporate financeKorean (TOPIK 3)
+<!-- FORECASTING -->
+<section id="forecast">
+  <div class="container">
+    <p class="sec-eyebrow">03 · DEMAND FORECASTING</p>
+    <h2 class="sec-title">SKU demand forecasting framework</h2>
+    <p class="sec-ko">SKU 수요 예측 프레임워크</p>
+    <p class="sec-intro">Tourist-driven SKUs have fundamentally different demand profiles than standard retail. Three categories require three different methods — matching the method to the demand pattern is the key analytical decision.</p>
 
-Technical skills
-SQL (MySQL · PostgreSQL)
-Python
-Power BI
-Excel
-Salesforce
-English (bilingual)
-Malay (native)
-Korean (TOPIK 3)
-APAC market knowledge
-Get in touch → LinkedIn ↗ GitHub ↗
-Nur Afiqah · Business Analyst · Seoul  ·  nafiqah.work@gmail.com
-Dataset simulated from public sources (Korea Tourism Organization, Olive Young annual reports). For analytical demonstration purposes.
+    <div class="res-wrap" style="margin-bottom:1.5rem">
+      <table class="res">
+        <thead><tr><th>Category</th><th>Example SKU</th><th>Demand pattern</th><th>Method</th><th>Why it fits</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Slow-burn luxury</strong></td><td>Sulwhasoo Ginseng Cream</td><td>Stable, low variance</td><td>Exponential smoothing (SES)</td><td>Low tourist exposure; smoothing handles noise without overfitting</td></tr>
+          <tr><td><strong>Seasonal tourist</strong></td><td>Laneige Lip Mask</td><td>Peaks: summer + Lunar NY</td><td>STL seasonal decomposition</td><td>Captures 2 tourist spikes/yr + stable domestic baseline</td></tr>
+          <tr><td><strong>Viral / trend-driven</strong></td><td>COSRX Snail Serum</td><td>Unpredictable 5–15× spikes</td><td>Social signal + safety stock buffer</td><td>ARIMA fails on step-change spikes; TikTok view velocity is the lead indicator</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Laneige Lip Sleeping Mask — 12-month forecast (units × 1,000)</div>
+      <p class="card-ko">라네즈 립 슬리핑 마스크 12개월 수요 예측 · STL 계절 분해</p>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#185FA5"></div>Domestic baseline</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;border-top:2px dashed #1D9E75;height:0;width:14px;border-radius:0"></div> Tourist-adjusted forecast</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#FAEEDA;border:1px solid #BA7517"></div>Tourist peak window</div>
+      </div>
+      <div class="chart-wrap" style="border:none;padding:0">
+        <div style="position:relative;height:240px"><canvas id="c3" role="img" aria-label="Line chart: 12-month Laneige Lip Mask demand forecast with tourist spikes in July-August and January-February">12-month forecast with tourist peaks in Jul-Aug and Jan-Feb.</canvas></div>
+      </div>
+
+      <p style="font-size:13px;font-weight:600;color:var(--ink);margin:1.25rem 0 0.75rem">12-month aggregate production plan (APP) — Laneige Lip Mask</p>
+      <p style="font-size:12px;color:var(--ink-light);margin-bottom:0.75rem">Strategy: Hybrid (Level base + Chase tourist peaks) · Units in thousands</p>
+      <div class="res-wrap">
+        <table class="forecast-table">
+          <thead>
+            <tr><th>Month</th><th>Forecast</th><th>Production</th><th>Inventory</th><th>Holding cost</th><th>OT cost</th><th>Total cost</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Jan</td><td class="peak">25.8</td><td class="peak">26.0</td><td>2.2</td><td>₩1.1M</td><td>₩2.1M</td><td>₩3.2M</td></tr>
+            <tr><td>Feb</td><td class="peak">23.9</td><td class="peak">24.0</td><td>2.3</td><td>₩1.2M</td><td>₩1.6M</td><td>₩2.8M</td></tr>
+            <tr><td>Mar</td><td>17.5</td><td>18.0</td><td>2.8</td><td>₩1.4M</td><td>—</td><td>₩1.4M</td></tr>
+            <tr><td>Apr</td><td>18.1</td><td>18.0</td><td>2.7</td><td>₩1.4M</td><td>—</td><td>₩1.4M</td></tr>
+            <tr><td>May</td><td>19.2</td><td>19.5</td><td>3.0</td><td>₩1.5M</td><td>—</td><td>₩1.5M</td></tr>
+            <tr><td>Jun</td><td>20.1</td><td>20.0</td><td>2.9</td><td>₩1.5M</td><td>—</td><td>₩1.5M</td></tr>
+            <tr><td>Jul</td><td class="peak">29.8</td><td class="peak">30.0</td><td>3.1</td><td>₩1.6M</td><td>₩3.2M</td><td>₩4.8M</td></tr>
+            <tr><td>Aug</td><td class="peak">29.2</td><td class="peak">29.5</td><td>3.4</td><td>₩1.7M</td><td>₩2.9M</td><td>₩4.6M</td></tr>
+            <tr><td>Sep</td><td>18.8</td><td>19.0</td><td>3.6</td><td>₩1.8M</td><td>—</td><td>₩1.8M</td></tr>
+            <tr><td>Oct</td><td>19.1</td><td>19.0</td><td>3.5</td><td>₩1.8M</td><td>—</td><td>₩1.8M</td></tr>
+            <tr><td>Nov</td><td>21.5</td><td>22.0</td><td>4.0</td><td>₩2.0M</td><td>—</td><td>₩2.0M</td></tr>
+            <tr><td>Dec</td><td>22.8</td><td>23.0</td><td>4.2</td><td>₩2.1M</td><td>—</td><td>₩2.1M</td></tr>
+            <tr><td>TOTAL</td><td>265.8</td><td>268.0</td><td>—</td><td>₩18.1M</td><td>₩9.8M</td><td>₩27.9M</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon">💡</div>
+        <div>
+          <div class="insight-text">Hybrid strategy chosen over pure Level: tourist peaks (Jul–Aug, Jan–Feb) are sharp enough that holding 6+ weeks of safety stock would cost more in inventory carrying costs than the overtime required to chase demand. Level strategy total cost estimate: ₩34.2M. Hybrid: ₩27.9M — a 18% cost saving.</div>
+          <div class="insight-ko">하이브리드 전략 선택: 재고 유지비(Level) 대비 초과 근무비(Chase) 절감 효과로 총비용 18% 감소.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGY -->
+<section id="strategy">
+  <div class="container">
+    <p class="sec-eyebrow">04 · STRATEGIC RECOMMENDATION</p>
+    <h2 class="sec-title">Three interlocking solutions</h2>
+    <p class="sec-ko">세 가지 연동 솔루션</p>
+    <p class="sec-intro">Each solution targets a different point in the tourist journey. Together they form a closed loop: capture data in-store → increase basket size → retain globally post-trip.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">QR-to-global membership at checkout</div>
+          <div class="step-ko">계산대 QR 글로벌 멤버십 가입</div>
+          <div class="step-desc">Receipt QR links tourist to a global profile via passport scan, Google, or social login — no Korean number required. Creates a CRM profile that transitions to Olive Young's international e-commerce app after the tourist returns home. This is the data capture layer: without it, the other solutions have no customer to retain.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">International counter + home postage service</div>
+          <div class="step-ko">국제 카운터 · 해외 직배송 서비스</div>
+          <div class="step-desc">Dedicated in-store counter at flagship locations where tourists ship purchases home directly. Removes the luggage constraint that self-limits basket size. Key insight from behavioural data: dopamine shopping peaks during travel — the willingness to buy more is high, but "how do I carry this?" is the blocker. Remove that friction and basket size increases. Estimated +22% basket uplift based on comparable duty-free shipping service data.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="blur-wrap">
+      <div class="blur-inner">
+        <div class="steps" style="margin-top:1rem">
+          <div class="step">
+            <div class="step-num">3</div>
+            <div>
+              <div class="step-title">Post-trip retention loop + wishlist capture</div>
+              <div class="step-ko">귀국 후 재구매 유도 루프 · 위시리스트 수집</div>
+              <div class="step-desc">At QR scan, tourist is prompted to save a digital wishlist of items browsed but not purchased. Post-trip email sequence (Day 3 / Day 14 / Day 30) targets wishlist items with international shipping enabled. This converts browse intent into delayed purchase — addressing the "add-to-cart without buying" dopamine behaviour documented in recent e-commerce research. The wishlist becomes a retargeting seed that activates after departure and drives the first international order within 30 days. Expected conversion: 12–18% of wishlist captures to first international purchase.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="blur-overlay">
+        <button onclick="this.closest('.blur-wrap').querySelector('.blur-inner').style.filter='none';this.closest('.blur-overlay').style.display='none'">Reveal solution 3 ↓</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS CASE -->
+<section id="impact">
+  <div class="container">
+    <p class="sec-eyebrow">05 · BUSINESS CASE</p>
+    <h2 class="sec-title">What Olive Young gains</h2>
+    <p class="sec-ko">올리브영이 얻는 것</p>
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-label">New global CRM profiles / yr</div>
+        <div class="metric-val">~500K</div>
+        <div class="metric-note">25% conversion of intl tourists</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Est. annual recurring revenue</div>
+        <div class="metric-val">₩5.6B</div>
+        <div class="metric-note">Post-trip reorders, conservative est.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Shipping counter revenue</div>
+        <div class="metric-val">₩18B</div>
+        <div class="metric-note">₩30K fee × 600K shipments</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Basket size uplift</div>
+        <div class="metric-val">+22%</div>
+        <div class="metric-note">When luggage barrier removed</div>
+      </div>
+    </div>
+
+    <p style="font-size:13px;font-weight:600;color:var(--ink);margin:1.5rem 0 0.75rem">Implementation roadmap · 실행 로드맵</p>
+    <div class="roadmap">
+      <div class="roadmap-card">
+        <div class="roadmap-phase">Phase 1 · Quick win</div>
+        <div class="roadmap-title">QR global signup</div>
+        <div class="roadmap-time">0–3 months · Low cost</div>
+        <div class="roadmap-action">Deploy at 50 flagship stores. Software-only change. Immediate CRM data capture begins.</div>
+      </div>
+      <div class="roadmap-card">
+        <div class="roadmap-phase">Phase 2 · Infrastructure</div>
+        <div class="roadmap-title">Shipping counter pilot</div>
+        <div class="roadmap-time">3–9 months · Medium cost</div>
+        <div class="roadmap-action">Launch at Myeongdong, Hongdae, Sinchon. Measure basket size uplift vs control stores.</div>
+      </div>
+      <div class="roadmap-card">
+        <div class="roadmap-phase">Phase 3 · Scale</div>
+        <div class="roadmap-title">Retention loop + SEA push</div>
+        <div class="roadmap-time">9–18 months · Medium-high</div>
+        <div class="roadmap-action">Post-trip email sequence live. SEA marketing campaign. Multilingual product tagging rollout.</div>
+      </div>
+    </div>
+
+    <div class="hl">
+      My edge in identifying this: I experienced every friction point firsthand as a Malaysian Muslim living in Seoul. Market insight grounded in lived user experience — not secondary research — is what makes this diagnosis credible and the recommendations specific.
+      <span class="hl-ko">직접 경험한 소비자 관점에서 도출한 인사이트입니다. 2차 자료가 아닌 실생활 경험이 이 분석의 근거입니다.</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW I WORK -->
+<section id="process">
+  <div class="container">
+    <p class="sec-eyebrow">06 · HOW I WORK</p>
+    <h2 class="sec-title">From discovery to delivery</h2>
+    <p class="sec-ko">발견에서 실행까지 — 업무 방식</p>
+    <p class="sec-intro">Business analysis isn't just data. It's translating messy stakeholder reality into clear documentation that development and design teams can actually build from. Here's how I'd apply that to the Olive Young tourist problem — from first workshop to backlog.</p>
+
+    <!-- PROCESS MAP -->
+    <div class="card" style="overflow-x:auto">
+      <div class="card-title">Discovery-to-backlog process map</div>
+      <p class="card-ko" style="margin-bottom:1.25rem">발견 워크숍 → 백로그 · 프로세스 맵</p>
+      <div style="display:flex;gap:0;align-items:stretch;min-width:560px">
+        <div style="flex:1;background:var(--blue-wash);border-radius:var(--radius-md) 0 0 var(--radius-md);padding:1rem;border:1px solid var(--border)">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--navy-light);margin-bottom:.5rem">PHASE 1</div>
+          <div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:.4rem">Discovery</div>
+          <div style="font-size:11px;color:var(--navy-mid);line-height:1.6">
+            · Stakeholder interviews<br>
+            · Observation (in-store tourist flow)<br>
+            · Pain point mapping<br>
+            · As-is process documentation<br>
+            <span style="display:block;margin-top:.5rem;color:var(--navy-light);font-style:italic">Output: problem brief</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;padding:0 6px;color:var(--navy-light);font-size:18px;background:var(--surface-2)">→</div>
+        <div style="flex:1;background:var(--surface);border:1px solid var(--border);padding:1rem">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--navy-light);margin-bottom:.5rem">PHASE 2</div>
+          <div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:.4rem">Requirements</div>
+          <div style="font-size:11px;color:var(--ink-mid);line-height:1.6">
+            · Functional requirements doc<br>
+            · User story writing (see below)<br>
+            · Acceptance criteria<br>
+            · Workflow diagrams<br>
+            <span style="display:block;margin-top:.5rem;color:var(--ink-light);font-style:italic">Output: requirements spec</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;padding:0 6px;color:var(--navy-light);font-size:18px;background:var(--surface-2)">→</div>
+        <div style="flex:1;background:var(--surface);border:1px solid var(--border);padding:1rem">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--navy-light);margin-bottom:.5rem">PHASE 3</div>
+          <div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:.4rem">Backlog & Sprint</div>
+          <div style="font-size:11px;color:var(--ink-mid);line-height:1.6">
+            · Epics → user stories<br>
+            · Priority scoring (MoSCoW)<br>
+            · Sprint planning support<br>
+            · Stakeholder sign-off<br>
+            <span style="display:block;margin-top:.5rem;color:var(--ink-light);font-style:italic">Output: prioritised backlog</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;padding:0 6px;color:var(--navy-light);font-size:18px;background:var(--surface-2)">→</div>
+        <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:1rem">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--navy-light);margin-bottom:.5rem">PHASE 4</div>
+          <div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:.4rem">QA & UAT</div>
+          <div style="font-size:11px;color:var(--ink-mid);line-height:1.6">
+            · Test case documentation<br>
+            · UAT coordination<br>
+            · Bug triage & retest tracking<br>
+            · Stakeholder acceptance<br>
+            <span style="display:block;margin-top:.5rem;color:var(--ink-light);font-style:italic">Output: sign-off</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- USER STORIES -->
+    <div class="card" style="margin-top:1rem">
+      <div class="card-title">Sample user stories — Olive Young global membership feature</div>
+      <p class="card-ko" style="margin-bottom:1.25rem">사용자 스토리 샘플 · 올리브영 글로벌 멤버십 기능</p>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="background:var(--surface-2);border:1px solid var(--border);border-left:3px solid var(--navy-light);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:1rem">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <span class="tag tag-blue" style="font-size:10px">Epic: Global CRM capture</span>
+            <span class="tag tag-green" style="font-size:10px">Must have</span>
+          </div>
+          <div style="font-size:13px;color:var(--ink);font-weight:500;margin-bottom:4px">"As a foreign tourist at checkout, I want to create a membership profile using my Google account or passport ID, so that I can access Olive Young's loyalty benefits without a Korean phone number."</div>
+          <div style="font-size:11px;color:var(--ink-light);margin-top:8px;font-weight:600">Acceptance criteria:</div>
+          <div style="font-size:11px;color:var(--ink-mid);margin-top:3px;line-height:1.7">
+            ✓ User can scan QR on receipt to open signup flow<br>
+            ✓ Signup accepts Google OAuth, Apple ID, or passport number<br>
+            ✓ Korean phone number field is optional, not required<br>
+            ✓ Profile creation completes in under 90 seconds<br>
+            ✓ Confirmation email sent in user's detected language
+          </div>
+        </div>
+
+        <div style="background:var(--surface-2);border:1px solid var(--border);border-left:3px solid var(--green-mid);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:1rem">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <span class="tag tag-blue" style="font-size:10px">Epic: In-store shipping</span>
+            <span class="tag tag-green" style="font-size:10px">Must have</span>
+          </div>
+          <div style="font-size:13px;color:var(--ink);font-weight:500;margin-bottom:4px">"As a tourist purchasing multiple items, I want to ship my purchases directly to my home address from the store, so that I don't need to carry heavy bags through the airport."</div>
+          <div style="font-size:11px;color:var(--ink-light);margin-top:8px;font-weight:600">Acceptance criteria:</div>
+          <div style="font-size:11px;color:var(--ink-mid);margin-top:3px;line-height:1.7">
+            ✓ Shipping option available at all flagship store checkouts<br>
+            ✓ Supports addresses in 15+ countries<br>
+            ✓ Shipping fee calculated and displayed before confirmation<br>
+            ✓ Tracking number sent to membership email within 2 hours<br>
+            ✓ Estimated delivery date shown per destination country
+          </div>
+        </div>
+
+        <div style="background:var(--surface-2);border:1px solid var(--border);border-left:3px solid var(--amber-mid);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:1rem">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <span class="tag tag-blue" style="font-size:10px">Epic: Post-trip retention</span>
+            <span class="tag tag-amber" style="font-size:10px">Should have</span>
+          </div>
+          <div style="font-size:13px;color:var(--ink);font-weight:500;margin-bottom:4px">"As a returned tourist, I want to receive a personalised reorder reminder for products I purchased in-store, so that I can repurchase from my home country without searching again."</div>
+          <div style="font-size:11px;color:var(--ink-light);margin-top:8px;font-weight:600">Acceptance criteria:</div>
+          <div style="font-size:11px;color:var(--ink-mid);margin-top:3px;line-height:1.7">
+            ✓ Email triggered 14 days after checkout date<br>
+            ✓ Email contains exact products purchased with direct reorder links<br>
+            ✓ International shipping price shown in user's local currency<br>
+            ✓ Unsubscribe option clearly visible<br>
+            ✓ Email renders correctly in EN, ZH, MS, JA
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BRIDGE NOTE -->
+    <div class="hl">
+      <strong style="color:var(--navy)">On bridging Korean and international teams:</strong> At Delivery Hero I coordinated across Malaysia, Philippines, Cambodia, Myanmar and Thailand — each with different operational realities — while reporting to a Singapore-based regional lead. I drafted documentation in English, ran alignment calls across time zones, and ensured local teams could execute without needing to re-interpret from HQ. That's the same muscle this role requires between Seoul and Sydney.
+      <span class="hl-ko">딜리버리 히어로에서 5개 APAC 국가 팀을 조율한 경험이 한국-호주 팀 간 커뮤니케이션에 직접 적용됩니다.</span>
+    </div>
+
+    <div style="margin-top:1rem">
+      <p style="font-size:12px;font-weight:600;color:var(--ink-mid);margin-bottom:8px">Tools I use in this workflow</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <span class="tag tag-blue">Jira / backlog management</span>
+        <span class="tag tag-blue">Confluence / documentation</span>
+        <span class="tag tag-blue">Miro / process mapping</span>
+        <span class="tag tag-blue">Salesforce / CRM analysis</span>
+        <span class="tag tag-blue">SQL / data validation</span>
+        <span class="tag tag-green">Claude / AI-assisted documentation</span>
+        <span class="tag tag-green">Figma / UX review</span>
+        <span class="tag tag-amber">Agile / Scrum ceremonies</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="sec-eyebrow">ABOUT THE ANALYST</p>
+    <h2 class="sec-title">Nur Afiqah · 누르 아피카</h2>
+    <p class="sec-ko">Business analyst · Strategy · Seoul · Malaysian</p>
+
+    <div class="hl" style="margin-bottom:1.5rem">
+      I bring three things most analysts don't: real funnel work across APAC at Delivery Hero, academic strategy and operations frameworks from SKKU MBA, and first-person market insight as the exact type of customer Korean beauty brands are failing to capture.
+      <span class="hl-ko">APAC 실무 경험, MBA 프레임워크, 그리고 직접 경험한 소비자 인사이트를 함께 보유하고 있습니다.</span>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-av">DH</div>
+      <div style="flex:1">
+        <div class="exp-title">Delivery Hero · Business development, APAC Partnerships</div>
+        <div class="exp-sub">2022.01 – 2023.08 · Full-time · Kuala Lumpur</div>
+        <div class="exp-body">Diagnosed B2B partner funnel drop-off across 5 APAC markets using Salesforce transaction data. Built cross-selling framework → AOV <strong>+12%</strong>. Identified "Storefront Setup" as primary vendor activation drop-off point → reduced Malaysia partner churn 15.90% → 14.71% (<strong>−1.19pp</strong>). Same analytical method applied in this case study.</div>
+        <div style="margin-top:10px">
+          <span class="tag tag-blue">Funnel analysis</span><span class="tag tag-blue">Salesforce</span><span class="tag tag-blue">B2B partnerships</span><span class="tag tag-green">APAC · 5 markets</span><span class="tag tag-green">KPI dashboards</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-av">SK</div>
+      <div style="flex:1">
+        <div class="exp-title">Sungkyunkwan University · Global MBA</div>
+        <div class="exp-sub">AI & Business Analytics · 2024.08 – 2026.02 · Seoul · GPA 3.59 / 4.5</div>
+        <div class="exp-body">Applied strategy, operations, finance and marketing frameworks to real Korean companies including Amorepacific. Korean proficiency: TOPIK Level 3.</div>
+        <div style="margin-top:10px">
+          <span class="tag tag-blue">Business strategy</span><span class="tag tag-blue">Operations management</span><span class="tag tag-blue">Corporate finance</span><span class="tag tag-green">Korean (TOPIK 3)</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="soft">
+    <p style="font-size:12px;font-weight:600;color:var(--ink-mid);margin-bottom:0.75rem">Technical skills</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.75rem">
+      <span class="tag tag-blue">SQL (MySQL · PostgreSQL)</span>
+      <span class="tag tag-blue">Python</span>
+      <span class="tag tag-blue">Power BI</span>
+      <span class="tag tag-blue">Excel</span>
+      <span class="tag tag-blue">Salesforce</span>
+      <span class="tag tag-green">English (bilingual)</span>
+      <span class="tag tag-green">Malay (native)</span>
+      <span class="tag tag-green">Korean (TOPIK 3)</span>
+      <span class="tag tag-amber">APAC market knowledge</span>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a href="mailto:nafiqah.work@gmail.com" class="btn-primary">Get in touch →</a>
+      <a href="https://www.linkedin.com/in/nurr-afiqahh/" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+      <a href="https://github.com/nafiqahwork" target="_blank" class="btn-ghost">GitHub ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Nur Afiqah · Business Analyst · Seoul &nbsp;·&nbsp; <a href="mailto:nafiqah.work@gmail.com">nafiqah.work@gmail.com</a></p>
+  <p style="margin-top:6px;font-size:11px;opacity:0.5">Dataset simulated from public sources (Korea Tourism Organization, Olive Young annual reports). For analytical demonstration purposes.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function copySQL(btn, id) {
+  const el = document.getElementById(id);
+  const text = el.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+  navLinks.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
+});
+
+window.addEventListener('load', () => {
+  const c1 = document.getElementById('c1');
+  if (c1) new Chart(c1, {
+    type: 'bar',
+    data: {
+      labels: ['Korean', 'Japan/Taiwan', 'SEA', 'Western'],
+      datasets: [{ data: [63.7, 15.0, 3.0, 2.0], backgroundColor: ['#1D9E75','#BA7517','#A32D2D','#A32D2D'], borderWidth: 0 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, max: 80, ticks: { callback: v => v + '%', font: { size: 11 } }, grid: { color: 'rgba(0,0,0,0.05)' } },
+        x: { ticks: { font: { size: 11 } }, grid: { display: false } }
+      }
+    }
+  });
+
+  const c2 = document.getElementById('c2');
+  if (c2) new Chart(c2, {
+    type: 'bar',
+    data: {
+      labels: ['COSRX Snail', 'Laneige Lip', 'Some By Mi', 'Dr. Jart', 'Missha', 'Innisfree'],
+      datasets: [{ data: [48.2, 47.5, 38.7, 37.1, 34.4, 32.1], backgroundColor: '#185FA5', borderWidth: 0 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { beginAtZero: true, max: 60, ticks: { callback: v => v + '%', font: { size: 11 } }, grid: { color: 'rgba(0,0,0,0.05)' } },
+        y: { ticks: { font: { size: 11 } }, grid: { display: false } }
+      }
+    }
+  });
+
+  const c3 = document.getElementById('c3');
+  if (c3) {
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const base =  [18.2, 16.8, 17.5, 18.1, 19.2, 20.1, 21.0, 20.5, 18.8, 19.1, 21.5, 22.8];
+    const adj  =  [25.8, 23.9, 17.5, 18.1, 19.2, 20.1, 29.8, 29.2, 18.8, 19.1, 21.5, 22.8];
+    new Chart(c3, {
+      type: 'line',
+      data: {
+        labels: months,
+        datasets: [
+          { label: 'Domestic baseline', data: base, borderColor: '#185FA5', backgroundColor: 'rgba(24,95,165,0.07)', tension: 0.35, borderWidth: 2, pointRadius: 3, fill: true },
+          { label: 'Tourist-adjusted', data: adj, borderColor: '#1D9E75', backgroundColor: 'transparent', tension: 0.35, borderWidth: 2, borderDash: [5,3], pointRadius: 3 }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { ticks: { callback: v => v.toFixed(0) + 'K', font: { size: 11 } }, grid: { color: 'rgba(0,0,0,0.05)' } },
+          x: { ticks: { font: { size: 11 }, autoSkip: false, maxRotation: 0 }, grid: { display: false } }
+        }
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>
