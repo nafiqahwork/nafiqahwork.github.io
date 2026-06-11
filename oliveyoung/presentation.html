@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presentation · Korea's Invisible Customer · Nur Afiqah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#1A2A4C;--accent:#29B6F6;--light:#F8F9FA;--border:#e9ecef;--font-h:'Playfair Display',serif;--font-b:'Lato',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--font-b);background:#1a1a2e;color:#fff;min-height:100vh;}
+.pres-nav{background:rgba(0,0,0,.4);padding:10px 30px;display:flex;align-items:center;justify-content:space-between;position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(8px);}
+.pres-nav a{color:rgba(255,255,255,.6);font-size:.8rem;text-decoration:none;}
+.pres-nav a:hover{color:#fff;}
+.slide-counter{font-size:.8rem;color:rgba(255,255,255,.4);}
+.lang-toggle{display:flex;gap:6px;}
+.lb{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.65);font-family:var(--font-b);font-size:.75rem;padding:4px 12px;border-radius:3px;cursor:pointer;}
+.lb.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+.slides-container{padding-top:52px;}
+.slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:60px 80px;position:relative;border-bottom:1px solid rgba(255,255,255,.05);}
+
+/* Slide types */
+.slide-cover{background:linear-gradient(135deg,#0d1b3e 0%,#1A2A4C 60%,#0a3060 100%);}
+.slide-dark{background:#0d1b3e;}
+.slide-light{background:#f0f4f8;color:var(--primary);}
+.slide-accent{background:linear-gradient(135deg,#0369a1 0%,#0284c7 100%);}
+
+.slide-num{font-size:.7rem;font-weight:700;letter-spacing:.15em;color:var(--accent);margin-bottom:.6rem;opacity:.7;}
+.slide h1{font-family:var(--font-h);font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.15;margin-bottom:.5rem;}
+.slide h1 em{color:var(--accent);font-style:normal;}
+.slide h2{font-family:var(--font-h);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;margin-bottom:.5rem;}
+.slide-ko{font-size:.85rem;opacity:.45;margin-bottom:1.25rem;}
+.slide p{font-size:clamp(.88rem,1.2vw,1rem);opacity:.8;line-height:1.8;max-width:680px;margin-bottom:.75rem;}
+
+/* Stats row */
+.stats-row{display:flex;gap:2.5rem;flex-wrap:wrap;margin:1.5rem 0;}
+.stat-box{text-align:center;}
+.stat-big{font-family:var(--font-h);font-size:2.4rem;font-weight:700;color:var(--accent);}
+.stat-lbl{font-size:.75rem;opacity:.5;margin-top:3px;}
+
+/* Content cols */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+
+/* Cards */
+.s-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:1.25rem;}
+.slide-light .s-card{background:#fff;border-color:var(--border);}
+.s-card-title{font-family:var(--font-h);font-size:1rem;color:var(--accent);margin-bottom:.5rem;}
+.slide-light .s-card-title{color:var(--primary);}
+.s-card p{font-size:.82rem;opacity:.7;margin:0;}
+
+/* Pain points */
+.pain-row{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.25rem 0;}
+.pain-item{display:flex;gap:10px;align-items:flex-start;}
+.pain-icon{font-size:1.4rem;flex-shrink:0;}
+.pain-title{font-size:.9rem;font-weight:700;opacity:.9;margin-bottom:2px;}
+.pain-desc{font-size:.78rem;opacity:.55;line-height:1.5;}
+
+/* Steps */
+.step-row{display:flex;gap:12px;margin-bottom:1rem;align-items:flex-start;}
+.step-n{min-width:28px;height:28px;background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.step-title{font-family:var(--font-h);font-size:1rem;opacity:.95;margin-bottom:3px;}
+.step-desc{font-size:.82rem;opacity:.6;line-height:1.6;}
+
+/* Table */
+table.s-table{width:100%;font-size:.8rem;border-collapse:collapse;margin:1rem 0;}
+table.s-table th{background:rgba(41,182,246,.2);color:var(--accent);padding:7px 11px;text-align:left;font-size:.72rem;font-weight:700;letter-spacing:.05em;}
+table.s-table td{padding:6px 11px;border-bottom:1px solid rgba(255,255,255,.06);opacity:.75;}
+table.s-table tr:last-child td{border-bottom:none;}
+.slide-light table.s-table th{background:var(--primary);color:#fff;}
+.slide-light table.s-table td{border-bottom-color:var(--border);opacity:1;color:var(--primary);}
+
+/* Quote */
+.big-quote{font-family:var(--font-h);font-size:clamp(1.1rem,2vw,1.5rem);font-style:italic;opacity:.85;line-height:1.6;border-left:4px solid var(--accent);padding-left:1.25rem;margin:1.5rem 0;}
+
+/* Tags */
+.tag{display:inline-block;font-size:.7rem;padding:3px 9px;border-radius:12px;margin:2px;font-weight:700;}
+.tg{background:rgba(76,175,80,.2);color:#81c784;}
+.tr{background:rgba(244,67,54,.2);color:#ef9a9a;}
+.tam{background:rgba(255,193,7,.2);color:#ffd54f;}
+.ta{background:rgba(41,182,246,.2);color:#81d4fa;}
+
+/* Progress dots */
+.slide-progress{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:50;}
+.prog-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .2s;}
+.prog-dot.active{background:var(--accent);transform:scale(1.3);}
+
+/* KO content */
+.en-c{display:block;}.ko-c{display:none;}
+body.show-ko .en-c{display:none;}
+body.show-ko .ko-c{display:block;}
+span.en-c,span.ko-c{display:inline;}
+body.show-ko span.en-c{display:none;}
+body.show-ko span.ko-c{display:inline;}
+
+@media print{
+  .pres-nav,.slide-progress{display:none;}
+  body{background:white;color:var(--primary);}
+  .slide{page-break-inside:avoid;page-break-after:always;background:white!important;color:var(--primary)!important;border:1px solid var(--border);border-radius:8px;margin:20px;min-height:auto;padding:40px;}
+  .slide h1,.slide h2{color:var(--primary)!important;}
+  .slide p,.step-desc,.pain-desc{color:#555!important;opacity:1!important;}
+  .s-card{background:var(--light)!important;border-color:var(--border)!important;}
+  .stat-big{color:var(--accent)!important;}
+  .slide-num{color:var(--accent)!important;}
+}
+@media(max-width:768px){
+  .slide{padding:50px 30px;}
+  .two-col,.three-col,.pain-row{grid-template-columns:1fr;}
+  .stats-row{gap:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<nav class="pres-nav">
+  <a href="index.html">← Case study</a>
+  <div class="lang-toggle">
+    <button class="lb active" onclick="setLang('en',this)">EN</button>
+    <button class="lb" onclick="setLang('ko',this)">KO</button>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px">
+    <span class="slide-counter" id="slide-count">Scroll to navigate</span>
+    <button class="lb" onclick="window.print()">🖨 Print</button>
+  </div>
+</nav>
+
+<div class="slide-progress" id="progress"></div>
+
+<div class="slides-container">
+
+<!-- SLIDE 1: COVER -->
+<div class="slide slide-cover" data-slide="1">
+  <div class="slide-num">BUSINESS ANALYSIS · CASE STUDY</div>
+  <h1>Korea's <em>Invisible</em> Customer</h1>
+  <p class="slide-ko">한국의 보이지 않는 고객</p>
+  <p class="en-c" style="font-size:1.1rem;opacity:.65;max-width:580px;font-weight:300">How Olive Young is losing recurring global revenue from inbound tourists it already converted in-store — and the data-backed strategy to fix it.</p>
+  <p class="ko-c" style="font-size:1.1rem;opacity:.65;max-width:580px;font-weight:300">올리브영이 이미 매장에서 확보한 인바운드 관광객으로부터 글로벌 반복 매출을 놓치는 이유와 데이터 기반 해결 전략.</p>
+  <div class="stats-row" style="margin-top:2.5rem">
+    <div class="stat-box"><div class="stat-big">2.1M+</div><div class="stat-lbl">SEA tourists to Korea / yr</div></div>
+    <div class="stat-box"><div class="stat-big">~0%</div><div class="stat-lbl">CRM capture (foreigners)</div></div>
+    <div class="stat-box"><div class="stat-big">₩5.6B</div><div class="stat-lbl">Est. annual revenue leak</div></div>
+  </div>
+  <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;opacity:.4">
+    Nur Afiqah Binti Ahmad Shukri &nbsp;·&nbsp; MBA AI & Business Analytics, SKKU &nbsp;·&nbsp; ex-Delivery Hero APAC &nbsp;·&nbsp; June 2026
+  </div>
+</div>
+
+<!-- SLIDE 2: THE PROBLEM -->
+<div class="slide slide-dark" data-slide="2">
+  <div class="slide-num">01 · <span class="en-c">THE PROBLEM</span><span class="ko-c">문제</span></div>
+  <h2><span class="en-c">Olive Young wins the tourist in-store. Then loses them forever.</span><span class="ko-c">올리브영은 매장에서 관광객을 확보하지만, 그 후 영구적으로 잃어버립니다.</span></h2>
+  <div class="big-quote en-c">"I walked into Olive Young on my first week in Seoul. I tried to sign up for their loyalty program. I couldn't — no Korean phone number. I left my data footprint nowhere."</div>
+  <div class="big-quote ko-c">"서울에 온 첫 주에 올리브영에 들어갔습니다. 로열티 프로그램에 가입하려 했지만 한국 번호가 없어서 불가능했습니다. 아무런 데이터도 남기지 못했습니다."</div>
+  <p style="opacity:.5;font-size:.82rem;margin-top:-.5rem"><span class="en-c">— Personal experience as a Malaysian Muslim living in Seoul</span><span class="ko-c">— 서울에 거주하는 말레이시아 출신 무슬림으로서의 직접 경험</span></p>
+  <div class="pain-row" style="margin-top:1.5rem">
+    <div class="pain-item"><div class="pain-icon">📵</div><div><div class="pain-title"><span class="en-c">Korean number required</span><span class="ko-c">한국 번호 필수</span></div><div class="pain-desc"><span class="en-c">No international login option — foreigners can't sign up</span><span class="ko-c">외국인 로그인 옵션 없음</span></div></div></div>
+    <div class="pain-item"><div class="pain-icon">📦</div><div><div class="pain-title"><span class="en-c">No in-store shipping home</span><span class="ko-c">해외 직배송 없음</span></div><div class="pain-desc"><span class="en-c">Tourists self-limit purchases due to luggage constraints</span><span class="ko-c">수하물 부담으로 구매 제한</span></div></div></div>
+    <div class="pain-item"><div class="pain-icon">🌐</div><div><div class="pain-title"><span class="en-c">Language barrier</span><span class="ko-c">언어 장벽</span></div><div class="pain-desc"><span class="en-c">Korea-first UX — international shoppers navigate alone</span><span class="ko-c">한국어 중심 UX</span></div></div></div>
+    <div class="pain-item"><div class="pain-icon">👤</div><div><div class="pain-title"><span class="en-c">Zero data capture</span><span class="ko-c">데이터 미수집</span></div><div class="pain-desc"><span class="en-c">Tourist pays, leaves, and disappears from CRM permanently</span><span class="ko-c">결제 후 CRM에 흔적 없이 사라짐</span></div></div></div>
+  </div>
+</div>
+
+<!-- SLIDE 3: SQL FINDING 1 -->
+<div class="slide slide-dark" data-slide="3">
+  <div class="slide-num">02 · <span class="en-c">DATA ANALYSIS — QUERY 1</span><span class="ko-c">데이터 분석 — 쿼리 1</span></div>
+  <h2><span class="en-c">The loyalty funnel breaks entirely at the phone number step</span><span class="ko-c">로열티 퍼널은 전화번호 입력 단계에서 완전히 무너집니다</span></h2>
+  <div class="two-col" style="margin-top:1.25rem">
+    <div>
+      <table class="s-table">
+        <thead><tr><th>Customer type</th><th>Prompted</th><th>Completed</th><th>Rate</th></tr></thead>
+        <tbody>
+          <tr><td>Korean</td><td>85%</td><td>63.7%</td><td><span class="tag tg">63.7%</span></td></tr>
+          <tr><td>Japan/Taiwan</td><td>85%</td><td>15.0%</td><td><span class="tag tam">15.0%</span></td></tr>
+          <tr><td>SEA</td><td>85%</td><td>3.0%</td><td><span class="tag tr">3.0%</span></td></tr>
+          <tr><td>Western</td><td>85%</td><td>2.0%</td><td><span class="tag tr">2.0%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div class="s-card">
+        <div class="s-card-title"><span class="en-c">Key insight</span><span class="ko-c">핵심 인사이트</span></div>
+        <p class="en-c">SEA tourists are prompted at the same rate as Korean customers (85%) but complete signup at only 3%. The bottleneck is the Korean phone number requirement — <strong style="opacity:1;color:#fff">not intent, not interest, not brand affinity</strong>. The system fails them.</p>
+        <p class="ko-c">동남아 관광객은 한국 고객과 동일한 85% 비율로 안내를 받지만 회원가입 완료율은 3%에 불과합니다. 문제는 의지나 관심이 아닌 한국 번호 요구 조건입니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: SQL FINDING 2+3 -->
+<div class="slide slide-dark" data-slide="4">
+  <div class="slide-num">02 · <span class="en-c">DATA ANALYSIS — QUERIES 2 & 3</span><span class="ko-c">데이터 분석 — 쿼리 2 & 3</span></div>
+  <h2><span class="en-c">Half of top SKU sales are tourist-driven — none in the CRM</span><span class="ko-c">상위 SKU 매출의 절반이 관광객 구매 — CRM에는 아무것도 없습니다</span></h2>
+  <div class="two-col" style="margin-top:1.25rem">
+    <div>
+      <p style="font-size:.72rem;opacity:.4;font-weight:700;letter-spacing:.08em;margin-bottom:.5rem">TOURIST SHARE BY SKU</p>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:.78rem;opacity:.6;min-width:140px">COSRX Snail Serum</span><div style="height:6px;background:var(--accent);border-radius:3px;width:80%"></div><span style="font-size:.75rem;opacity:.5">48%</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:.78rem;opacity:.6;min-width:140px">Laneige Lip Mask</span><div style="height:6px;background:var(--accent);border-radius:3px;width:79%"></div><span style="font-size:.75rem;opacity:.5">48%</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:.78rem;opacity:.6;min-width:140px">Some By Mi Toner</span><div style="height:6px;background:rgba(41,182,246,.5);border-radius:3px;width:65%"></div><span style="font-size:.75rem;opacity:.5">39%</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:.78rem;opacity:.6;min-width:140px">Dr. Jart Cicapair</span><div style="height:6px;background:rgba(41,182,246,.5);border-radius:3px;width:62%"></div><span style="font-size:.75rem;opacity:.5">37%</span></div>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:.72rem;opacity:.4;font-weight:700;letter-spacing:.08em;margin-bottom:.5rem">REVENUE LEAKAGE (CTE MODEL)</p>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="s-card" style="padding:.9rem"><div style="font-size:.75rem;opacity:.5">Japan/Taiwan · 25% retained</div><div style="font-family:var(--font-h);font-size:1.3rem;color:var(--accent)">₩2.75B/yr</div></div>
+        <div class="s-card" style="padding:.9rem"><div style="font-size:.75rem;opacity:.5">SEA · 25% retained</div><div style="font-family:var(--font-h);font-size:1.3rem;color:var(--accent)">₩1.79B/yr</div></div>
+        <div class="s-card" style="padding:.9rem;border-color:rgba(41,182,246,.3)"><div style="font-size:.75rem;opacity:.5">Total annual leakage</div><div style="font-family:var(--font-h);font-size:1.5rem;color:var(--accent)">₩5.63B</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: FORECASTING -->
+<div class="slide slide-dark" data-slide="5">
+  <div class="slide-num">03 · <span class="en-c">DEMAND FORECASTING</span><span class="ko-c">수요 예측</span></div>
+  <h2><span class="en-c">Three SKU categories — three different forecasting methods</span><span class="ko-c">세 가지 SKU 카테고리 — 세 가지 예측 방법</span></h2>
+  <div class="three-col" style="margin-top:1.25rem">
+    <div class="s-card">
+      <div class="s-card-title"><span class="en-c">Slow-burn luxury</span><span class="ko-c">럭셔리 스테디셀러</span></div>
+      <p class="en-c">Sulwhasoo Ginseng Cream. Stable, low variance. Method: Exponential smoothing (SES). Why: low tourist exposure, trend is steady.</p>
+      <p class="ko-c">설화수 진생크림. 안정적, 낮은 분산. 방법: 지수 평활. 이유: 관광객 노출 낮음, 안정적 트렌드.</p>
+    </div>
+    <div class="s-card" style="border-color:rgba(41,182,246,.3)">
+      <div class="s-card-title"><span class="en-c">Seasonal tourist</span><span class="ko-c">시즌별 관광객</span></div>
+      <p class="en-c">Laneige Lip Mask. Peaks: summer + Lunar NY. Method: STL decomposition. Why: captures 2 spikes/yr + domestic baseline.</p>
+      <p class="ko-c">라네즈 립마스크. 피크: 여름 + 설날. 방법: STL 분해. 이유: 연 2회 피크 + 국내 기준선 포착.</p>
+    </div>
+    <div class="s-card">
+      <div class="s-card-title"><span class="en-c">Viral / trend-driven</span><span class="ko-c">바이럴/트렌드</span></div>
+      <p class="en-c">COSRX Snail Serum. Unpredictable 5–15× spikes. Method: Social signal + safety stock. Why: ARIMA fails on step changes.</p>
+      <p class="ko-c">COSRX 스네일 세럼. 예측 불가 5~15배 급증. 방법: 소셜 신호 + 안전재고. 이유: ARIMA는 급변에 실패.</p>
+    </div>
+  </div>
+  <div class="s-card" style="margin-top:1.25rem;border-color:rgba(41,182,246,.2)">
+    <div style="display:flex;gap:2rem;flex-wrap:wrap">
+      <div><div style="font-size:.72rem;opacity:.4;margin-bottom:3px">APP STRATEGY</div><div style="font-family:var(--font-h);font-size:1.1rem;color:var(--accent)"><span class="en-c">Hybrid (Level + Chase peaks)</span><span class="ko-c">하이브리드 (기준 수준 + 피크 추격)</span></div></div>
+      <div><div style="font-size:.72rem;opacity:.4;margin-bottom:3px">LEVEL STRATEGY COST</div><div style="font-family:var(--font-h);font-size:1.1rem;opacity:.5;text-decoration:line-through">₩34.2M</div></div>
+      <div><div style="font-size:.72rem;opacity:.4;margin-bottom:3px">HYBRID COST</div><div style="font-family:var(--font-h);font-size:1.1rem;color:var(--accent)">₩27.9M <span style="font-size:.75rem;opacity:.6">−18%</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: STRATEGY -->
+<div class="slide slide-dark" data-slide="6">
+  <div class="slide-num">04 · <span class="en-c">STRATEGIC RECOMMENDATION</span><span class="ko-c">전략적 권고안</span></div>
+  <h2><span class="en-c">Three interlocking solutions — one closed loop</span><span class="ko-c">세 가지 연동 솔루션 — 하나의 폐쇄 루프</span></h2>
+  <div style="margin-top:1.25rem">
+    <div class="step-row"><div class="step-n">1</div><div><div class="step-title"><span class="en-c">QR-to-global membership at checkout</span><span class="ko-c">계산대 QR 글로벌 멤버십</span></div><div class="step-desc"><span class="en-c">Passport / Google login. No Korean number. Creates CRM profile that transitions to international e-commerce post-return. This is the data layer — without it, nothing else works.</span><span class="ko-c">여권/구글 로그인. 한국 번호 불필요. 귀국 후 국제 이커머스로 연결되는 CRM 프로필 생성.</span></div></div></div>
+    <div class="step-row"><div class="step-n">2</div><div><div class="step-title"><span class="en-c">International counter + home postage</span><span class="ko-c">국제 카운터 + 해외 직배송</span></div><div class="step-desc"><span class="en-c">Ship purchases home from flagship stores. Removes luggage friction that self-limits basket size. Estimated +22% basket uplift (duty-free analogue data).</span><span class="ko-c">주요 매장에서 구매품 직배송. 수하물 부담 해소로 바구니 크기 약 22% 증가 예상.</span></div></div></div>
+    <div class="step-row"><div class="step-n">3</div><div><div class="step-title"><span class="en-c">Post-trip retention loop + wishlist</span><span class="ko-c">귀국 후 재구매 루프 + 위시리스트</span></div><div class="step-desc"><span class="en-c">Wishlist at QR scan → Day 3/14/30 email with reorder links → first international order within 30 days. Expected 12–18% conversion.</span><span class="ko-c">QR 스캔 시 위시리스트 수집 → 귀국 후 3/14/30일 이메일 → 30일 내 첫 국제 주문. 전환율 12~18% 예상.</span></div></div></div>
+  </div>
+</div>
+
+<!-- SLIDE 7: BUSINESS CASE -->
+<div class="slide slide-accent" data-slide="7">
+  <div class="slide-num" style="color:rgba(255,255,255,.6)">05 · <span class="en-c">BUSINESS CASE</span><span class="ko-c">비즈니스 케이스</span></div>
+  <h2><span class="en-c">What Olive Young gains</span><span class="ko-c">올리브영이 얻는 것</span></h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin:1.5rem 0">
+    <div style="background:rgba(255,255,255,.15);border-radius:8px;padding:1.1rem;text-align:center"><div style="font-size:.72rem;opacity:.7;margin-bottom:3px">New CRM profiles/yr</div><div style="font-family:var(--font-h);font-size:2rem;font-weight:700">~500K</div></div>
+    <div style="background:rgba(255,255,255,.15);border-radius:8px;padding:1.1rem;text-align:center"><div style="font-size:.72rem;opacity:.7;margin-bottom:3px">Recurring revenue</div><div style="font-family:var(--font-h);font-size:2rem;font-weight:700">₩5.6B</div></div>
+    <div style="background:rgba(255,255,255,.15);border-radius:8px;padding:1.1rem;text-align:center"><div style="font-size:.72rem;opacity:.7;margin-bottom:3px">Shipping revenue</div><div style="font-family:var(--font-h);font-size:2rem;font-weight:700">₩18B</div></div>
+    <div style="background:rgba(255,255,255,.15);border-radius:8px;padding:1.1rem;text-align:center"><div style="font-size:.72rem;opacity:.7;margin-bottom:3px">Basket uplift</div><div style="font-family:var(--font-h);font-size:2rem;font-weight:700">+22%</div></div>
+  </div>
+  <table class="s-table">
+    <thead><tr><th>Phase <span style="opacity:.5">/ 단계</span></th><th>Action <span style="opacity:.5">/ 실행</span></th><th>Timeline</th><th>Cost</th></tr></thead>
+    <tbody>
+      <tr><td>1 · Quick win</td><td><span class="en-c">QR global signup, 50 stores</span><span class="ko-c">QR 글로벌 가입, 50개 매장</span></td><td>0–3 months</td><td><span class="tag tg">Low</span></td></tr>
+      <tr><td>2 · Infrastructure</td><td><span class="en-c">Shipping counter pilot, 3 locations</span><span class="ko-c">직배송 카운터 파일럿, 3개 지점</span></td><td>3–9 months</td><td><span class="tag tam">Medium</span></td></tr>
+      <tr><td>3 · Scale</td><td><span class="en-c">Retention loop + SEA marketing</span><span class="ko-c">재구매 루프 + 동남아 마케팅</span></td><td>9–18 months</td><td><span class="tag tam">Med-High</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SLIDE 8: CLOSE -->
+<div class="slide slide-cover" data-slide="8">
+  <div class="slide-num">SUMMARY · <span class="en-c">CONCLUSIONS</span><span class="ko-c">결론</span></div>
+  <h2><span class="en-c">The opportunity is already there — it just needs to be captured</span><span class="ko-c">기회는 이미 존재합니다 — 이제 확보하기만 하면 됩니다</span></h2>
+  <div class="three-col" style="margin:1.5rem 0">
+    <div class="s-card"><div class="s-card-title"><span class="en-c">The problem</span><span class="ko-c">문제</span></div><p class="en-c">Korean-only CRM infrastructure leaves ₩5.6B/yr in recurring revenue uncaptured from tourists who already love the brand.</p><p class="ko-c">한국 전용 CRM 인프라로 인해 브랜드를 좋아하는 관광객으로부터 연간 56억 원의 반복 매출을 놓치고 있습니다.</p></div>
+    <div class="s-card" style="border-color:rgba(41,182,246,.3)"><div class="s-card-title"><span class="en-c">The fix</span><span class="ko-c">해결책</span></div><p class="en-c">QR global signup + in-store shipping + post-trip retention loop. Phase 1 is software-only, 0–3 months, immediate data capture.</p><p class="ko-c">QR 글로벌 가입 + 매장 내 배송 + 귀국 후 재구매 루프. 1단계는 소프트웨어만, 0~3개월, 즉시 데이터 수집 시작.</p></div>
+    <div class="s-card"><div class="s-card-title"><span class="en-c">My edge</span><span class="ko-c">나의 강점</span></div><p class="en-c">I am the customer this analysis is about. I lived every friction point — as a Malaysian Muslim in Seoul navigating Korean retail.</p><p class="ko-c">저는 이 분석의 주인공인 고객입니다. 서울에 사는 말레이시아 무슬림으로서 모든 불편함을 직접 경험했습니다.</p></div>
+  </div>
+  <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap">
+    <div style="font-size:.82rem;opacity:.5">Nur Afiqah Binti Ahmad Shukri &nbsp;·&nbsp; nafiqah.work@gmail.com</div>
+    <a href="index.html" style="font-size:.82rem;color:var(--accent);opacity:.8">View full case study →</a>
+    <a href="report.html" target="_blank" style="font-size:.82rem;color:var(--accent);opacity:.8">Full report →</a>
+  </div>
+</div>
+
+</div><!-- end slides-container -->
+
+<script>
+function setLang(lang, btn) {
+  document.querySelectorAll('.lb').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.body.classList.toggle('show-ko', lang === 'ko');
+}
+
+// Progress dots
+const slides = document.querySelectorAll('.slide');
+const prog = document.getElementById('progress');
+slides.forEach((s,i) => {
+  const dot = document.createElement('div');
+  dot.className = 'prog-dot';
+  dot.title = 'Slide ' + (i+1);
+  dot.onclick = () => s.scrollIntoView({behavior:'smooth'});
+  prog.appendChild(dot);
+});
+
+const dots = document.querySelectorAll('.prog-dot');
+const counter = document.getElementById('slide-count');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const idx = Array.from(slides).indexOf(e.target);
+      dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+      counter.textContent = `Slide ${idx+1} / ${slides.length}`;
+    }
+  });
+}, {threshold: 0.5});
+slides.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
