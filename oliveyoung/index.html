@@ -279,24 +279,242 @@ footer .disc{font-size:.72rem;opacity:.35;margin-top:6px;}
 <!-- TAB: PROBLEM -->
 <div id="tab-problem" class="tab-pane active">
 <div class="container">
-  <p class="sec-eyebrow">01 · PROBLEM DIAGNOSIS</p>
-  <h2 class="sec-title">The Tourist Acquisition Problem</h2>
-  <p class="sec-ko">관광객 확보 문제</p>
-  <p class="sec-intro">Olive Young wins the tourist in-store. The products, the brand recognition, the purchase — all there. But the moment they leave Korea, Olive Young loses them permanently. The entire loyalty and CRM infrastructure assumes a Korean resident.</p>
-  <div class="hl">I didn't find this problem in a report. I lived it. As a Malaysian Muslim in Seoul, I walked into Olive Young and couldn't sign up for their loyalty program — no Korean phone number, no access. That single friction point is the entire business case.<span class="hl-ko">말레이시아 출신 무슬림으로 서울에서 직접 이 문제를 경험했습니다. 한국 번호가 없으면 멤버십 가입이 불가능합니다.</span></div>
-  <div class="pain-grid">
-    <div class="pain-card"><div class="pain-icon">📵</div><div class="pain-title">Korean number required</div><div class="pain-ko">한국 번호 필수</div><div class="pain-desc">Loyalty signup, Coupang Eats, most apps — locked behind a local number foreigners don't have.</div></div>
-    <div class="pain-card"><div class="pain-icon">📦</div><div class="pain-title">No in-store shipping home</div><div class="pain-ko">해외 직배송 없음</div><div class="pain-desc">Tourists self-limit basket size due to luggage. No option to ship purchases home at checkout.</div></div>
-    <div class="pain-card"><div class="pain-icon">🌐</div><div class="pain-title">Language barrier</div><div class="pain-ko">언어 장벽</div><div class="pain-desc">Staff and in-app content are Korea-first. International shoppers navigate product info alone.</div></div>
-    <div class="pain-card"><div class="pain-icon">👤</div><div class="pain-title">Zero data capture</div><div class="pain-ko">데이터 미수집</div><div class="pain-desc">Tourist buys, pays, and disappears. No profile, no email, no retargeting possible after departure.</div></div>
+
+  <p class="sec-eyebrow">01 &middot; PROBLEM DIAGNOSIS</p>
+  <h2 class="sec-title">How can Olive Young grow recurring revenue from inbound tourists?</h2>
+  <p class="sec-ko">&#xC62C;&#xB9AC;&#xBE0C;&#xC601; &middot; &#xC778;&#xBC14;&#xC6B4;&#xB4DC; &#xAD00;&#xAD11;&#xAC1D; &#xC218;&#xC775; &#xC131;&#xC7A5; &#xBB38;&#xC81C;</p>
+  <p class="sec-intro">Foreign customers grew from 2% of Olive Young offline sales in 2022 to 28% in 2025. The in-store win is clear. The post-visit revenue capture is not.</p>
+
+  <!-- DECISION TREE -->
+  <div class="card" style="padding:1.5rem;margin-bottom:1.25rem;overflow-x:auto">
+    <p style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text);margin-bottom:1.25rem">ANALYSIS FRAMEWORK</p>
+    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 540">
+      <defs>
+        <marker id="marr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 2L8 5L2 8" fill="none" stroke="#adb5bd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <!-- GOAL -->
+      <rect x="215" y="10" width="250" height="48" rx="6" fill="#1A2A4C" stroke="#1A2A4C" stroke-width="1"/>
+      <text font-family="'Playfair Display',serif" font-size="14" font-weight="700" fill="#ffffff" x="340" y="28" text-anchor="middle" dominant-baseline="central">Goal</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#B5D4F4" x="340" y="46" text-anchor="middle" dominant-baseline="central">Region &#x2192; user growth &amp; recurring revenue</text>
+      <!-- Learning agenda label -->
+      <text font-family="Lato,sans-serif" font-size="10" fill="#adb5bd" x="615" y="28" text-anchor="middle">Learning</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#adb5bd" x="615" y="42" text-anchor="middle">agenda</text>
+      <!-- Branch -->
+      <line x1="340" y1="58" x2="340" y2="80" stroke="#adb5bd" stroke-width="0.5"/>
+      <line x1="100" y1="80" x2="580" y2="80" stroke="#adb5bd" stroke-width="0.5"/>
+      <line x1="100" y1="80" x2="100" y2="98" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
+      <line x1="260" y1="80" x2="260" y2="98" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
+      <line x1="420" y1="80" x2="420" y2="98" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
+      <line x1="580" y1="80" x2="580" y2="98" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
+      <!-- Q1 -->
+      <rect x="28" y="98" width="144" height="52" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#0C447C" x="100" y="116" text-anchor="middle" dominant-baseline="central">Q1 &middot; Growth</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#185FA5" x="100" y="133" text-anchor="middle" dominant-baseline="central">YoY growth rate</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#185FA5" x="100" y="144" text-anchor="middle" dominant-baseline="central">by region</text>
+      <!-- Q2 -->
+      <rect x="188" y="98" width="144" height="52" rx="6" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"/>
+      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#085041" x="260" y="116" text-anchor="middle" dominant-baseline="central">Q2 &middot; Penetration</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#0F6E56" x="260" y="133" text-anchor="middle" dominant-baseline="central">Market capture</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#0F6E56" x="260" y="144" text-anchor="middle" dominant-baseline="central">vs tourists</text>
+      <!-- Q3 -->
+      <rect x="348" y="98" width="144" height="52" rx="6" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
+      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#633806" x="420" y="116" text-anchor="middle" dominant-baseline="central">Q3 &middot; Conversion</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#854F0B" x="420" y="133" text-anchor="middle" dominant-baseline="central">One-time to</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#854F0B" x="420" y="144" text-anchor="middle" dominant-baseline="central">repeat customer</text>
+      <!-- Q4 -->
+      <rect x="508" y="98" width="144" height="52" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="1"/>
+      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#4A1B0C" x="580" y="116" text-anchor="middle" dominant-baseline="central">Q4 &middot; Retention</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#712B13" x="580" y="133" text-anchor="middle" dominant-baseline="central">D30 &middot; D60 &middot; D90</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#712B13" x="580" y="144" text-anchor="middle" dominant-baseline="central">post-trip</text>
+      <!-- Q to Insight -->
+      <line x1="100" y1="150" x2="100" y2="226" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
+      <line x1="260" y1="150" x2="260" y2="226" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
+      <line x1="420" y1="150" x2="420" y2="226" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
+      <line x1="580" y1="150" x2="580" y2="226" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
+      <!-- INSIGHT 1 -->
+      <rect x="28" y="226" width="144" height="62" rx="6" fill="#F8F9FA" stroke="#dee2e6" stroke-width="0.5"/>
+      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#343A40" x="100" y="244" text-anchor="middle" dominant-baseline="central">Insight 1</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="100" y="260" text-anchor="middle" dominant-baseline="central">+48% tourist growth</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="100" y="274" text-anchor="middle" dominant-baseline="central">SEA fastest rising</text>
+      <!-- INSIGHT 2 -->
+      <rect x="188" y="226" width="144" height="62" rx="6" fill="#F8F9FA" stroke="#dee2e6" stroke-width="0.5"/>
+      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#343A40" x="260" y="244" text-anchor="middle" dominant-baseline="central">Insight 2</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="260" y="260" text-anchor="middle" dominant-baseline="central">80% visit, 3% join</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="260" y="274" text-anchor="middle" dominant-baseline="central">system fails them</text>
+      <!-- INSIGHT 3 -->
+      <rect x="348" y="226" width="144" height="62" rx="6" fill="#F8F9FA" stroke="#dee2e6" stroke-width="0.5"/>
+      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#343A40" x="420" y="244" text-anchor="middle" dominant-baseline="central">Insight 3</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="420" y="260" text-anchor="middle" dominant-baseline="central">Global Mall growing</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="420" y="274" text-anchor="middle" dominant-baseline="central">no tourist path in</text>
+      <!-- INSIGHT 4 -->
+      <rect x="508" y="226" width="144" height="62" rx="6" fill="#F8F9FA" stroke="#dee2e6" stroke-width="0.5"/>
+      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#343A40" x="580" y="244" text-anchor="middle" dominant-baseline="central">Insight 4</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="580" y="260" text-anchor="middle" dominant-baseline="central">&#x20A9;5.6B/yr uncaptured</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="580" y="274" text-anchor="middle" dominant-baseline="central">no retention path</text>
+      <!-- Merge to recs -->
+      <line x1="100" y1="288" x2="100" y2="360" stroke="#adb5bd" stroke-width="0.5"/>
+      <line x1="260" y1="288" x2="260" y2="360" stroke="#adb5bd" stroke-width="0.5"/>
+      <line x1="420" y1="288" x2="420" y2="360" stroke="#adb5bd" stroke-width="0.5"/>
+      <line x1="580" y1="288" x2="580" y2="360" stroke="#adb5bd" stroke-width="0.5"/>
+      <line x1="100" y1="360" x2="580" y2="360" stroke="#adb5bd" stroke-width="0.5"/>
+      <line x1="183" y1="360" x2="183" y2="378" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
+      <line x1="340" y1="360" x2="340" y2="378" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
+      <line x1="497" y1="360" x2="497" y2="378" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
+      <!-- REC 1 -->
+      <rect x="60" y="378" width="246" height="60" rx="6" fill="#1A2A4C" stroke="#1A2A4C" stroke-width="1"/>
+      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#B5D4F4" x="183" y="396" text-anchor="middle" dominant-baseline="central">Recommendation 01</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#85B7EB" x="183" y="412" text-anchor="middle" dominant-baseline="central">QR global membership at checkout</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#85B7EB" x="183" y="426" text-anchor="middle" dominant-baseline="central">Fixes Question 2</text>
+      <!-- REC 2 -->
+      <rect x="217" y="378" width="246" height="60" rx="6" fill="#085041" stroke="#085041" stroke-width="1"/>
+      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#9FE1CB" x="340" y="396" text-anchor="middle" dominant-baseline="central">Recommendation 02</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#5DCAA5" x="340" y="412" text-anchor="middle" dominant-baseline="central">In-store to global app bridge</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#5DCAA5" x="340" y="426" text-anchor="middle" dominant-baseline="central">Fixes Question 3</text>
+      <!-- REC 3 -->
+      <rect x="374" y="378" width="246" height="60" rx="6" fill="#712B13" stroke="#712B13" stroke-width="1"/>
+      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#F5C4B3" x="497" y="396" text-anchor="middle" dominant-baseline="central">Recommendation 03</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#F0997B" x="497" y="412" text-anchor="middle" dominant-baseline="central">Post-trip retention loop</text>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#F0997B" x="497" y="426" text-anchor="middle" dominant-baseline="central">Fixes Question 4</text>
+      <!-- Legend -->
+      <rect x="28" y="468" width="10" height="10" rx="2" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="44" y="476" dominant-baseline="central">Q1 &amp; Q2</text>
+      <rect x="110" y="468" width="10" height="10" rx="2" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"/>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="126" y="476" dominant-baseline="central">Q3</text>
+      <rect x="160" y="468" width="10" height="10" rx="2" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="176" y="476" dominant-baseline="central">Q4</text>
+      <rect x="210" y="468" width="10" height="10" rx="2" fill="#F8F9FA" stroke="#dee2e6" stroke-width="0.5"/>
+      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="226" y="476" dominant-baseline="central">Insights</text>
+    </svg>
   </div>
-  <div class="hl">Core diagnosis: Olive Young built a world-class in-store experience and a Korean-only digital backend. Every tourist who loves the brand has nowhere to go when they get home.<span class="hl-ko">핵심 진단: 세계 수준의 매장 경험을 갖췄지만 디지털 백엔드는 한국인 전용입니다.</span></div>
-  <div class="metric-grid" style="margin-top:2rem">
-    <div class="metric-card"><div class="metric-label">SEA tourists / yr</div><div class="metric-val">2.1M+</div><div class="metric-note">KTO 2023 data</div></div>
-    <div class="metric-card"><div class="metric-label">Avg. beauty spend</div><div class="metric-val">₩380K</div><div class="metric-note">Per tourist visit</div></div>
-    <div class="metric-card"><div class="metric-label">CRM capture rate</div><div class="metric-val">~0%</div><div class="metric-note">No intl signup option</div></div>
-    <div class="metric-card"><div class="metric-label">Post-trip LTV (est.)</div><div class="metric-val">₩2.4M</div><div class="metric-note">If retained globally</div></div>
+
+  <!-- SECTION DIVIDER -->
+  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">LEARNING AGENDA &mdash; 4 QUESTIONS</span>
+    <div style="height:1px;flex:1;background:var(--border)"></div>
   </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:1.75rem">
+
+    <div style="border-radius:8px;border:1px solid var(--border);border-top:3px solid #185FA5;padding:1.1rem">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#185FA5;margin-bottom:6px">Q1 &middot; GROWTH</div>
+      <div style="font-family:var(--font-h);font-size:1rem;color:var(--primary);margin-bottom:5px">Where is tourist growth coming from?</div>
+      <div style="font-size:.78rem;color:var(--light-text);margin-bottom:8px;font-style:italic">Metric: YoY inbound tourist volume by region</div>
+      <hr style="border:none;border-top:1px solid var(--border);margin-bottom:8px">
+      <div style="font-size:.8rem;color:var(--dark-text);line-height:1.65">Korea inbound tourists: 11M (2023) &rarr; 16.4M (2024), +48% YoY. Singapore +163%, Philippines +109% vs 2019.</div>
+      <div style="font-size:.68rem;color:var(--light-text);margin-top:6px;font-style:italic">KTO &middot; Ministry of Culture, Sports &amp; Tourism 2024</div>
+    </div>
+
+    <div style="border-radius:8px;border:1px solid var(--border);border-top:3px solid #1D9E75;padding:1.1rem">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#1D9E75;margin-bottom:6px">Q2 &middot; PENETRATION</div>
+      <div style="font-family:var(--font-h);font-size:1rem;color:var(--primary);margin-bottom:5px">How much of that market is Olive Young capturing?</div>
+      <div style="font-size:.78rem;color:var(--light-text);margin-bottom:8px;font-style:italic">Metric: Foreign buyers vs total inbound tourists</div>
+      <hr style="border:none;border-top:1px solid var(--border);margin-bottom:8px">
+      <div style="font-size:.8rem;color:var(--dark-text);line-height:1.65">5.96M foreign purchases at Olive Young in Jan&ndash;May 2025 = ~80% of all inbound tourists during that period.</div>
+      <div style="font-size:.68rem;color:var(--light-text);margin-top:6px;font-style:italic">Korea Herald, Aug 2025 &middot; KTO data</div>
+    </div>
+
+    <div style="border-radius:8px;border:1px solid var(--border);border-top:3px solid #BA7517;padding:1.1rem">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#BA7517;margin-bottom:6px">Q3 &middot; CONVERSION</div>
+      <div style="font-family:var(--font-h);font-size:1rem;color:var(--primary);margin-bottom:5px">Who converts from one-time to repeat customer?</div>
+      <div style="font-size:.78rem;color:var(--light-text);margin-bottom:8px;font-style:italic">Metric: Global Mall signups &middot; free vs paid / repeat orders</div>
+      <hr style="border:none;border-top:1px solid var(--border);margin-bottom:8px">
+      <div style="font-size:.8rem;color:var(--dark-text);line-height:1.65">Olive Young Global Mall: 3.3M members by H1 2024. Orders +60%, revenue +70% YoY. But driven by diaspora, not in-store tourists.</div>
+      <div style="font-size:.68rem;color:var(--light-text);margin-top:6px;font-style:italic">Seoul Economic Daily, Mar 2026</div>
+    </div>
+
+    <div style="border-radius:8px;border:1px solid var(--border);border-top:3px solid #A32D2D;padding:1.1rem">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#A32D2D;margin-bottom:6px">Q4 &middot; RETENTION</div>
+      <div style="font-family:var(--font-h);font-size:1rem;color:var(--primary);margin-bottom:5px">Who stays after converting?</div>
+      <div style="font-size:.78rem;color:var(--light-text);margin-bottom:8px;font-style:italic">Metric: Repurchase at Day 30 &middot; 60 &middot; 90 post-trip</div>
+      <hr style="border:none;border-top:1px solid var(--border);margin-bottom:8px">
+      <div style="font-size:.8rem;color:var(--dark-text);line-height:1.65">No public data on tourist-to-global-app retention. Gap = the business case. Skincare repurchase cycle is ~60 days &mdash; the window exists.</div>
+      <div style="font-size:.68rem;color:var(--light-text);margin-top:6px;font-style:italic">Assumption + industry benchmark</div>
+    </div>
+
+  </div>
+
+  <!-- SECTION DIVIDER -->
+  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">FROM QUESTION TO INSIGHT</span>
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+  </div>
+
+  <!-- WATERFALL -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:1.25rem;border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+    <div>
+      <div style="background:#1A2A4C;color:#B5D4F4;font-size:.72rem;font-weight:700;padding:8px 12px;text-align:center">Q1 &middot; Growth</div>
+      <div style="padding:10px 12px;font-size:.78rem;color:var(--light-text);line-height:1.6;border-right:1px solid var(--border)"><strong style="color:var(--dark-text)">+48% YoY</strong> in 2024. SEA markets fully recovered. K-beauty shopping is a primary tourism driver.</div>
+    </div>
+    <div>
+      <div style="background:#1D9E75;color:#fff;font-size:.72rem;font-weight:700;padding:8px 12px;text-align:center">Q2 &middot; Penetration</div>
+      <div style="padding:10px 12px;font-size:.78rem;color:var(--light-text);line-height:1.6;border-right:1px solid var(--border)"><strong style="color:var(--dark-text)">~80% of tourists</strong> buy in-store. But CRM capture is near zero &mdash; a Korean phone number blocks every foreign signup.</div>
+    </div>
+    <div>
+      <div style="background:#BA7517;color:#fff;font-size:.72rem;font-weight:700;padding:8px 12px;text-align:center">Q3 &middot; Conversion</div>
+      <div style="padding:10px 12px;font-size:.78rem;color:var(--light-text);line-height:1.6;border-right:1px solid var(--border)">Global Mall growing fast &mdash; but <strong style="color:var(--dark-text)">driven by diaspora</strong>, not tourists. The in-store-to-online conversion path does not exist.</div>
+    </div>
+    <div>
+      <div style="background:#A32D2D;color:#fff;font-size:.72rem;font-weight:700;padding:8px 12px;text-align:center">Q4 &middot; Retention</div>
+      <div style="padding:10px 12px;font-size:.78rem;color:var(--light-text);line-height:1.6"><strong style="color:var(--dark-text)">&#x20A9;5.6B/yr uncaptured</strong>. Conservative 25% retention &times; 6 reorders &times; &#x20A9;38K avg. Demand exists; infrastructure does not.</div>
+    </div>
+  </div>
+
+  <!-- INSIGHTS 2x2 -->
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:1.75rem">
+    <div style="background:var(--light-bg);border-radius:8px;padding:1rem;border-left:3px solid #185FA5">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.06em;color:#185FA5;margin-bottom:5px">INSIGHT 1 &mdash; Questions 1 &amp; 2</div>
+      <div style="font-size:.88rem;color:var(--dark-text);line-height:1.6">Tourist volume is surging and Olive Young captures 80% in-store &mdash; but 0% in CRM. The opportunity is already walking through the door.</div>
+      <div style="font-size:.68rem;color:var(--light-text);margin-top:5px;font-style:italic">KTO 2024 &middot; Korea Herald Aug 2025</div>
+    </div>
+    <div style="background:var(--light-bg);border-radius:8px;padding:1rem;border-left:3px solid #1D9E75">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.06em;color:#1D9E75;margin-bottom:5px">INSIGHT 2 &mdash; Question 2</div>
+      <div style="font-size:.88rem;color:var(--dark-text);line-height:1.6">The signup barrier is a phone number field &mdash; not brand disinterest. At Myeongdong Town, 95% of sales are foreign. Intent is high; the system fails them.</div>
+      <div style="font-size:.68rem;color:var(--light-text);margin-top:5px;font-style:italic">Seoulz Jun 2026 &middot; SQL funnel analysis</div>
+    </div>
+    <div style="background:var(--light-bg);border-radius:8px;padding:1rem;border-left:3px solid #BA7517">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.06em;color:#BA7517;margin-bottom:5px">INSIGHT 3 &mdash; Question 3</div>
+      <div style="font-size:.88rem;color:var(--dark-text);line-height:1.6">Global Mall proves post-trip repurchase works &mdash; but only for customers who found Olive Young online. In-store tourists have no bridge to become Global Mall users.</div>
+      <div style="font-size:.68rem;color:var(--light-text);margin-top:5px;font-style:italic">Seoul Economic Daily Mar 2026</div>
+    </div>
+    <div style="background:var(--light-bg);border-radius:8px;padding:1rem;border-left:3px solid #A32D2D">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.06em;color:#A32D2D;margin-bottom:5px">INSIGHT 4 &mdash; Question 4</div>
+      <div style="font-size:.88rem;color:var(--dark-text);line-height:1.6">Skincare repurchase cycle is ~60 days. A July tourist should reorder in September &mdash; but without CRM data, Olive Young cannot reach them. The retention window is missed every cycle.</div>
+      <div style="font-size:.68rem;color:var(--light-text);margin-top:5px;font-style:italic">Industry benchmark &middot; assumption declared</div>
+    </div>
+  </div>
+
+  <!-- SECTION DIVIDER -->
+  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">RECOMMENDATIONS</span>
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:1rem">
+    <div style="border:1px solid var(--border);border-top:3px solid #185FA5;border-radius:0 0 8px 8px;padding:1.1rem">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#185FA5;margin-bottom:5px">RECOMMENDATION 01 &middot; FIXES Q2</div>
+      <div style="font-family:var(--font-h);font-size:1rem;color:var(--primary);margin-bottom:6px">QR global membership at checkout</div>
+      <div style="font-size:.82rem;color:var(--light-text);line-height:1.6;margin-bottom:8px">Passport or Google login. No Korean number required. Creates a CRM profile at the only moment the tourist is physically present.</div>
+      <div style="font-size:.75rem;font-weight:700;color:#185FA5">&#x2192; CRM capture rate: ~0% to est. 25%+</div>
+    </div>
+    <div style="border:1px solid var(--border);border-top:3px solid #1D9E75;border-radius:0 0 8px 8px;padding:1.1rem">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#1D9E75;margin-bottom:5px">RECOMMENDATION 02 &middot; FIXES Q3</div>
+      <div style="font-family:var(--font-h);font-size:1rem;color:var(--primary);margin-bottom:6px">In-store to global app bridge</div>
+      <div style="font-size:.82rem;color:var(--light-text);line-height:1.6;margin-bottom:8px">QR membership transitions automatically to Olive Young Global Mall post-return. Purchase history pre-loaded. First reorder is one tap.</div>
+      <div style="font-size:.75rem;font-weight:700;color:#1D9E75">&#x2192; Closes the tourist-to-Global-Mall gap</div>
+    </div>
+    <div style="border:1px solid var(--border);border-top:3px solid #A32D2D;border-radius:0 0 8px 8px;padding:1.1rem">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#A32D2D;margin-bottom:5px">RECOMMENDATION 03 &middot; FIXES Q4</div>
+      <div style="font-family:var(--font-h);font-size:1rem;color:var(--primary);margin-bottom:6px">Post-trip retention loop</div>
+      <div style="font-size:.82rem;color:var(--light-text);line-height:1.6;margin-bottom:8px">Day 30, 60, 90 email sequence with reorder links. Aligns with the skincare repurchase cycle. Wishlist captured at QR scan drives first international order.</div>
+      <div style="font-size:.75rem;font-weight:700;color:#A32D2D">&#x2192; Est. 12&ndash;18% wishlist-to-purchase conversion</div>
+    </div>
+  </div>
+
 </div>
 </div>
 
