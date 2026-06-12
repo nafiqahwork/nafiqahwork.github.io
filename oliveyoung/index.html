@@ -729,34 +729,177 @@ customer_type values: 'domestic', 'sea', 'japan_taiwan', 'western'</pre>
 <!-- TAB: STRATEGY -->
 <div id="tab-strategy" class="tab-pane">
 <div class="container">
-  <p class="sec-eyebrow">04 · STRATEGIC RECOMMENDATION</p>
-  <h2 class="sec-title">Three Interlocking Solutions</h2>
-  <p class="sec-ko">세 가지 연동 솔루션</p>
-  <p class="sec-intro">Each solution targets a different point in the tourist journey. Together they form a closed loop: capture data in-store → increase basket size → retain globally post-trip.</p>
-  <div class="card">
-    <div class="steps">
-      <div class="step"><div class="step-num">1</div><div><div class="step-title">QR-to-global membership at checkout</div><div class="step-ko">계산대 QR 글로벌 멤버십 가입</div><div class="step-desc">Receipt QR links tourist to a global profile via passport scan, Google, or social login — no Korean number required. Creates a CRM profile that transitions to Olive Young's international e-commerce app post-return. This is the data capture layer: without it, the other solutions have no customer to retain.</div></div></div>
-      <div class="step"><div class="step-num">2</div><div><div class="step-title">International counter + home postage service</div><div class="step-ko">국제 카운터 · 해외 직배송 서비스</div><div class="step-desc">Dedicated in-store counter at flagship locations (Myeongdong, Hongdae, Sinchon) where tourists ship purchases home directly. Removes the luggage constraint that self-limits basket size. Dopamine shopping peaks during travel — willingness to buy more is high, but "how do I carry this?" is the blocker. Estimated +22% basket uplift based on comparable duty-free shipping data.</div></div></div>
+
+  <p class="sec-eyebrow">04 &middot; STRATEGIC RECOMMENDATION</p>
+  <h2 class="sec-title">Three Solutions, One Closed Loop</h2>
+  <p class="sec-ko">&#xC138; &#xAC00;&#xC9C0; &#xC5F0;&#xB3D9; &#xC194;&#xB8E8;&#xC158;</p>
+  <p class="sec-intro">Each recommendation targets a specific question identified in the Problem tab. Together they form a closed loop &mdash; capture tourist data in-store, increase basket size, retain the customer globally after they leave.</p>
+
+  <!-- HOW THEY CONNECT -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:1.5rem;border:1px solid var(--border);border-radius:8px;overflow:hidden">
+    <div style="padding:.75rem 1rem;background:var(--light-bg);border-right:1px solid var(--border)">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#185FA5;margin-bottom:3px">STEP 1 &middot; IN-STORE</div>
+      <div style="font-size:.82rem;color:var(--dark-text)">Capture tourist identity &amp; data at checkout</div>
+    </div>
+    <div style="padding:.75rem 1rem;background:var(--light-bg);border-right:1px solid var(--border)">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#1D9E75;margin-bottom:3px">STEP 2 &middot; IN-STORE</div>
+      <div style="font-size:.82rem;color:var(--dark-text)">Remove luggage friction to increase basket size</div>
+    </div>
+    <div style="padding:.75rem 1rem;background:var(--light-bg)">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#A32D2D;margin-bottom:3px">STEP 3 &middot; POST-TRIP</div>
+      <div style="font-size:.82rem;color:var(--dark-text)">Re-engage the tourist after they return home</div>
     </div>
   </div>
-  <div class="blur-wrap">
-    <div class="blur-inner"><div class="card"><div class="steps"><div class="step"><div class="step-num">3</div><div><div class="step-title">Post-trip retention loop + wishlist capture</div><div class="step-ko">귀국 후 재구매 유도 루프 · 위시리스트 수집</div><div class="step-desc">At QR scan, tourist saves a digital wishlist of browsed-but-not-purchased items. Post-trip email sequence (Day 3 / Day 14 / Day 30) targets wishlist items with international shipping enabled. Converts browse intent into delayed purchase — addressing the "add-to-cart without buying" dopamine behaviour. Expected conversion: 12–18% of wishlist captures to first international purchase within 30 days.</div></div></div></div></div></div>
-    <div class="blur-overlay"><button onclick="this.closest('.blur-wrap').querySelector('.blur-inner').style.filter='none';this.closest('.blur-overlay').style.display='none'">Reveal solution 3 ↓</button></div>
+
+  <!-- DIVIDER -->
+  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">RECOMMENDATION 01 &middot; FIXES QUESTION 2</span>
+    <div style="height:1px;flex:1;background:var(--border)"></div>
   </div>
-  <h3 style="font-family:var(--font-h);font-size:1.3rem;color:var(--primary);margin:2rem 0 1rem">Business case: what Olive Young gains</h3>
+
+  <div class="card">
+    <div style="display:flex;align-items:flex-start;gap:14px">
+      <div style="min-width:32px;height:32px;background:#1A2A4C;color:#B5D4F4;font-size:.85rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">1</div>
+      <div style="flex:1">
+        <div class="card-title">QR global membership at checkout</div>
+        <div class="card-ko">&#xACC4;&#xC0B0;&#xB300; QR &#xAE00;&#xB85C;&#xBC8C; &#xBA64;&#xBC84;&#xC2ED; &#xAC00;&#xC785;</div>
+        <p style="font-size:.9rem;color:var(--light-text);line-height:1.7;margin-bottom:1rem">When a tourist pays at checkout, their receipt shows a QR code. Scanning it opens a 90-second signup flow that accepts Google, Apple, or passport ID &mdash; no Korean phone number required. This creates a CRM profile that carries their purchase history into Olive Young&rsquo;s Global Mall when they return home.</p>
+        <p style="font-size:.9rem;color:var(--light-text);line-height:1.7;margin-bottom:1rem">This is the foundation of the entire strategy. Without data capture at this moment, Recommendations 02 and 03 have no customer to serve.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:1rem">
+          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #185FA5">
+            <div style="font-size:.68rem;font-weight:700;color:#185FA5;margin-bottom:3px">ACCEPTANCE CRITERIA</div>
+            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">&#x2713; QR on receipt opens signup<br>&#x2713; Accepts Google, Apple, passport<br>&#x2713; Korean number optional<br>&#x2713; Completes in &lt;90 seconds<br>&#x2713; Confirmation email in detected language</div>
+          </div>
+          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #185FA5">
+            <div style="font-size:.68rem;font-weight:700;color:#185FA5;margin-bottom:3px">IMPLEMENTATION</div>
+            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">Phase 1 &mdash; 0 to 3 months<br>50 flagship stores<br>Software-only change<br>Low cost &middot; immediate impact</div>
+          </div>
+          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #185FA5">
+            <div style="font-size:.68rem;font-weight:700;color:#185FA5;margin-bottom:3px">EXPECTED IMPACT</div>
+            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">CRM capture rate:<br>~0% &rarr; est. 25%+ of foreign buyers<br><br>~500K new global profiles per year</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">RECOMMENDATION 02 &middot; FIXES QUESTION 3</span>
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;align-items:flex-start;gap:14px">
+      <div style="min-width:32px;height:32px;background:#085041;color:#9FE1CB;font-size:.85rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">2</div>
+      <div style="flex:1">
+        <div class="card-title">In-store to global app bridge</div>
+        <div class="card-ko">&#xB9E4;&#xC7A5; &#xB0B4; &#xC5F0;&#xACB0; &rarr; &#xAE00;&#xB85C;&#xBC8C; &#xC571; &#xC804;&#xD658;</div>
+        <p style="font-size:.9rem;color:var(--light-text);line-height:1.7;margin-bottom:1rem">The QR profile created at checkout automatically becomes the tourist&rsquo;s Olive Young Global Mall account. When they land at home and open the app, their in-store purchase history is already there. The first reorder is one tap &mdash; no searching, no re-discovering the brand.</p>
+        <p style="font-size:.9rem;color:var(--light-text);line-height:1.7;margin-bottom:1rem">In parallel, an international shipping counter at flagship locations removes the luggage constraint that currently limits basket size. Tourists want to buy more &mdash; the blocker is &ldquo;how do I carry this through the airport?&rdquo; Remove that and basket size increases.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:1rem">
+          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #1D9E75">
+            <div style="font-size:.68rem;font-weight:700;color:#1D9E75;margin-bottom:3px">SHIPPING COUNTER CRITERIA</div>
+            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">&#x2713; Available at flagship checkouts<br>&#x2713; Supports 15+ countries<br>&#x2713; Fee shown before confirmation<br>&#x2713; Tracking sent within 2 hours<br>&#x2713; Delivery date shown</div>
+          </div>
+          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #1D9E75">
+            <div style="font-size:.68rem;font-weight:700;color:#1D9E75;margin-bottom:3px">IMPLEMENTATION</div>
+            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">Phase 2 &mdash; 3 to 9 months<br>Myeongdong, Hongdae, Sinchon pilot<br>Measure basket uplift vs control stores</div>
+          </div>
+          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #1D9E75">
+            <div style="font-size:.68rem;font-weight:700;color:#1D9E75;margin-bottom:3px">EXPECTED IMPACT</div>
+            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">+22% basket size uplift<br>(duty-free shipping analogue)<br><br>&#x20A9;18B shipping counter revenue<br>&#x20A9;30K fee &times; 600K shipments</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">RECOMMENDATION 03 &middot; FIXES QUESTION 4</span>
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;align-items:flex-start;gap:14px">
+      <div style="min-width:32px;height:32px;background:#712B13;color:#F5C4B3;font-size:.85rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">3</div>
+      <div style="flex:1">
+        <div class="card-title">Post-trip retention loop</div>
+        <div class="card-ko">&#xADC0;&#xAD6D; &#xD6C4; &#xC7AC;&#xAD6C;&#xB9E4; &#xC720;&#xB3C4; &#xB8E8;&#xD504;</div>
+        <p style="font-size:.9rem;color:var(--light-text);line-height:1.7;margin-bottom:1rem">At QR scan, the tourist is prompted to save a wishlist of items they browsed but didn&rsquo;t purchase. Three emails go out after they return home &mdash; at Day 30, Day 60, and Day 90 &mdash; each containing their purchased SKUs with reorder links and their wishlist items with international shipping enabled.</p>
+        <p style="font-size:.9rem;color:var(--light-text);line-height:1.7;margin-bottom:1rem">This timing is deliberate. Skincare repurchase cycle is approximately 60 days. The Day 60 email lands exactly when a tourist who bought in Seoul is running low on the product at home. The path to reorder is already there.</p>
+
+        <div style="display:flex;gap:0;margin:1rem 0;border:1px solid var(--border);border-radius:8px;overflow:hidden">
+          <div style="flex:1;padding:.75rem 1rem;border-right:1px solid var(--border)">
+            <div style="font-size:.68rem;font-weight:700;color:#A32D2D;margin-bottom:4px">DAY 30</div>
+            <div style="font-size:.78rem;color:var(--light-text);line-height:1.5">&ldquo;Miss your Seoul haul?&rdquo; &mdash; reorder links for every item purchased in-store</div>
+          </div>
+          <div style="flex:1;padding:.75rem 1rem;border-right:1px solid var(--border)">
+            <div style="font-size:.68rem;font-weight:700;color:#A32D2D;margin-bottom:4px">DAY 60</div>
+            <div style="font-size:.78rem;color:var(--light-text);line-height:1.5">&ldquo;Running low?&rdquo; &mdash; repurchase prompt timed to skincare cycle</div>
+          </div>
+          <div style="flex:1;padding:.75rem 1rem">
+            <div style="font-size:.68rem;font-weight:700;color:#A32D2D;margin-bottom:4px">DAY 90</div>
+            <div style="font-size:.78rem;color:var(--light-text);line-height:1.5">Wishlist items with international shipping &mdash; converts browse intent to purchase</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:1rem">
+          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #A32D2D">
+            <div style="font-size:.68rem;font-weight:700;color:#A32D2D;margin-bottom:3px">EMAIL CRITERIA</div>
+            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">&#x2713; Triggered Day 30/60/90<br>&#x2713; Exact products with reorder links<br>&#x2713; Shipping price in local currency<br>&#x2713; Renders in EN, ZH, MS, JA<br>&#x2713; Unsubscribe visible</div>
+          </div>
+          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #A32D2D">
+            <div style="font-size:.68rem;font-weight:700;color:#A32D2D;margin-bottom:3px">IMPLEMENTATION</div>
+            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">Phase 3 &mdash; 9 to 18 months<br>SEA marketing campaign<br>Multilingual product tagging</div>
+          </div>
+          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #A32D2D">
+            <div style="font-size:.68rem;font-weight:700;color:#A32D2D;margin-bottom:3px">EXPECTED IMPACT</div>
+            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">12&ndash;18% wishlist-to-purchase<br>conversion rate<br><br>&#x20A9;5.6B annual recurring revenue<br>recovered</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">COMBINED BUSINESS CASE</span>
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+  </div>
+
   <div class="metric-grid">
-    <div class="metric-card"><div class="metric-label">New global CRM profiles/yr</div><div class="metric-val">~500K</div><div class="metric-note">25% conversion of intl tourists</div></div>
-    <div class="metric-card"><div class="metric-label">Est. annual recurring revenue</div><div class="metric-val">₩5.6B</div><div class="metric-note">Post-trip reorders, conservative</div></div>
-    <div class="metric-card"><div class="metric-label">Shipping counter revenue</div><div class="metric-val">₩18B</div><div class="metric-note">₩30K fee × 600K shipments</div></div>
-    <div class="metric-card"><div class="metric-label">Basket size uplift</div><div class="metric-val">+22%</div><div class="metric-note">When luggage barrier removed</div></div>
+    <div class="metric-card">
+      <div class="metric-label">New global CRM profiles / yr</div>
+      <div class="metric-val">~500K</div>
+      <div class="metric-note">25% of intl tourist buyers</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Annual recurring revenue</div>
+      <div class="metric-val">&#x20A9;5.6B</div>
+      <div class="metric-note">Post-trip reorders, conservative</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Shipping counter revenue</div>
+      <div class="metric-val">&#x20A9;18B</div>
+      <div class="metric-note">&#x20A9;30K &times; 600K shipments</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Basket size uplift</div>
+      <div class="metric-val">+22%</div>
+      <div class="metric-note">When luggage barrier removed</div>
+    </div>
   </div>
-  <div class="roadmap" style="margin-top:1.5rem">
-    <div class="rm-card"><div class="rm-phase">PHASE 1 · QUICK WIN</div><div class="rm-title">QR Global Signup</div><div class="rm-time">0–3 months · Low cost</div><div class="rm-action">Deploy at 50 flagship stores. Software-only. Immediate CRM data capture begins.</div></div>
-    <div class="rm-card"><div class="rm-phase">PHASE 2 · INFRASTRUCTURE</div><div class="rm-title">Shipping Counter Pilot</div><div class="rm-time">3–9 months · Medium cost</div><div class="rm-action">Launch at 3 flagship locations. Measure basket uplift vs control stores.</div></div>
-    <div class="rm-card"><div class="rm-phase">PHASE 3 · SCALE</div><div class="rm-title">Retention Loop + SEA Push</div><div class="rm-time">9–18 months · Medium-high</div><div class="rm-action">Post-trip email live. SEA marketing campaign. Multilingual product tagging rollout.</div></div>
-  </div>
+
 </div>
 </div>
+
 
 <!-- TAB: HOW I WORK -->
 <div id="tab-process" class="tab-pane">
