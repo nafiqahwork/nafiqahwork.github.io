@@ -796,31 +796,150 @@ customer_type values: 'domestic', 'sea', 'japan_taiwan', 'western'</pre>
 <!-- TAB: REFERENCES -->
 <div id="tab-references" class="tab-pane">
 <div class="container">
-  <p class="sec-eyebrow">SOURCES & ASSUMPTIONS</p>
-  <h2 class="sec-title">References & Declared Assumptions</h2>
-  <p class="sec-ko">참고 자료 및 가정 사항</p>
-  <p class="sec-intro">Every number in this case study is sourced or explicitly declared as an assumption. Academic integrity in analysis means stating what you know, what you estimated, and why the estimate is reasonable.</p>
 
-  <h3 style="font-family:var(--font-h);font-size:1.2rem;color:var(--primary);margin:1.5rem 0 1rem">Data sources · 데이터 출처</h3>
-  <div class="ref-card"><div class="ref-num">1</div><div><div class="ref-title">Korea Tourism Organization (KTO) — 2023 Annual Tourism Statistics</div><div class="ref-body">Source for inbound tourist volume by nationality. Used to estimate SEA visitor count (2.1M+) and total inbound tourists (17M). <br><a href="https://kto.visitkorea.or.kr" target="_blank">kto.visitkorea.or.kr</a></div><span class="ref-tag">USED FOR: Hero stats · Market sizing · SQL dataset seed values</span></div></div>
-  <div class="ref-card"><div class="ref-num">2</div><div><div class="ref-title">Olive Young Global App & Annual Report (CJ Olive Networks, 2023)</div><div class="ref-body">Source for Olive Young global expansion claims, app availability in 180+ countries, and sales trend data. Signup friction confirmed via personal testing (no international phone support).</div><span class="ref-tag">USED FOR: CRM gap diagnosis · Hero stats · Problem framing</span></div></div>
-  <div class="ref-card"><div class="ref-num">3</div><div><div class="ref-title">Korea Culture and Tourism Institute — Tourist Spending Survey 2023</div><div class="ref-body">Source for average beauty/personal care spend per tourist visit (₩380K proxy). Derived from total tourist retail spend divided by category share estimates.<br><a href="https://www.kcti.re.kr" target="_blank">kcti.re.kr</a></div><span class="ref-tag">USED FOR: ₩380K avg spend · Revenue leakage calculation</span></div></div>
-  <div class="ref-card"><div class="ref-num">4</div><div><div class="ref-title">Halal Industry Development Corporation (HDIC) / DinarStandard Global Islamic Economy Report 2023</div><div class="ref-body">Source for global halal cosmetics market size ($70B+) and projected CAGR (~10% to $130B by 2030).</div><span class="ref-tag">USED FOR: Muslim market sizing · Strategy rationale</span></div></div>
-  <div class="ref-card"><div class="ref-num">5</div><div><div class="ref-title">Delivery Hero Internal Data (2022–2023) — personal work experience</div><div class="ref-body">AOV +12% and partner churn reduction from 15.90% to 14.71% are from my own work at Delivery Hero Malaysia. Used as methodology reference (funnel analysis approach), not as Olive Young data.</div><span class="ref-tag">USED FOR: About me · Methodology credibility</span></div></div>
+  <p class="sec-eyebrow">SOURCES &amp; ASSUMPTIONS</p>
+  <h2 class="sec-title">References &amp; Declared Assumptions</h2>
+  <p class="sec-ko">&#xCC38;&#xACE0; &#xC790;&#xB8CC; &amp; &#xAC00;&#xC815; &#xC0AC;&#xD56D;</p>
+  <p class="sec-intro">Every number in this case study is sourced or explicitly declared as an assumption. Stating what you know, what you estimated, and why the estimate is reasonable is the standard for credible analysis.</p>
 
-  <hr class="soft">
-  <h3 style="font-family:var(--font-h);font-size:1.2rem;color:var(--primary);margin:1.5rem 0 1rem">Declared assumptions · 선언된 가정</h3>
-  <p style="font-size:.85rem;color:var(--light-text);margin-bottom:1rem">All assumptions are stated before analysis. Undeclared assumptions receive no analytical credit — this is declared upfront.</p>
-  <div style="background:var(--card-bg);border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.05);padding:1.5rem;">
-    <div class="assumption-row"><div class="ass-label">Base demand (Laneige Lip Mask)</div><div class="ass-val">18,000–23,000 units/month domestic baseline. Proxy from Olive Young top-seller category share estimates and Korean beauty market size reports. Tourist overlay adds 38% in peak months (Jul–Aug, Jan–Feb) based on KTO seasonality data.</div></div>
-    <div class="assumption-row"><div class="ass-label">SQL dataset scale</div><div class="ass-val">Simulated: ~383,000 total transactions across 4 customer types. Ratios (prompted, attempted, completed) derived from reasonable assumptions about loyalty program UX friction. Completion rate of 63.7% for domestic users aligns with industry loyalty signup benchmarks (60–70%).</div></div>
-    <div class="assumption-row"><div class="ass-label">Revenue leakage model</div><div class="ass-val">25% retention rate is conservative (industry e-commerce re-engagement benchmarks: 20–35% for travel-triggered purchases). 6 annual reorders at ₩38,000 average derived from Olive Young global average order value estimates and repurchase cycle for skincare (every 2 months).</div></div>
-    <div class="assumption-row"><div class="ass-label">APP strategy (Hybrid)</div><div class="ass-val">Hybrid chosen over Level because tourist peaks are concentrated (4–6 weeks, not spread). Overtime cost assumed at 1.5× regular labour. Holding cost assumed ₩500/unit/month. No backlog assumed — stockouts filled by safety stock drawdown then subcontracting.</div></div>
-    <div class="assumption-row"><div class="ass-label">+22% basket size uplift</div><div class="ass-val">Based on duty-free in-store shipping services (Japan, Singapore airport retail) where eliminating luggage friction increased average transaction value by 18–26%. Applied 22% as midpoint.</div></div>
-    <div class="assumption-row"><div class="ass-label">Shipping counter revenue (₩18B)</div><div class="ass-val">₩30,000 average shipping fee (competitive with EMS/K-Post international rates) × 600,000 estimated annual shipments (conservative: ~10% of total international tourist transactions opting in).</div></div>
+  <!-- DIVIDER -->
+  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">DATA SOURCES &middot; &#xB370;&#xC774;&#xD130; &#xCD9C;&#xCC98;</span>
+    <div style="height:1px;flex:1;background:var(--border)"></div>
   </div>
+
+  <!-- SOURCE 1 -->
+  <div class="ref-card">
+    <div class="ref-num">1</div>
+    <div>
+      <div class="ref-title">Korea Tourism Organization (KTO) &mdash; 2023 &amp; 2024 Annual Tourism Statistics</div>
+      <div class="ref-body">Source for inbound tourist volume by nationality. Used to derive SEA visitor count (2.1M+), total inbound tourists (11M in 2023, 16.4M in 2024), and YoY growth rate (+48%). Singapore +163%, Philippines +109% vs pre-pandemic baseline.<br><a href="https://kto.visitkorea.or.kr" target="_blank">kto.visitkorea.or.kr</a></div>
+      <span class="ref-tag">USED FOR: Q1 growth data &middot; hero stats &middot; SQL dataset seed values &middot; Insight 1</span>
+    </div>
+  </div>
+
+  <!-- SOURCE 2 -->
+  <div class="ref-card">
+    <div class="ref-num">2</div>
+    <div>
+      <div class="ref-title">Korea Herald &mdash; &ldquo;Olive Young sees surge in foreign shoppers&rdquo; (August 2025)</div>
+      <div class="ref-body">Source for 5.96 million foreign purchases at Olive Young in January&ndash;May 2025, equating to approximately 80% of all inbound tourists during that period. Also cited for foreign customer share growing from 2% of offline sales in 2022 to 28% in 2025.</div>
+      <span class="ref-tag">USED FOR: Q2 penetration data &middot; business question framing &middot; Insight 2</span>
+    </div>
+  </div>
+
+  <!-- SOURCE 3 -->
+  <div class="ref-card">
+    <div class="ref-num">3</div>
+    <div>
+      <div class="ref-title">Seoulz &mdash; &ldquo;Olive Young Myeongdong Town&rdquo; (June 2026)</div>
+      <div class="ref-body">Source for the statistic that foreign customers account for 95% of total sales at Olive Young&rsquo;s Myeongdong Town flagship store. Used to demonstrate that in-store tourist capture is concentrated and strong at key locations.<br><a href="https://seoulz.com" target="_blank">seoulz.com</a></div>
+      <span class="ref-tag">USED FOR: Insight 2 &middot; Q2 penetration evidence</span>
+    </div>
+  </div>
+
+  <!-- SOURCE 4 -->
+  <div class="ref-card">
+    <div class="ref-num">4</div>
+    <div>
+      <div class="ref-title">Seoul Economic Daily &mdash; Olive Young Global Mall performance (March 2026)</div>
+      <div class="ref-body">Source for Olive Young Global Mall reaching 3.3 million members by H1 2024, with orders up 60% and revenue up 70% year-on-year. Also used to establish that Global Mall growth is diaspora-driven rather than tourist-driven, supporting the conversion gap finding.</div>
+      <span class="ref-tag">USED FOR: Q3 conversion data &middot; Insight 3 &middot; recommendation framing</span>
+    </div>
+  </div>
+
+  <!-- SOURCE 5 -->
+  <div class="ref-card">
+    <div class="ref-num">5</div>
+    <div>
+      <div class="ref-title">CJ Olive Networks &mdash; Q2 2025 Earnings Release &amp; Annual Report 2023</div>
+      <div class="ref-body">Source for Olive Young global app availability in 180+ countries and overall sales trend data. Signup friction (Korean phone number required) confirmed via personal testing of the app and in-store experience as a foreign resident in Seoul.</div>
+      <span class="ref-tag">USED FOR: CRM gap diagnosis &middot; hero stats &middot; problem framing</span>
+    </div>
+  </div>
+
+  <!-- SOURCE 6 -->
+  <div class="ref-card">
+    <div class="ref-num">6</div>
+    <div>
+      <div class="ref-title">Korea Culture and Tourism Institute (KCTI) &mdash; Tourist Spending Survey 2023</div>
+      <div class="ref-body">Source for average beauty and personal care spend per tourist visit (&#x20A9;380K proxy). Derived from total tourist retail spend divided by category share estimates.<br><a href="https://www.kcti.re.kr" target="_blank">kcti.re.kr</a></div>
+      <span class="ref-tag">USED FOR: &#x20A9;380K avg spend &middot; revenue leakage calculation &middot; metric cards</span>
+    </div>
+  </div>
+
+  <!-- SOURCE 7 -->
+  <div class="ref-card">
+    <div class="ref-num">7</div>
+    <div>
+      <div class="ref-title">Delivery Hero Malaysia &mdash; Internal analytics (2022&ndash;2023) &middot; Personal work experience</div>
+      <div class="ref-body">AOV +12% and partner churn reduction from 15.90% to 14.71% are results from my own work at Delivery Hero Malaysia. Used as a methodology reference for funnel analysis approach, not as Olive Young data. The same diagnostic logic (trace the funnel step by step to isolate the drop-off) is applied in Query 1 of the SQL analysis.</div>
+      <span class="ref-tag">USED FOR: SQL methodology &middot; About me &middot; analyst credibility</span>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">DECLARED ASSUMPTIONS &middot; &#xC120;&#xC5B8;&#xB41C; &#xAC00;&#xC815;</span>
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+  </div>
+
+  <p style="font-size:.85rem;color:var(--light-text);margin-bottom:1rem">All assumptions are stated before analysis. Undeclared assumptions receive no analytical credit &mdash; this is standard practice in rigorous business analysis.</p>
+
+  <div style="background:var(--card-bg);border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.05);overflow:hidden">
+
+    <div style="display:grid;grid-template-columns:200px 1fr;font-size:.82rem;border-bottom:1px solid var(--border)">
+      <div style="padding:.9rem 1rem;font-weight:700;color:var(--primary);background:var(--light-bg)">SQL dataset scale</div>
+      <div style="padding:.9rem 1rem;color:var(--light-text);line-height:1.6">~383,000 simulated transactions across 4 customer types. Completion rates seeded from loyalty UX benchmarks (domestic 60&ndash;70%). SEA 3% derived from observed Korean phone-number friction in practice.</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:200px 1fr;font-size:.82rem;border-bottom:1px solid var(--border)">
+      <div style="padding:.9rem 1rem;font-weight:700;color:var(--primary);background:var(--light-bg)">&#x20A9;380K avg tourist spend</div>
+      <div style="padding:.9rem 1rem;color:var(--light-text);line-height:1.6">Derived from KCTI total retail spend &times; estimated beauty category share (~15%). Used as a conservative proxy for basket size per visit.</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:200px 1fr;font-size:.82rem;border-bottom:1px solid var(--border)">
+      <div style="padding:.9rem 1rem;font-weight:700;color:var(--primary);background:var(--light-bg)">25% retention rate</div>
+      <div style="padding:.9rem 1rem;color:var(--light-text);line-height:1.6">Conservative. Industry e-commerce re-engagement benchmarks for travel-triggered purchases: 20&ndash;35%. Lower bound applied to keep the &#x20A9;5.6B estimate credible and defensible.</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:200px 1fr;font-size:.82rem;border-bottom:1px solid var(--border)">
+      <div style="padding:.9rem 1rem;font-weight:700;color:var(--primary);background:var(--light-bg)">6 annual reorders</div>
+      <div style="padding:.9rem 1rem;color:var(--light-text);line-height:1.6">Skincare repurchase cycle ~60 days. 6 reorders per year = one reorder every 2 months post-return. Consistent with standard skincare consumption patterns.</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:200px 1fr;font-size:.82rem;border-bottom:1px solid var(--border)">
+      <div style="padding:.9rem 1rem;font-weight:700;color:var(--primary);background:var(--light-bg)">APP hybrid strategy</div>
+      <div style="padding:.9rem 1rem;color:var(--light-text);line-height:1.6">Hybrid chosen over Level because tourist peaks are concentrated (4&ndash;6 weeks, not spread). Overtime cost assumed at 1.5&times; regular labour. Holding cost assumed &#x20A9;500/unit/month. No backlog assumed &mdash; stockouts filled by safety stock then subcontracting.</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:200px 1fr;font-size:.82rem;border-bottom:1px solid var(--border)">
+      <div style="padding:.9rem 1rem;font-weight:700;color:var(--primary);background:var(--light-bg)">+22% basket uplift</div>
+      <div style="padding:.9rem 1rem;color:var(--light-text);line-height:1.6">Based on duty-free in-store shipping services in Japan and Singapore airport retail, where eliminating luggage friction increased average transaction value by 18&ndash;26%. Midpoint of 22% applied.</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:200px 1fr;font-size:.82rem;border-bottom:1px solid var(--border)">
+      <div style="padding:.9rem 1rem;font-weight:700;color:var(--primary);background:var(--light-bg)">&#x20A9;18B shipping revenue</div>
+      <div style="padding:.9rem 1rem;color:var(--light-text);line-height:1.6">&#x20A9;30,000 average shipping fee (competitive with EMS/K-Post international rates) &times; 600,000 estimated annual shipments (conservative: ~10% of total international tourist transactions opting in).</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:200px 1fr;font-size:.82rem">
+      <div style="padding:.9rem 1rem;font-weight:700;color:var(--primary);background:var(--light-bg)">Q4 retention data</div>
+      <div style="padding:.9rem 1rem;color:var(--light-text);line-height:1.6">No public data exists on tourist-to-global-app retention rates for Olive Young. This is explicitly the gap this analysis identifies. The 12&ndash;18% wishlist conversion estimate is based on general e-commerce post-browse email retargeting benchmarks.</div>
+    </div>
+
+  </div>
+
+  <!-- NOTE -->
+  <div style="margin-top:1.5rem;padding:1rem 1.25rem;background:var(--light-bg);border-radius:8px;border:1px solid var(--border)">
+    <p style="font-size:.8rem;color:var(--light-text);line-height:1.7"><strong style="color:var(--dark-text)">Note on dataset simulation:</strong> The SQL dataset used in the analysis tab is simulated for portfolio demonstration purposes. Transaction volumes, funnel ratios, and SKU-level data are seeded from publicly available sources listed above. The schema and query logic reflect how I would approach this problem with real Olive Young transaction data. All simulated figures are clearly labelled as such throughout the case study.</p>
+  </div>
+
 </div>
 </div>
+
 
 <!-- TAB: MY THINKING -->
 <div id="tab-thoughts" class="tab-pane">
