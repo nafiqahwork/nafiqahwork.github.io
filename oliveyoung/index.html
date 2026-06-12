@@ -1084,7 +1084,7 @@ customer_type values: 'domestic', 'sea', 'japan_taiwan', 'western'</pre>
 </div>
 
 
-<!-- TAB: MY THINKING -->
+<!-- TAB: MY THOUGHTS -->
 <div id="tab-thoughts" class="tab-pane">
 <div class="container">
   <p class="sec-eyebrow">ANALYST REFLECTION</p>
@@ -1094,7 +1094,7 @@ customer_type values: 'domestic', 'sea', 'japan_taiwan', 'western'</pre>
   <div class="card">
     <div class="card-title">Why I chose this problem</div>
     <div class="card-ko">이 문제를 선택한 이유</div>
-    <div class="card-body">Most portfolio projects start from a dataset. This one started from a personal frustration. When I moved to Seoul, I noticed immediately that Korean retail infrastructure wasn't built for people like me — foreign, non-Korean-speaking at first, without a local phone number. The Olive Young loyalty system was just one example of a broader pattern.<br><br>
+    <div class="card-body">This portfolio started because of my personal experience. When I first visited Seoul, I noticed immediately that Korean retail infrastructure wasn't built for people like me: foreign, non Korean speaking at first, without a local phone number. The Olive Young loyalty system was just one example of a broader pattern.<br><br>
     What made it interesting analytically is that this isn't a product problem or a brand problem. Olive Young's products are excellent — that's exactly why international tourists love them. It's a systems and data architecture problem. The brand wins the customer in-store and then has no mechanism to keep them. That gap between in-store success and zero post-purchase relationship is where the business case lives.</div>
   </div>
 
@@ -1102,19 +1102,19 @@ customer_type values: 'domestic', 'sea', 'japan_taiwan', 'western'</pre>
     <div class="card-title">Skills I applied and what I learned</div>
     <div class="card-ko">적용한 역량과 배운 점</div>
     <div class="card-body">
-      <p style="margin-bottom:1rem"><strong style="color:var(--primary)">Funnel analysis thinking:</strong> At Delivery Hero I learned to ask "where exactly does the drop-off happen?" before jumping to solutions. That same discipline shapes Query 1 here — I didn't just note that foreigners don't sign up, I traced the funnel step by step to identify which specific gate fails. This is the difference between observing a problem and diagnosing it.</p>
-      <p style="margin-bottom:1rem"><strong style="color:var(--primary)">SQL as a thinking tool, not just an output tool:</strong> The three queries here aren't just code — they represent three different analytical lenses: funnel analysis (Query 1), segmentation (Query 2), and financial modelling (Query 3 with CTEs). I chose CTEs for Query 3 specifically because the leakage calculation has two logical stages — tourist sizing, then revenue projection — and CTEs make that logic readable and auditable.</p>
-      <p style="margin-bottom:1rem"><strong style="color:var(--primary)">Demand forecasting method selection:</strong> The most important decision in forecasting isn't the calculation — it's choosing the right method for the demand pattern. Applying ARIMA to a viral-spike SKU like COSRX would produce meaningless forecasts. The method-to-pattern matching table in the Forecasting tab is the core analytical judgment, not the numbers themselves.</p>
+      <p style="margin-bottom:1rem"><strong style="color:var(--primary)">Funnel analysis thinking:</strong> At Delivery Hero I learned to ask "where exactly does the drop-off happen?" before jumping to solutions. That same discipline shapes Query 1 here — Foreigners don't sign up and I traced the funnel step by step to identify which specific gate fails.</p>
+      <p style="margin-bottom:1rem"><strong style="color:var(--primary)">SQL as my thinking tool:</strong> The three queries represent three different analytical lenses: funnel analysis (Query 1), segmentation (Query 2), and financial modelling (Query 3 with CTEs). I chose CTEs for Query 3 specifically because the leakage calculation has two logical stages which are tourist sizing, then revenue projection. CTEs make that logic readable and auditable.</p>
+      <p style="margin-bottom:1rem"><strong style="color:var(--primary)">Demand forecasting method selection:</strong> The most important decision in forecasting is choosing the right method for the demand pattern. Applying ARIMA to a viral spike SKU like COSRX would produce meaningless forecasts. The method to pattern matching table in the "Forecasting" tab is the core analytical judgment, not the numbers themselves.</p>
       <p style="margin-bottom:1rem"><strong style="color:var(--primary)">Business analyst documentation (user stories):</strong> Writing user stories with proper acceptance criteria is harder than it looks. "As a tourist, I want to sign up" is not a user story — it has no context, no goal, and no testable outcome. The stories in the How I Work tab are written to be implementable: a developer could read them and know exactly what to build and how to test it.</p>
-      <p><strong style="color:var(--primary)">What I would do differently with more time/data:</strong> I would validate the funnel drop-off rates with real Olive Young app analytics rather than simulated proxies. I would also run A/B tests on the QR signup flow at a single store before recommending full rollout — the 25% retention assumption is reasonable but unvalidated. The shipping counter basket uplift (+22%) relies on duty-free analogues; a pilot at one Myeongdong store would give real lift data within 3 months.</p>
+      <p><strong style="color:var(--primary)">What I would do differently with more time/data:</strong> I would validate the funnel drop-off rates with real Olive Young app analytics rather than simulated proxies. I would also run A/B tests on the QR signup flow maybe (at) a single store before recommending full rollout. The 25% retention assumption is reasonable but unvalidated. The shipping counter basket uplift (+22%) relies on duty ffree analogues, a pilot at one famous Myeongdong store would give real lift data within 3 months.</p>
     </div>
   </div>
 
   <div class="card">
     <div class="card-title">My edge as an analyst for this problem</div>
     <div class="card-ko">이 문제에 대한 나만의 강점</div>
-    <div class="card-body">I am the customer this analysis is about. Not metaphorically — literally. I have walked into Olive Young as a foreign tourist, tried to sign up, failed, and left my data footprint nowhere. I have carried heavy shopping bags through Incheon Airport because there was no in-store shipping option. I have navigated product labels in a language I was still learning.<br><br>
-    This gives me something most analysts don't have: a pre-built intuition for which friction points matter most to the customer. The four pain points in the Problem tab are not the result of desk research — they are the result of lived experience, structured into a business framework.</div>
+    <div class="card-body">I am one of the customers this analysis is about. Not metaphorically, but literally. I have walked into Olive Young as a foreign tourist, tried to sign up, failed and left my data footprint nowhere. I have carried heavy shopping bags through Incheon Airport because there was no in store shipping option. I have navigated product labels in a language I was still learning.<br><br>
+    This is different as a pre-built intuition for which friction points matter most to the customer. The four pain points in the Problem tab are not just the result of desk research, but they are the result of lived experience and structured into a business framework.</div>
   </div>
 
   <hr class="soft">
