@@ -270,13 +270,12 @@ footer .disc{font-size:.72rem;opacity:.35;margin-top:6px;}
   <div class="container">
     <button class="tab-btn active" onclick="showTab('problem')"><i class="fas fa-search"></i> 01 &middot; Problem</button>
     <button class="tab-btn" onclick="showTab('sql')"><i class="fas fa-database"></i> 02 &middot; SQL Analysis</button>
-    <button class="tab-btn" onclick="showTab('livesql')"><i class="fas fa-terminal"></i> 03 &middot; Live SQL</button>
-    <button class="tab-btn" onclick="showTab('forecast')"><i class="fas fa-chart-line"></i> 04 &middot; Forecasting</button>
-    <button class="tab-btn" onclick="showTab('strategy')"><i class="fas fa-lightbulb"></i> 05 &middot; Strategy</button>
-    <button class="tab-btn" onclick="showTab('map')"><i class="fas fa-globe-asia"></i> 06 &middot; WHO?</button>
-    <button class="tab-btn" onclick="showTab('process')"><i class="fas fa-sitemap"></i> 07 &middot; How I Work</button>
-    <button class="tab-btn" onclick="showTab('references')"><i class="fas fa-book-open"></i> 08 &middot; References</button>
-    <button class="tab-btn" onclick="showTab('thoughts')"><i class="fas fa-brain"></i> 09 &middot; My Thinking</button>
+    <button class="tab-btn" onclick="showTab('forecast')"><i class="fas fa-chart-line"></i> 03 &middot; Forecasting</button>
+    <button class="tab-btn" onclick="showTab('strategy')"><i class="fas fa-lightbulb"></i> 04 &middot; Strategy</button>
+    <button class="tab-btn" onclick="showTab('map')"><i class="fas fa-globe-asia"></i> 05 &middot; WHO?</button>
+    <button class="tab-btn" onclick="showTab('process')"><i class="fas fa-sitemap"></i> 06 &middot; How I Work</button>
+    <button class="tab-btn" onclick="showTab('references')"><i class="fas fa-book-open"></i> 07 &middot; References</button>
+    <button class="tab-btn" onclick="showTab('thoughts')"><i class="fas fa-brain"></i> 08 &middot; My Thinking</button>
   </div>
 </div>
 
@@ -476,45 +475,6 @@ customer_type values: 'domestic', 'sea', 'japan_taiwan', 'western'</pre>
     <span class="hl-ko">딜리버리 히어로에서 사용한 기술과 함께 경험을 보여드리기 위해.</span>
   </div>
 
-</div>
-</div>
-
-<!-- TAB: LIVE SQL -->
-<div id="tab-livesql" class="tab-pane">
-<div class="container">
-  <p class="sec-eyebrow">INTERACTIVE · 인터랙티브</p>
-  <h2 class="sec-title">Live SQL Playground</h2>
-  <p class="sec-ko">실제 데이터셋으로 직접 쿼리 실행</p>
-  <p class="sec-intro">Run SQL queries against the simulated Olive Young dataset directly in your browser. The database runs in JavaScript (SQL.js), no server needed. Try the presets or write your own. Thanks to Ai, I'm just testing this tab too!</p>
-
-  <div class="sql-playground">
-    <div class="schema-box">
-      <h4>DATABASE SCHEMA</h4>
-      <pre>transactions (customer_id, customer_type, transaction_date, transaction_year,
-              sku_id, revenue_krw, basket_size_krw, loyalty_prompted,
-              signup_attempted, signup_completed)
-
-products     (sku_id, sku_name, category, brand, price_krw)
-
-customer_type values: 'domestic', 'sea', 'japan_taiwan', 'western'</pre>
-    </div>
-    <p style="font-size:.78rem;color:rgba(255,255,255,.5);margin-bottom:.6rem;font-weight:700;letter-spacing:.05em">PRESET QUERIES</p>
-    <div class="preset-btns">
-      <button class="preset-btn" onclick="loadPreset('funnel')">Funnel drop-off</button>
-      <button class="preset-btn" onclick="loadPreset('sku')">Tourist SKU share</button>
-      <button class="preset-btn" onclick="loadPreset('leakage')">Revenue leakage</button>
-      <button class="preset-btn" onclick="loadPreset('basket')">Avg basket by type</button>
-      <button class="preset-btn" onclick="loadPreset('topsku')">Top SKUs by revenue</button>
-    </div>
-    <textarea id="sql-input" spellcheck="false" placeholder="Write your SQL here, or pick a preset above..."></textarea>
-    <button class="run-btn" onclick="runSQL()"><i class="fas fa-play" style="margin-right:6px"></i>Run Query</button>
-    <div id="sql-result-area" class="sql-result"><p class="sql-msg">Results will appear here after running a query.</p></div>
-  </div>
-
-  <div class="hl" style="margin-top:1.5rem">
-    <strong>Why I built this:</strong> To demonstrates the experience along with the skill I used at Delivery Hero: consolidating fragmented data and identifying the specific drop off point. The simulated dataset is seeded with realistic distributions based on KTO visitor data and Olive Young sales patterns.
-    <span class="hl-ko">딜리버리 히어로에서 사용한 기술과 함께 경험을 보여드리기 위해.</span>
-  </div>
 </div>
 </div>
 
