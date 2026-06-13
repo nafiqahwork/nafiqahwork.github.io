@@ -39,7 +39,7 @@ a:hover{opacity:.8;}
 .hero h1 em{color:var(--accent);font-style:normal;}
 .hero-ko{font-size:.85rem;color:rgba(255,255,255,.4);margin-bottom:1rem;}
 .hero-desc{font-size:1rem;color:rgba(255,255,255,.75);max-width:580px;margin:0 auto 2rem;font-weight:300;line-height:1.8;}
-.hero-stats{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;padding-top:1.75rem;border-top:1px solid rgba(255,255,255,.1);max-width:600px;margin:0 auto;}
+.hero-stats{display:flex;justify-content:center;gap:2rem;flex-wrap:nowrap;padding-top:1.75rem;border-top:1px solid rgba(255,255,255,.1);max-width:900px;margin:0 auto;align-items:flex-start;}
 .stat-val{font-family:var(--font-h);font-size:1.9rem;font-weight:700;color:var(--accent);}
 .stat-label{font-size:.75rem;color:rgba(255,255,255,.4);margin-top:2px;}
 
@@ -242,9 +242,9 @@ footer .disc{font-size:.72rem;opacity:.35;margin-top:6px;}
   <div class="container">
     <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Portfolio</a>
     <div class="nav-ext">
-  <a href="locked.html"><i class="fas fa-lock"></i> Full Report</a>
-  <a href="locked.html"><i class="fas fa-lock"></i> Slides</a>
-</div>
+      <a href="report.html" target="_blank"><i class="fas fa-file-alt"></i> Full Report</a>
+      <a href="presentation.html" target="_blank"><i class="fas fa-presentation-screen"></i> Slides</a>
+    </div>
   </div>
 </nav>
 
@@ -255,266 +255,52 @@ footer .disc{font-size:.72rem;opacity:.35;margin-top:6px;}
     <p class="hero-ko">한국의 보이지 않는 고객</p>
     <p class="hero-desc">How Olive Young is losing recurring global revenue from inbound tourists it already won in-store — and the data-backed strategy to fix it.</p>
     <div class="hero-stats">
-      <div><div class="stat-val">2.1M+</div><div class="stat-label">SEA tourists to Korea / yr</div></div>
-      <div><div class="stat-val">~0%</div><div class="stat-label">CRM capture rate (foreigners)</div></div>
-      <div><div class="stat-val">₩5.6B</div><div class="stat-label">Est. annual revenue leakage</div></div>
-      <div><div class="stat-val">3</div><div class="stat-label">SQL queries · live & runnable</div></div>
+      <div style="text-align:center"><div class="stat-val">2.1M+</div><div class="stat-label">SEA tourists to Korea / yr</div></div>
+      <div style="width:1px;background:rgba(255,255,255,.15);align-self:stretch"></div>
+      <div style="text-align:center"><div class="stat-val">~0%</div><div class="stat-label">CRM capture rate (foreigners)</div></div>
+      <div style="width:1px;background:rgba(255,255,255,.15);align-self:stretch"></div>
+      <div style="text-align:center"><div class="stat-val">&#x20A9;5.6B</div><div class="stat-label">Est. annual revenue leakage</div></div>
+      <div style="width:1px;background:rgba(255,255,255,.15);align-self:stretch"></div>
+      <div style="text-align:center"><div class="stat-val">3</div><div class="stat-label">SQL queries &middot; live &amp; runnable</div></div>
     </div>
   </div>
 </header>
 
 <div class="tab-bar">
   <div class="container">
-    <button class="tab-btn active" onclick="showTab('problem')"><i class="fas fa-search"></i> Problem</button>
-    <button class="tab-btn" onclick="showTab('sql')"><i class="fas fa-database"></i> SQL Analysis</button>
-    <button class="tab-btn" onclick="showTab('livesql')"><i class="fas fa-terminal"></i> Live SQL</button>
-    <button class="tab-btn" onclick="showTab('forecast')"><i class="fas fa-chart-line"></i> Forecasting</button>
-    <button class="tab-btn" onclick="showTab('strategy')"><i class="fas fa-lightbulb"></i> Strategy</button>
-    <button class="tab-btn" onclick="showTab('process')"><i class="fas fa-sitemap"></i> How I Work</button>
-    <button class="tab-btn" onclick="showTab('references')"><i class="fas fa-book-open"></i> References</button>
-    <button class="tab-btn" onclick="showTab('thoughts')"><i class="fas fa-brain"></i> My Thinking</button>
+    <button class="tab-btn active" onclick="showTab('problem')"><i class="fas fa-search"></i> 01 &middot; Problem</button>
+    <button class="tab-btn" onclick="showTab('sql')"><i class="fas fa-database"></i> 02 &middot; SQL Analysis</button>
+    <button class="tab-btn" onclick="showTab('livesql')"><i class="fas fa-terminal"></i> 03 &middot; Live SQL</button>
+    <button class="tab-btn" onclick="showTab('forecast')"><i class="fas fa-chart-line"></i> 04 &middot; Forecasting</button>
+    <button class="tab-btn" onclick="showTab('strategy')"><i class="fas fa-lightbulb"></i> 05 &middot; Strategy</button>
+    <button class="tab-btn" onclick="showTab('map')"><i class="fas fa-globe-asia"></i> 06 &middot; World Map</button>
+    <button class="tab-btn" onclick="showTab('process')"><i class="fas fa-sitemap"></i> 07 &middot; How I Work</button>
+    <button class="tab-btn" onclick="showTab('references')"><i class="fas fa-book-open"></i> 08 &middot; References</button>
+    <button class="tab-btn" onclick="showTab('thoughts')"><i class="fas fa-brain"></i> 09 &middot; My Thinking</button>
   </div>
 </div>
 
 <!-- TAB: PROBLEM -->
 <div id="tab-problem" class="tab-pane active">
 <div class="container">
-
-  <p class="sec-eyebrow">01 &middot; PROBLEM DIAGNOSIS</p>
-  <h2 class="sec-title">How can Olive Young grow recurring revenue from inbound tourists?</h2>
-  <p class="sec-ko">&#xC62C;&#xB9AC;&#xBE0C;&#xC601; &middot; &#xC778;&#xBC14;&#xC6B4;&#xB4DC; &#xAD00;&#xAD11;&#xAC1D; &#xC218;&#xC775; &#xC131;&#xC7A5; &#xBB38;&#xC81C;</p>
-  <p class="sec-intro">Foreign customers grew from 2% of Olive Young offline sales in 2022 to 28% in 2025. The in-store win is clear. The post-visit revenue capture is not.</p>
-
-  <!-- DECISION TREE -->
-  <div class="card" style="padding:1.5rem;margin-bottom:1.25rem;overflow-x:auto">
-    <p style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text);margin-bottom:1.25rem">ANALYSIS FRAMEWORK</p>
-    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 540">
-      <defs>
-        <marker id="marr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-          <path d="M2 2L8 5L2 8" fill="none" stroke="#adb5bd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </marker>
-      </defs>
-      <!-- GOAL -->
-      <rect x="215" y="10" width="250" height="48" rx="6" fill="#1A2A4C" stroke="#1A2A4C" stroke-width="1"/>
-      <text font-family="'Playfair Display',serif" font-size="14" font-weight="700" fill="#ffffff" x="340" y="28" text-anchor="middle" dominant-baseline="central">Goal</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#B5D4F4" x="340" y="46" text-anchor="middle" dominant-baseline="central">Region &#x2192; user growth &amp; recurring revenue</text>
-      <!-- Learning agenda label -->
-      <text font-family="Lato,sans-serif" font-size="10" fill="#adb5bd" x="615" y="28" text-anchor="middle">Learning</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#adb5bd" x="615" y="42" text-anchor="middle">agenda</text>
-      <!-- Branch -->
-      <line x1="340" y1="58" x2="340" y2="80" stroke="#adb5bd" stroke-width="0.5"/>
-      <line x1="100" y1="80" x2="580" y2="80" stroke="#adb5bd" stroke-width="0.5"/>
-      <line x1="100" y1="80" x2="100" y2="98" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
-      <line x1="260" y1="80" x2="260" y2="98" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
-      <line x1="420" y1="80" x2="420" y2="98" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
-      <line x1="580" y1="80" x2="580" y2="98" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
-      <!-- Q1 -->
-      <rect x="28" y="98" width="144" height="52" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
-      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#0C447C" x="100" y="116" text-anchor="middle" dominant-baseline="central">Q1 &middot; Growth</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#185FA5" x="100" y="133" text-anchor="middle" dominant-baseline="central">YoY growth rate</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#185FA5" x="100" y="144" text-anchor="middle" dominant-baseline="central">by region</text>
-      <!-- Q2 -->
-      <rect x="188" y="98" width="144" height="52" rx="6" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"/>
-      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#085041" x="260" y="116" text-anchor="middle" dominant-baseline="central">Q2 &middot; Penetration</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#0F6E56" x="260" y="133" text-anchor="middle" dominant-baseline="central">Market capture</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#0F6E56" x="260" y="144" text-anchor="middle" dominant-baseline="central">vs tourists</text>
-      <!-- Q3 -->
-      <rect x="348" y="98" width="144" height="52" rx="6" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
-      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#633806" x="420" y="116" text-anchor="middle" dominant-baseline="central">Q3 &middot; Conversion</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#854F0B" x="420" y="133" text-anchor="middle" dominant-baseline="central">One-time to</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#854F0B" x="420" y="144" text-anchor="middle" dominant-baseline="central">repeat customer</text>
-      <!-- Q4 -->
-      <rect x="508" y="98" width="144" height="52" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="1"/>
-      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#4A1B0C" x="580" y="116" text-anchor="middle" dominant-baseline="central">Q4 &middot; Retention</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#712B13" x="580" y="133" text-anchor="middle" dominant-baseline="central">D30 &middot; D60 &middot; D90</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#712B13" x="580" y="144" text-anchor="middle" dominant-baseline="central">post-trip</text>
-      <!-- Q to Insight -->
-      <line x1="100" y1="150" x2="100" y2="226" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
-      <line x1="260" y1="150" x2="260" y2="226" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
-      <line x1="420" y1="150" x2="420" y2="226" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
-      <line x1="580" y1="150" x2="580" y2="226" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
-      <!-- INSIGHT 1 -->
-      <rect x="28" y="226" width="144" height="62" rx="6" fill="#F8F9FA" stroke="#dee2e6" stroke-width="0.5"/>
-      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#343A40" x="100" y="244" text-anchor="middle" dominant-baseline="central">Insight 1</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="100" y="260" text-anchor="middle" dominant-baseline="central">+48% tourist growth</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="100" y="274" text-anchor="middle" dominant-baseline="central">SEA fastest rising</text>
-      <!-- INSIGHT 2 -->
-      <rect x="188" y="226" width="144" height="62" rx="6" fill="#F8F9FA" stroke="#dee2e6" stroke-width="0.5"/>
-      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#343A40" x="260" y="244" text-anchor="middle" dominant-baseline="central">Insight 2</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="260" y="260" text-anchor="middle" dominant-baseline="central">80% visit, 3% join</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="260" y="274" text-anchor="middle" dominant-baseline="central">system fails them</text>
-      <!-- INSIGHT 3 -->
-      <rect x="348" y="226" width="144" height="62" rx="6" fill="#F8F9FA" stroke="#dee2e6" stroke-width="0.5"/>
-      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#343A40" x="420" y="244" text-anchor="middle" dominant-baseline="central">Insight 3</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="420" y="260" text-anchor="middle" dominant-baseline="central">Global Mall growing</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="420" y="274" text-anchor="middle" dominant-baseline="central">no tourist path in</text>
-      <!-- INSIGHT 4 -->
-      <rect x="508" y="226" width="144" height="62" rx="6" fill="#F8F9FA" stroke="#dee2e6" stroke-width="0.5"/>
-      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#343A40" x="580" y="244" text-anchor="middle" dominant-baseline="central">Insight 4</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="580" y="260" text-anchor="middle" dominant-baseline="central">&#x20A9;5.6B/yr uncaptured</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="580" y="274" text-anchor="middle" dominant-baseline="central">no retention path</text>
-      <!-- Merge to recs -->
-      <line x1="100" y1="288" x2="100" y2="360" stroke="#adb5bd" stroke-width="0.5"/>
-      <line x1="260" y1="288" x2="260" y2="360" stroke="#adb5bd" stroke-width="0.5"/>
-      <line x1="420" y1="288" x2="420" y2="360" stroke="#adb5bd" stroke-width="0.5"/>
-      <line x1="580" y1="288" x2="580" y2="360" stroke="#adb5bd" stroke-width="0.5"/>
-      <line x1="100" y1="360" x2="580" y2="360" stroke="#adb5bd" stroke-width="0.5"/>
-      <line x1="183" y1="360" x2="183" y2="378" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
-      <line x1="340" y1="360" x2="340" y2="378" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
-      <line x1="497" y1="360" x2="497" y2="378" stroke="#adb5bd" stroke-width="0.5" marker-end="url(#marr)"/>
-      <!-- REC 1 -->
-      <rect x="60" y="378" width="246" height="60" rx="6" fill="#1A2A4C" stroke="#1A2A4C" stroke-width="1"/>
-      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#B5D4F4" x="183" y="396" text-anchor="middle" dominant-baseline="central">Recommendation 01</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#85B7EB" x="183" y="412" text-anchor="middle" dominant-baseline="central">QR global membership at checkout</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#85B7EB" x="183" y="426" text-anchor="middle" dominant-baseline="central">Fixes Question 2</text>
-      <!-- REC 2 -->
-      <rect x="217" y="378" width="246" height="60" rx="6" fill="#085041" stroke="#085041" stroke-width="1"/>
-      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#9FE1CB" x="340" y="396" text-anchor="middle" dominant-baseline="central">Recommendation 02</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#5DCAA5" x="340" y="412" text-anchor="middle" dominant-baseline="central">In-store to global app bridge</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#5DCAA5" x="340" y="426" text-anchor="middle" dominant-baseline="central">Fixes Question 3</text>
-      <!-- REC 3 -->
-      <rect x="374" y="378" width="246" height="60" rx="6" fill="#712B13" stroke="#712B13" stroke-width="1"/>
-      <text font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#F5C4B3" x="497" y="396" text-anchor="middle" dominant-baseline="central">Recommendation 03</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#F0997B" x="497" y="412" text-anchor="middle" dominant-baseline="central">Post-trip retention loop</text>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#F0997B" x="497" y="426" text-anchor="middle" dominant-baseline="central">Fixes Question 4</text>
-      <!-- Legend -->
-      <rect x="28" y="468" width="10" height="10" rx="2" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="44" y="476" dominant-baseline="central">Q1 &amp; Q2</text>
-      <rect x="110" y="468" width="10" height="10" rx="2" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"/>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="126" y="476" dominant-baseline="central">Q3</text>
-      <rect x="160" y="468" width="10" height="10" rx="2" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="176" y="476" dominant-baseline="central">Q4</text>
-      <rect x="210" y="468" width="10" height="10" rx="2" fill="#F8F9FA" stroke="#dee2e6" stroke-width="0.5"/>
-      <text font-family="Lato,sans-serif" font-size="10" fill="#6c757d" x="226" y="476" dominant-baseline="central">Insights</text>
-    </svg>
+  <p class="sec-eyebrow">01 · PROBLEM DIAGNOSIS</p>
+  <h2 class="sec-title">The Tourist Acquisition Problem</h2>
+  <p class="sec-ko">관광객 확보 문제</p>
+  <p class="sec-intro">Olive Young wins the tourist in-store. The products, the brand recognition, the purchase — all there. But the moment they leave Korea, Olive Young loses them permanently. The entire loyalty and CRM infrastructure assumes a Korean resident.</p>
+  <div class="hl">I didn't find this problem in a report. I lived it. As a Malaysian Muslim in Seoul, I walked into Olive Young and couldn't sign up for their loyalty program — no Korean phone number, no access. That single friction point is the entire business case.<span class="hl-ko">말레이시아 출신 무슬림으로 서울에서 직접 이 문제를 경험했습니다. 한국 번호가 없으면 멤버십 가입이 불가능합니다.</span></div>
+  <div class="pain-grid">
+    <div class="pain-card"><div class="pain-icon">📵</div><div class="pain-title">Korean number required</div><div class="pain-ko">한국 번호 필수</div><div class="pain-desc">Loyalty signup, Coupang Eats, most apps — locked behind a local number foreigners don't have.</div></div>
+    <div class="pain-card"><div class="pain-icon">📦</div><div class="pain-title">No in-store shipping home</div><div class="pain-ko">해외 직배송 없음</div><div class="pain-desc">Tourists self-limit basket size due to luggage. No option to ship purchases home at checkout.</div></div>
+    <div class="pain-card"><div class="pain-icon">🌐</div><div class="pain-title">Language barrier</div><div class="pain-ko">언어 장벽</div><div class="pain-desc">Staff and in-app content are Korea-first. International shoppers navigate product info alone.</div></div>
+    <div class="pain-card"><div class="pain-icon">👤</div><div class="pain-title">Zero data capture</div><div class="pain-ko">데이터 미수집</div><div class="pain-desc">Tourist buys, pays, and disappears. No profile, no email, no retargeting possible after departure.</div></div>
   </div>
-
-  <!-- SECTION DIVIDER -->
-  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
-    <div style="height:1px;flex:1;background:var(--border)"></div>
-    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">LEARNING AGENDA &mdash; 4 QUESTIONS</span>
-    <div style="height:1px;flex:1;background:var(--border)"></div>
+  <div class="hl">Core diagnosis: Olive Young built a world-class in-store experience and a Korean-only digital backend. Every tourist who loves the brand has nowhere to go when they get home.<span class="hl-ko">핵심 진단: 세계 수준의 매장 경험을 갖췄지만 디지털 백엔드는 한국인 전용입니다.</span></div>
+  <div class="metric-grid" style="margin-top:2rem">
+    <div class="metric-card"><div class="metric-label">SEA tourists / yr</div><div class="metric-val">2.1M+</div><div class="metric-note">KTO 2023 data</div></div>
+    <div class="metric-card"><div class="metric-label">Avg. beauty spend</div><div class="metric-val">₩380K</div><div class="metric-note">Per tourist visit</div></div>
+    <div class="metric-card"><div class="metric-label">CRM capture rate</div><div class="metric-val">~0%</div><div class="metric-note">No intl signup option</div></div>
+    <div class="metric-card"><div class="metric-label">Post-trip LTV (est.)</div><div class="metric-val">₩2.4M</div><div class="metric-note">If retained globally</div></div>
   </div>
-
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:1.75rem">
-
-    <div style="border-radius:8px;border:1px solid var(--border);border-top:3px solid #185FA5;padding:1.1rem">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#185FA5;margin-bottom:6px">Q1 &middot; GROWTH</div>
-      <div style="font-family:var(--font-h);font-size:1rem;color:var(--primary);margin-bottom:5px">Where is tourist growth coming from?</div>
-      <div style="font-size:.78rem;color:var(--light-text);margin-bottom:8px;font-style:italic">Metric: YoY inbound tourist volume by region</div>
-      <hr style="border:none;border-top:1px solid var(--border);margin-bottom:8px">
-      <div style="font-size:.8rem;color:var(--dark-text);line-height:1.65">Korea inbound tourists: 11M (2023) &rarr; 16.4M (2024), +48% YoY. Singapore +163%, Philippines +109% vs 2019.</div>
-      <div style="font-size:.68rem;color:var(--light-text);margin-top:6px;font-style:italic">KTO &middot; Ministry of Culture, Sports &amp; Tourism 2024</div>
-    </div>
-
-    <div style="border-radius:8px;border:1px solid var(--border);border-top:3px solid #1D9E75;padding:1.1rem">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#1D9E75;margin-bottom:6px">Q2 &middot; PENETRATION</div>
-      <div style="font-family:var(--font-h);font-size:1rem;color:var(--primary);margin-bottom:5px">How much of that market is Olive Young capturing?</div>
-      <div style="font-size:.78rem;color:var(--light-text);margin-bottom:8px;font-style:italic">Metric: Foreign buyers vs total inbound tourists</div>
-      <hr style="border:none;border-top:1px solid var(--border);margin-bottom:8px">
-      <div style="font-size:.8rem;color:var(--dark-text);line-height:1.65">5.96M foreign purchases at Olive Young in Jan&ndash;May 2025 = ~80% of all inbound tourists during that period.</div>
-      <div style="font-size:.68rem;color:var(--light-text);margin-top:6px;font-style:italic">Korea Herald, Aug 2025 &middot; KTO data</div>
-    </div>
-
-    <div style="border-radius:8px;border:1px solid var(--border);border-top:3px solid #BA7517;padding:1.1rem">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#BA7517;margin-bottom:6px">Q3 &middot; CONVERSION</div>
-      <div style="font-family:var(--font-h);font-size:1rem;color:var(--primary);margin-bottom:5px">Who converts from one-time to repeat customer?</div>
-      <div style="font-size:.78rem;color:var(--light-text);margin-bottom:8px;font-style:italic">Metric: Global Mall signups &middot; free vs paid / repeat orders</div>
-      <hr style="border:none;border-top:1px solid var(--border);margin-bottom:8px">
-      <div style="font-size:.8rem;color:var(--dark-text);line-height:1.65">Olive Young Global Mall: 3.3M members by H1 2024. Orders +60%, revenue +70% YoY. But driven by diaspora, not in-store tourists.</div>
-      <div style="font-size:.68rem;color:var(--light-text);margin-top:6px;font-style:italic">Seoul Economic Daily, Mar 2026</div>
-    </div>
-
-    <div style="border-radius:8px;border:1px solid var(--border);border-top:3px solid #A32D2D;padding:1.1rem">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#A32D2D;margin-bottom:6px">Q4 &middot; RETENTION</div>
-      <div style="font-family:var(--font-h);font-size:1rem;color:var(--primary);margin-bottom:5px">Who stays after converting?</div>
-      <div style="font-size:.78rem;color:var(--light-text);margin-bottom:8px;font-style:italic">Metric: Repurchase at Day 30 &middot; 60 &middot; 90 post-trip</div>
-      <hr style="border:none;border-top:1px solid var(--border);margin-bottom:8px">
-      <div style="font-size:.8rem;color:var(--dark-text);line-height:1.65">No public data on tourist-to-global-app retention. Gap = the business case. Skincare repurchase cycle is ~60 days &mdash; the window exists.</div>
-      <div style="font-size:.68rem;color:var(--light-text);margin-top:6px;font-style:italic">Assumption + industry benchmark</div>
-    </div>
-
-  </div>
-
-  <!-- SECTION DIVIDER -->
-  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
-    <div style="height:1px;flex:1;background:var(--border)"></div>
-    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">FROM QUESTION TO INSIGHT</span>
-    <div style="height:1px;flex:1;background:var(--border)"></div>
-  </div>
-
-  <!-- WATERFALL -->
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:1.25rem;border-radius:8px;overflow:hidden;border:1px solid var(--border)">
-    <div>
-      <div style="background:#1A2A4C;color:#B5D4F4;font-size:.72rem;font-weight:700;padding:8px 12px;text-align:center">Q1 &middot; Growth</div>
-      <div style="padding:10px 12px;font-size:.78rem;color:var(--light-text);line-height:1.6;border-right:1px solid var(--border)"><strong style="color:var(--dark-text)">+48% YoY</strong> in 2024. SEA markets fully recovered. K-beauty shopping is a primary tourism driver.</div>
-    </div>
-    <div>
-      <div style="background:#1D9E75;color:#fff;font-size:.72rem;font-weight:700;padding:8px 12px;text-align:center">Q2 &middot; Penetration</div>
-      <div style="padding:10px 12px;font-size:.78rem;color:var(--light-text);line-height:1.6;border-right:1px solid var(--border)"><strong style="color:var(--dark-text)">~80% of tourists</strong> buy in-store. But CRM capture is near zero &mdash; a Korean phone number blocks every foreign signup.</div>
-    </div>
-    <div>
-      <div style="background:#BA7517;color:#fff;font-size:.72rem;font-weight:700;padding:8px 12px;text-align:center">Q3 &middot; Conversion</div>
-      <div style="padding:10px 12px;font-size:.78rem;color:var(--light-text);line-height:1.6;border-right:1px solid var(--border)">Global Mall growing fast &mdash; but <strong style="color:var(--dark-text)">driven by diaspora</strong>, not tourists. The in-store-to-online conversion path does not exist.</div>
-    </div>
-    <div>
-      <div style="background:#A32D2D;color:#fff;font-size:.72rem;font-weight:700;padding:8px 12px;text-align:center">Q4 &middot; Retention</div>
-      <div style="padding:10px 12px;font-size:.78rem;color:var(--light-text);line-height:1.6"><strong style="color:var(--dark-text)">&#x20A9;5.6B/yr uncaptured</strong>. Conservative 25% retention &times; 6 reorders &times; &#x20A9;38K avg. Demand exists; infrastructure does not.</div>
-    </div>
-  </div>
-
-  <!-- INSIGHTS 2x2 -->
-  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:1.75rem">
-    <div style="background:var(--light-bg);border-radius:8px;padding:1rem;border-left:3px solid #185FA5">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.06em;color:#185FA5;margin-bottom:5px">INSIGHT 1 &mdash; Questions 1 &amp; 2</div>
-      <div style="font-size:.88rem;color:var(--dark-text);line-height:1.6">Tourist volume is surging and Olive Young captures 80% in-store &mdash; but 0% in CRM. The opportunity is already walking through the door.</div>
-      <div style="font-size:.68rem;color:var(--light-text);margin-top:5px;font-style:italic">KTO 2024 &middot; Korea Herald Aug 2025</div>
-    </div>
-    <div style="background:var(--light-bg);border-radius:8px;padding:1rem;border-left:3px solid #1D9E75">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.06em;color:#1D9E75;margin-bottom:5px">INSIGHT 2 &mdash; Question 2</div>
-      <div style="font-size:.88rem;color:var(--dark-text);line-height:1.6">The signup barrier is a phone number field &mdash; not brand disinterest. At Myeongdong Town, 95% of sales are foreign. Intent is high; the system fails them.</div>
-      <div style="font-size:.68rem;color:var(--light-text);margin-top:5px;font-style:italic">Seoulz Jun 2026 &middot; SQL funnel analysis</div>
-    </div>
-    <div style="background:var(--light-bg);border-radius:8px;padding:1rem;border-left:3px solid #BA7517">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.06em;color:#BA7517;margin-bottom:5px">INSIGHT 3 &mdash; Question 3</div>
-      <div style="font-size:.88rem;color:var(--dark-text);line-height:1.6">Global Mall proves post-trip repurchase works &mdash; but only for customers who found Olive Young online. In-store tourists have no bridge to become Global Mall users.</div>
-      <div style="font-size:.68rem;color:var(--light-text);margin-top:5px;font-style:italic">Seoul Economic Daily Mar 2026</div>
-    </div>
-    <div style="background:var(--light-bg);border-radius:8px;padding:1rem;border-left:3px solid #A32D2D">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.06em;color:#A32D2D;margin-bottom:5px">INSIGHT 4 &mdash; Question 4</div>
-      <div style="font-size:.88rem;color:var(--dark-text);line-height:1.6">Skincare repurchase cycle is ~60 days. A July tourist should reorder in September &mdash; but without CRM data, Olive Young cannot reach them. The retention window is missed every cycle.</div>
-      <div style="font-size:.68rem;color:var(--light-text);margin-top:5px;font-style:italic">Industry benchmark &middot; assumption declared</div>
-    </div>
-  </div>
-
-  <!-- SECTION DIVIDER -->
-  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
-    <div style="height:1px;flex:1;background:var(--border)"></div>
-    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">RECOMMENDATIONS</span>
-    <div style="height:1px;flex:1;background:var(--border)"></div>
-  </div>
-
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:1rem">
-    <div style="border:1px solid var(--border);border-top:3px solid #185FA5;border-radius:0 0 8px 8px;padding:1.1rem">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#185FA5;margin-bottom:5px">RECOMMENDATION 01 &middot; FIXES Q2</div>
-      <div style="font-family:var(--font-h);font-size:1rem;color:var(--primary);margin-bottom:6px">QR global membership at checkout</div>
-      <div style="font-size:.82rem;color:var(--light-text);line-height:1.6;margin-bottom:8px">Passport or Google login. No Korean number required. Creates a CRM profile at the only moment the tourist is physically present.</div>
-      <div style="font-size:.75rem;font-weight:700;color:#185FA5">&#x2192; CRM capture rate: ~0% to est. 25%+</div>
-    </div>
-    <div style="border:1px solid var(--border);border-top:3px solid #1D9E75;border-radius:0 0 8px 8px;padding:1.1rem">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#1D9E75;margin-bottom:5px">RECOMMENDATION 02 &middot; FIXES Q3</div>
-      <div style="font-family:var(--font-h);font-size:1rem;color:var(--primary);margin-bottom:6px">In-store to global app bridge</div>
-      <div style="font-size:.82rem;color:var(--light-text);line-height:1.6;margin-bottom:8px">QR membership transitions automatically to Olive Young Global Mall post-return. Purchase history pre-loaded. First reorder is one tap.</div>
-      <div style="font-size:.75rem;font-weight:700;color:#1D9E75">&#x2192; Closes the tourist-to-Global-Mall gap</div>
-    </div>
-    <div style="border:1px solid var(--border);border-top:3px solid #A32D2D;border-radius:0 0 8px 8px;padding:1.1rem">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#A32D2D;margin-bottom:5px">RECOMMENDATION 03 &middot; FIXES Q4</div>
-      <div style="font-family:var(--font-h);font-size:1rem;color:var(--primary);margin-bottom:6px">Post-trip retention loop</div>
-      <div style="font-size:.82rem;color:var(--light-text);line-height:1.6;margin-bottom:8px">Day 30, 60, 90 email sequence with reorder links. Aligns with the skincare repurchase cycle. Wishlist captured at QR scan drives first international order.</div>
-      <div style="font-size:.75rem;font-weight:700;color:#A32D2D">&#x2192; Est. 12&ndash;18% wishlist-to-purchase conversion</div>
-    </div>
-  </div>
-
 </div>
 </div>
 
@@ -524,7 +310,7 @@ footer .disc{font-size:.72rem;opacity:.35;margin-top:6px;}
   <p class="sec-eyebrow">02 · SQL ANALYSIS</p>
   <h2 class="sec-title">Data Analysis: Three Business Questions</h2>
   <p class="sec-ko">세 가지 비즈니스 질문에 대한 데이터 분석</p>
-  <p class="sec-intro">Three SQL queries answer three of the four learning questions identified in the Problem tab. The dataset is simulated from publicly available Olive Young sales patterns and Korea Tourism Organization visitor data &mdash; the same analytical structure I used at Delivery Hero to diagnose APAC partner funnel drop-off across 5 markets. Every query is runnable in the <strong>Live SQL</strong> tab.</p>
+  <p class="sec-intro">Simulated dataset built on publicly available Olive Young sales patterns and Korea Tourism Organization visitor data. This reflects how I would approach the problem with real transaction-level data — the same analytical method I used at Delivery Hero to diagnose APAC partner funnel drop-off. Run the queries yourself in the <strong>Live SQL</strong> tab.</p>
 
   <div class="card">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px"><span class="tag tp">Query 1</span><span class="card-title" style="margin:0">Where does the loyalty funnel break for foreign customers?</span></div>
@@ -639,6 +425,44 @@ leakage <span class="kw">AS</span> (
     </table></div>
     <div class="insight"><span>💡</span><div><div class="insight-text">A conservative 25% retention rate — 6 annual reorders at ₩38,000 average — equals ₩5.6B in annual recurring revenue currently uncaptured. This is demand that already exists and is simply not being served.</div><div class="insight-ko">외국인 관광객의 25%만 유지해도 연간 약 56억 원의 반복 매출이 추가 발생합니다.</div></div></div>
   </div>
+
+  <!-- LIVE SQL SECTION INLINE -->
+  <div style="display:flex;align-items:center;gap:12px;margin:2rem 0 1.25rem">
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">RUN IT YOURSELF &middot; LIVE SQL PLAYGROUND</span>
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+  </div>
+
+  <div class="card" style="padding:0;overflow:hidden;margin-bottom:1.25rem">
+    <button onclick="toggleLiveSQL()" style="width:100%;background:var(--primary);color:#fff;border:none;padding:1rem 1.25rem;text-align:left;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-family:var(--font-b);font-size:.88rem;font-weight:700">
+      <span><i class="fas fa-terminal" style="margin-right:8px;color:var(--accent)"></i>Try the queries live in your browser &mdash; no setup needed</span>
+      <span id="live-sql-arrow" style="font-size:.8rem;color:var(--accent);transition:transform .3s">&#x25BC;</span>
+    </button>
+    <div id="live-sql-panel" style="display:none;padding:1.5rem;background:var(--primary)">
+      <div class="schema-box">
+        <h4>DATABASE SCHEMA</h4>
+        <pre>transactions (customer_id, customer_type, transaction_date, transaction_year,
+              sku_id, revenue_krw, basket_size_krw, loyalty_prompted,
+              signup_attempted, signup_completed)
+
+products     (sku_id, sku_name, category, brand, price_krw)
+
+customer_type values: 'domestic', 'sea', 'japan_taiwan', 'western'</pre>
+      </div>
+      <p style="font-size:.78rem;color:rgba(255,255,255,.5);margin-bottom:.6rem;font-weight:700;letter-spacing:.05em">PRESET QUERIES</p>
+      <div class="preset-btns">
+        <button class="preset-btn" onclick="loadPreset2('funnel')">Funnel drop-off</button>
+        <button class="preset-btn" onclick="loadPreset2('sku')">Tourist SKU share</button>
+        <button class="preset-btn" onclick="loadPreset2('leakage')">Revenue leakage</button>
+        <button class="preset-btn" onclick="loadPreset2('basket')">Avg basket by type</button>
+        <button class="preset-btn" onclick="loadPreset2('topsku')">Top SKUs by revenue</button>
+      </div>
+      <textarea id="sql-input2" spellcheck="false" placeholder="Write your SQL here, or pick a preset above..." style="width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:6px;color:rgba(255,255,255,.9);font-family:var(--font-m);font-size:.8rem;padding:1rem;resize:vertical;min-height:140px;line-height:1.8;"></textarea>
+      <button class="run-btn" onclick="runSQL2()" style="margin-top:.75rem"><i class="fas fa-play" style="margin-right:6px"></i>Run Query (or Ctrl+Enter)</button>
+      <div id="sql-result-area2" class="sql-result" style="margin-top:1rem"><p class="sql-msg">Pick a preset or write a query, then click Run.</p></div>
+    </div>
+  </div>
+
 </div>
 </div>
 
@@ -675,8 +499,8 @@ customer_type values: 'domestic', 'sea', 'japan_taiwan', 'western'</pre>
   </div>
 
   <div class="hl" style="margin-top:1.5rem">
-    <strong>Why I built this:</strong> This demonstrates the same business analysis skill I used at Delivery Hero: consolidating fragmented data and identifying the specific drop-off point. The simulated dataset is seeded with realistic distributions based on KTO visitor data and Olive Young sales patterns.
-    <span class="hl-ko"> 딜리버리 히어로에서 사용한 경영 분석 방식과 동일합니다.</span>
+    <strong>Why I built this:</strong> In interviews I can walk through not just the query logic but the actual results — live, in real time. This demonstrates the same skill I used at Delivery Hero: consolidating fragmented data and identifying the specific drop-off point. The simulated dataset is seeded with realistic distributions based on KTO visitor data and Olive Young sales patterns.
+    <span class="hl-ko">인터뷰에서 쿼리 로직과 실제 결과를 실시간으로 보여줄 수 있습니다. 딜리버리 히어로에서 사용한 분석 방식과 동일합니다.</span>
   </div>
 </div>
 </div>
@@ -729,177 +553,163 @@ customer_type values: 'domestic', 'sea', 'japan_taiwan', 'western'</pre>
 <!-- TAB: STRATEGY -->
 <div id="tab-strategy" class="tab-pane">
 <div class="container">
-
-  <p class="sec-eyebrow">04 &middot; STRATEGIC RECOMMENDATION</p>
-  <h2 class="sec-title">Three Solutions, One Closed Loop</h2>
-  <p class="sec-ko">&#xC138; &#xAC00;&#xC9C0; &#xC5F0;&#xB3D9; &#xC194;&#xB8E8;&#xC158;</p>
-  <p class="sec-intro">Each recommendation targets a specific question identified in the Problem tab. Together they form a closed loop &mdash; capture tourist data in-store, increase basket size, retain the customer globally after they leave.</p>
-
-  <!-- HOW THEY CONNECT -->
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:1.5rem;border:1px solid var(--border);border-radius:8px;overflow:hidden">
-    <div style="padding:.75rem 1rem;background:var(--light-bg);border-right:1px solid var(--border)">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#185FA5;margin-bottom:3px">STEP 1 &middot; IN-STORE</div>
-      <div style="font-size:.82rem;color:var(--dark-text)">Capture tourist identity &amp; data at checkout</div>
-    </div>
-    <div style="padding:.75rem 1rem;background:var(--light-bg);border-right:1px solid var(--border)">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#1D9E75;margin-bottom:3px">STEP 2 &middot; IN-STORE</div>
-      <div style="font-size:.82rem;color:var(--dark-text)">Remove luggage friction to increase basket size</div>
-    </div>
-    <div style="padding:.75rem 1rem;background:var(--light-bg)">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;color:#A32D2D;margin-bottom:3px">STEP 3 &middot; POST-TRIP</div>
-      <div style="font-size:.82rem;color:var(--dark-text)">Re-engage the tourist after they return home</div>
-    </div>
-  </div>
-
-  <!-- DIVIDER -->
-  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
-    <div style="height:1px;flex:1;background:var(--border)"></div>
-    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">RECOMMENDATION 01 &middot; FIXES QUESTION 2</span>
-    <div style="height:1px;flex:1;background:var(--border)"></div>
-  </div>
-
+  <p class="sec-eyebrow">04 · STRATEGIC RECOMMENDATION</p>
+  <h2 class="sec-title">Three Interlocking Solutions</h2>
+  <p class="sec-ko">세 가지 연동 솔루션</p>
+  <p class="sec-intro">Each solution targets a different point in the tourist journey. Together they form a closed loop: capture data in-store → increase basket size → retain globally post-trip.</p>
   <div class="card">
-    <div style="display:flex;align-items:flex-start;gap:14px">
-      <div style="min-width:32px;height:32px;background:#1A2A4C;color:#B5D4F4;font-size:.85rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">1</div>
-      <div style="flex:1">
-        <div class="card-title">QR global membership at checkout</div>
-        <div class="card-ko">&#xACC4;&#xC0B0;&#xB300; QR &#xAE00;&#xB85C;&#xBC8C; &#xBA64;&#xBC84;&#xC2ED; &#xAC00;&#xC785;</div>
-        <p style="font-size:.9rem;color:var(--light-text);line-height:1.7;margin-bottom:1rem">When a tourist pays at checkout, their receipt shows a QR code. Scanning it opens a 90-second signup flow that accepts Google, Apple, or passport ID &mdash; no Korean phone number required. This creates a CRM profile that carries their purchase history into Olive Young&rsquo;s Global Mall when they return home.</p>
-        <p style="font-size:.9rem;color:var(--light-text);line-height:1.7;margin-bottom:1rem">This is the foundation of the entire strategy. Without data capture at this moment, Recommendations 02 and 03 have no customer to serve.</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:1rem">
-          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #185FA5">
-            <div style="font-size:.68rem;font-weight:700;color:#185FA5;margin-bottom:3px">ACCEPTANCE CRITERIA</div>
-            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">&#x2713; QR on receipt opens signup<br>&#x2713; Accepts Google, Apple, passport<br>&#x2713; Korean number optional<br>&#x2713; Completes in &lt;90 seconds<br>&#x2713; Confirmation email in detected language</div>
-          </div>
-          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #185FA5">
-            <div style="font-size:.68rem;font-weight:700;color:#185FA5;margin-bottom:3px">IMPLEMENTATION</div>
-            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">Phase 1 &mdash; 0 to 3 months<br>50 flagship stores<br>Software-only change<br>Low cost &middot; immediate impact</div>
-          </div>
-          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #185FA5">
-            <div style="font-size:.68rem;font-weight:700;color:#185FA5;margin-bottom:3px">EXPECTED IMPACT</div>
-            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">CRM capture rate:<br>~0% &rarr; est. 25%+ of foreign buyers<br><br>~500K new global profiles per year</div>
-          </div>
-        </div>
-      </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div><div class="step-title">QR-to-global membership at checkout</div><div class="step-ko">계산대 QR 글로벌 멤버십 가입</div><div class="step-desc">Receipt QR links tourist to a global profile via passport scan, Google, or social login — no Korean number required. Creates a CRM profile that transitions to Olive Young's international e-commerce app post-return. This is the data capture layer: without it, the other solutions have no customer to retain.</div></div></div>
+      <div class="step"><div class="step-num">2</div><div><div class="step-title">International counter + home postage service</div><div class="step-ko">국제 카운터 · 해외 직배송 서비스</div><div class="step-desc">Dedicated in-store counter at flagship locations (Myeongdong, Hongdae, Sinchon) where tourists ship purchases home directly. Removes the luggage constraint that self-limits basket size. Dopamine shopping peaks during travel — willingness to buy more is high, but "how do I carry this?" is the blocker. Estimated +22% basket uplift based on comparable duty-free shipping data.</div></div></div>
     </div>
   </div>
-
-  <!-- DIVIDER -->
-  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
-    <div style="height:1px;flex:1;background:var(--border)"></div>
-    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">RECOMMENDATION 02 &middot; FIXES QUESTION 3</span>
-    <div style="height:1px;flex:1;background:var(--border)"></div>
+  <div class="blur-wrap">
+    <div class="blur-inner"><div class="card"><div class="steps"><div class="step"><div class="step-num">3</div><div><div class="step-title">Post-trip retention loop + wishlist capture</div><div class="step-ko">귀국 후 재구매 유도 루프 · 위시리스트 수집</div><div class="step-desc">At QR scan, tourist saves a digital wishlist of browsed-but-not-purchased items. Post-trip email sequence (Day 3 / Day 14 / Day 30) targets wishlist items with international shipping enabled. Converts browse intent into delayed purchase — addressing the "add-to-cart without buying" dopamine behaviour. Expected conversion: 12–18% of wishlist captures to first international purchase within 30 days.</div></div></div></div></div></div>
+    <div class="blur-overlay"><button onclick="this.closest('.blur-wrap').querySelector('.blur-inner').style.filter='none';this.closest('.blur-overlay').style.display='none'">Reveal solution 3 ↓</button></div>
   </div>
-
-  <div class="card">
-    <div style="display:flex;align-items:flex-start;gap:14px">
-      <div style="min-width:32px;height:32px;background:#085041;color:#9FE1CB;font-size:.85rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">2</div>
-      <div style="flex:1">
-        <div class="card-title">In-store to global app bridge</div>
-        <div class="card-ko">&#xB9E4;&#xC7A5; &#xB0B4; &#xC5F0;&#xACB0; &rarr; &#xAE00;&#xB85C;&#xBC8C; &#xC571; &#xC804;&#xD658;</div>
-        <p style="font-size:.9rem;color:var(--light-text);line-height:1.7;margin-bottom:1rem">The QR profile created at checkout automatically becomes the tourist&rsquo;s Olive Young Global Mall account. When they land at home and open the app, their in-store purchase history is already there. The first reorder is one tap &mdash; no searching, no re-discovering the brand.</p>
-        <p style="font-size:.9rem;color:var(--light-text);line-height:1.7;margin-bottom:1rem">In parallel, an international shipping counter at flagship locations removes the luggage constraint that currently limits basket size. Tourists want to buy more &mdash; the blocker is &ldquo;how do I carry this through the airport?&rdquo; Remove that and basket size increases.</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:1rem">
-          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #1D9E75">
-            <div style="font-size:.68rem;font-weight:700;color:#1D9E75;margin-bottom:3px">SHIPPING COUNTER CRITERIA</div>
-            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">&#x2713; Available at flagship checkouts<br>&#x2713; Supports 15+ countries<br>&#x2713; Fee shown before confirmation<br>&#x2713; Tracking sent within 2 hours<br>&#x2713; Delivery date shown</div>
-          </div>
-          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #1D9E75">
-            <div style="font-size:.68rem;font-weight:700;color:#1D9E75;margin-bottom:3px">IMPLEMENTATION</div>
-            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">Phase 2 &mdash; 3 to 9 months<br>Myeongdong, Hongdae, Sinchon pilot<br>Measure basket uplift vs control stores</div>
-          </div>
-          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #1D9E75">
-            <div style="font-size:.68rem;font-weight:700;color:#1D9E75;margin-bottom:3px">EXPECTED IMPACT</div>
-            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">+22% basket size uplift<br>(duty-free shipping analogue)<br><br>&#x20A9;18B shipping counter revenue<br>&#x20A9;30K fee &times; 600K shipments</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- DIVIDER -->
-  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
-    <div style="height:1px;flex:1;background:var(--border)"></div>
-    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">RECOMMENDATION 03 &middot; FIXES QUESTION 4</span>
-    <div style="height:1px;flex:1;background:var(--border)"></div>
-  </div>
-
-  <div class="card">
-    <div style="display:flex;align-items:flex-start;gap:14px">
-      <div style="min-width:32px;height:32px;background:#712B13;color:#F5C4B3;font-size:.85rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">3</div>
-      <div style="flex:1">
-        <div class="card-title">Post-trip retention loop</div>
-        <div class="card-ko">&#xADC0;&#xAD6D; &#xD6C4; &#xC7AC;&#xAD6C;&#xB9E4; &#xC720;&#xB3C4; &#xB8E8;&#xD504;</div>
-        <p style="font-size:.9rem;color:var(--light-text);line-height:1.7;margin-bottom:1rem">At QR scan, the tourist is prompted to save a wishlist of items they browsed but didn&rsquo;t purchase. Three emails go out after they return home &mdash; at Day 30, Day 60, and Day 90 &mdash; each containing their purchased SKUs with reorder links and their wishlist items with international shipping enabled.</p>
-        <p style="font-size:.9rem;color:var(--light-text);line-height:1.7;margin-bottom:1rem">This timing is deliberate. Skincare repurchase cycle is approximately 60 days. The Day 60 email lands exactly when a tourist who bought in Seoul is running low on the product at home. The path to reorder is already there.</p>
-
-        <div style="display:flex;gap:0;margin:1rem 0;border:1px solid var(--border);border-radius:8px;overflow:hidden">
-          <div style="flex:1;padding:.75rem 1rem;border-right:1px solid var(--border)">
-            <div style="font-size:.68rem;font-weight:700;color:#A32D2D;margin-bottom:4px">DAY 30</div>
-            <div style="font-size:.78rem;color:var(--light-text);line-height:1.5">&ldquo;Miss your Seoul haul?&rdquo; &mdash; reorder links for every item purchased in-store</div>
-          </div>
-          <div style="flex:1;padding:.75rem 1rem;border-right:1px solid var(--border)">
-            <div style="font-size:.68rem;font-weight:700;color:#A32D2D;margin-bottom:4px">DAY 60</div>
-            <div style="font-size:.78rem;color:var(--light-text);line-height:1.5">&ldquo;Running low?&rdquo; &mdash; repurchase prompt timed to skincare cycle</div>
-          </div>
-          <div style="flex:1;padding:.75rem 1rem">
-            <div style="font-size:.68rem;font-weight:700;color:#A32D2D;margin-bottom:4px">DAY 90</div>
-            <div style="font-size:.78rem;color:var(--light-text);line-height:1.5">Wishlist items with international shipping &mdash; converts browse intent to purchase</div>
-          </div>
-        </div>
-
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:1rem">
-          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #A32D2D">
-            <div style="font-size:.68rem;font-weight:700;color:#A32D2D;margin-bottom:3px">EMAIL CRITERIA</div>
-            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">&#x2713; Triggered Day 30/60/90<br>&#x2713; Exact products with reorder links<br>&#x2713; Shipping price in local currency<br>&#x2713; Renders in EN, ZH, MS, JA<br>&#x2713; Unsubscribe visible</div>
-          </div>
-          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #A32D2D">
-            <div style="font-size:.68rem;font-weight:700;color:#A32D2D;margin-bottom:3px">IMPLEMENTATION</div>
-            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">Phase 3 &mdash; 9 to 18 months<br>SEA marketing campaign<br>Multilingual product tagging</div>
-          </div>
-          <div style="background:var(--light-bg);border-radius:6px;padding:.75rem;border-left:2px solid #A32D2D">
-            <div style="font-size:.68rem;font-weight:700;color:#A32D2D;margin-bottom:3px">EXPECTED IMPACT</div>
-            <div style="font-size:.78rem;color:var(--light-text);line-height:1.6">12&ndash;18% wishlist-to-purchase<br>conversion rate<br><br>&#x20A9;5.6B annual recurring revenue<br>recovered</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- DIVIDER -->
-  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
-    <div style="height:1px;flex:1;background:var(--border)"></div>
-    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">COMBINED BUSINESS CASE</span>
-    <div style="height:1px;flex:1;background:var(--border)"></div>
-  </div>
-
+  <h3 style="font-family:var(--font-h);font-size:1.3rem;color:var(--primary);margin:2rem 0 1rem">Business case: what Olive Young gains</h3>
   <div class="metric-grid">
-    <div class="metric-card">
-      <div class="metric-label">New global CRM profiles / yr</div>
-      <div class="metric-val">~500K</div>
-      <div class="metric-note">25% of intl tourist buyers</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Annual recurring revenue</div>
-      <div class="metric-val">&#x20A9;5.6B</div>
-      <div class="metric-note">Post-trip reorders, conservative</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Shipping counter revenue</div>
-      <div class="metric-val">&#x20A9;18B</div>
-      <div class="metric-note">&#x20A9;30K &times; 600K shipments</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Basket size uplift</div>
-      <div class="metric-val">+22%</div>
-      <div class="metric-note">When luggage barrier removed</div>
+    <div class="metric-card"><div class="metric-label">New global CRM profiles/yr</div><div class="metric-val">~500K</div><div class="metric-note">25% conversion of intl tourists</div></div>
+    <div class="metric-card"><div class="metric-label">Est. annual recurring revenue</div><div class="metric-val">₩5.6B</div><div class="metric-note">Post-trip reorders, conservative</div></div>
+    <div class="metric-card"><div class="metric-label">Shipping counter revenue</div><div class="metric-val">₩18B</div><div class="metric-note">₩30K fee × 600K shipments</div></div>
+    <div class="metric-card"><div class="metric-label">Basket size uplift</div><div class="metric-val">+22%</div><div class="metric-note">When luggage barrier removed</div></div>
+  </div>
+  <div class="roadmap" style="margin-top:1.5rem">
+    <div class="rm-card"><div class="rm-phase">PHASE 1 · QUICK WIN</div><div class="rm-title">QR Global Signup</div><div class="rm-time">0–3 months · Low cost</div><div class="rm-action">Deploy at 50 flagship stores. Software-only. Immediate CRM data capture begins.</div></div>
+    <div class="rm-card"><div class="rm-phase">PHASE 2 · INFRASTRUCTURE</div><div class="rm-title">Shipping Counter Pilot</div><div class="rm-time">3–9 months · Medium cost</div><div class="rm-action">Launch at 3 flagship locations. Measure basket uplift vs control stores.</div></div>
+    <div class="rm-card"><div class="rm-phase">PHASE 3 · SCALE</div><div class="rm-title">Retention Loop + SEA Push</div><div class="rm-time">9–18 months · Medium-high</div><div class="rm-action">Post-trip email live. SEA marketing campaign. Multilingual product tagging rollout.</div></div>
+  </div>
+</div>
+</div>
+
+<!-- TAB: WORLD MAP -->
+<div id="tab-map" class="tab-pane">
+<div class="container">
+
+  <p class="sec-eyebrow">06 &middot; MARKET GEOGRAPHY</p>
+  <h2 class="sec-title">Where the Opportunity Lives</h2>
+  <p class="sec-ko">&#xC2DC;&#xC7A5; &#xC9C0;&#xB9AC; &middot; &#xAE00;&#xB85C;&#xBC8C; &#xAE30;&#xD68C;</p>
+  <p class="sec-intro">Olive Young&rsquo;s biggest untapped markets are already sending tourists to Seoul. These are the customers Olive Young wins in-store but cannot retain online &mdash; because the CRM was never built for them.</p>
+
+  <!-- MARKET SIGNAL -->
+  <div style="background:#ffffff;border:1px solid #d1d5db;border-radius:8px;padding:1.1rem 1.25rem;margin-bottom:1.5rem;display:flex;gap:14px;align-items:flex-start">
+    <div style="flex-shrink:0;width:36px;height:36px;background:#f3f4f6;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;border:1px solid #e5e7eb">&#x1F4F0;</div>
+    <div style="flex:1">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap">
+        <span style="font-size:.68rem;font-weight:700;letter-spacing:.07em;color:#374151;background:#f3f4f6;border:1px solid #d1d5db;padding:2px 8px;border-radius:4px">MARKET SIGNAL</span>
+        <span style="font-size:.68rem;font-weight:700;letter-spacing:.07em;color:#1A2A4C;background:#e8eef5;border:1px solid #b8cde0;padding:2px 8px;border-radius:4px">VALIDATES RECOMMENDATION 01</span>
+        <span style="font-size:.68rem;font-weight:700;letter-spacing:.07em;color:#6b2737;background:#fdf2f4;border:1px solid #f0c4cc;padding:2px 8px;border-radius:4px">&bull; RECENT &middot; JUNE 2026</span>
+      </div>
+      <div style="font-size:.9rem;font-weight:700;color:#111827;margin-bottom:5px;line-height:1.4">Naver launches passport-based identity verification for foreign visitors without a Korean phone number</div>
+      <div style="font-size:.82rem;color:#4b5563;line-height:1.7">Foreign tourists in Korea can now verify their identity using a passport scan &mdash; no Korean mobile number required &mdash; to access Naver Map reservations, restaurant bookings, ordering services, and Naver Pay. This is exactly the frictionless foreign identity layer this case study recommends Olive Young adopt at checkout.</div>
+      <div style="font-size:.72rem;color:#6b7280;margin-top:7px;font-style:italic;border-top:1px solid #f3f4f6;padding-top:6px">Source: Naver, June 2026 &middot; Directly validates Recommendation 01: QR global membership without Korean phone number</div>
     </div>
   </div>
 
-</div>
-</div>
+  <!-- SECTION DIVIDER -->
+  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">TOP SOURCE MARKETS &middot; KEY DATA</span>
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+  </div>
 
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem">
+
+    <div style="border:1px solid var(--border);border-top:3px solid #185FA5;border-radius:0 0 8px 8px;padding:1.1rem">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem">
+        <div style="font-family:var(--font-h);font-size:1.1rem;color:var(--primary)">Japan</div>
+        <div style="font-size:1.2rem">&#x1F1EF;&#x1F1F5;</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">POPULATION</div><div style="font-size:.88rem;font-weight:700;color:var(--primary)">124M</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">TO KOREA / YR</div><div style="font-size:.88rem;font-weight:700;color:#185FA5">2.4M</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">FEMALE</div><div style="font-size:.88rem;font-weight:700;color:#9d174d">62%</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">MALE</div><div style="font-size:.88rem;font-weight:700;color:#185FA5">38%</div></div>
+      </div>
+      <div style="font-size:.7rem;color:var(--light-text);margin-top:.6rem;font-style:italic">Largest single inbound group &middot; high K-beauty affinity</div>
+    </div>
+
+    <div style="border:1px solid var(--border);border-top:3px solid #3D5A80;border-radius:0 0 8px 8px;padding:1.1rem">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem">
+        <div style="font-family:var(--font-h);font-size:1.1rem;color:var(--primary)">China</div>
+        <div style="font-size:1.2rem">&#x1F1E8;&#x1F1F3;</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">POPULATION</div><div style="font-size:.88rem;font-weight:700;color:var(--primary)">1.4B</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">TO KOREA / YR</div><div style="font-size:.88rem;font-weight:700;color:#185FA5">2.0M</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">FEMALE</div><div style="font-size:.88rem;font-weight:700;color:#9d174d">58%</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">MALE</div><div style="font-size:.88rem;font-weight:700;color:#185FA5">42%</div></div>
+      </div>
+      <div style="font-size:.7rem;color:var(--light-text);margin-top:.6rem;font-style:italic">Recovering post-pandemic &middot; strong luxury beauty demand</div>
+    </div>
+
+    <div style="border:1px solid var(--border);border-top:3px solid #3D5A80;border-radius:0 0 8px 8px;padding:1.1rem">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem">
+        <div style="font-family:var(--font-h);font-size:1.1rem;color:var(--primary)">USA</div>
+        <div style="font-size:1.2rem">&#x1F1FA;&#x1F1F8;</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">POPULATION</div><div style="font-size:.88rem;font-weight:700;color:var(--primary)">335M</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">TO KOREA / YR</div><div style="font-size:.88rem;font-weight:700;color:#185FA5">680K</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">FEMALE</div><div style="font-size:.88rem;font-weight:700;color:#9d174d">55%</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">MALE</div><div style="font-size:.88rem;font-weight:700;color:#185FA5">45%</div></div>
+      </div>
+      <div style="font-size:.7rem;color:var(--light-text);margin-top:.6rem;font-style:italic">TikTok-driven K-beauty awareness &middot; fastest growing western market</div>
+    </div>
+
+    <div style="border:1px solid var(--border);border-top:3px solid #29B6F6;border-radius:0 0 8px 8px;padding:1.1rem">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem">
+        <div style="font-family:var(--font-h);font-size:1.1rem;color:var(--primary)">Taiwan</div>
+        <div style="font-size:1.2rem">&#x1F1F9;&#x1F1FC;</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">POPULATION</div><div style="font-size:.88rem;font-weight:700;color:var(--primary)">23M</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">TO KOREA / YR</div><div style="font-size:.88rem;font-weight:700;color:#185FA5">890K</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">FEMALE</div><div style="font-size:.88rem;font-weight:700;color:#9d174d">65%</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">MALE</div><div style="font-size:.88rem;font-weight:700;color:#185FA5">35%</div></div>
+      </div>
+      <div style="font-size:.7rem;color:var(--light-text);margin-top:.6rem;font-style:italic">Highest female ratio &middot; very high K-beauty purchase intent</div>
+    </div>
+
+    <div style="border:1px solid var(--border);border-top:3px solid #1D9E75;border-radius:0 0 8px 8px;padding:1.1rem">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem">
+        <div style="font-family:var(--font-h);font-size:1.1rem;color:var(--primary)">Malaysia</div>
+        <div style="font-size:1.2rem">&#x1F1F2;&#x1F1FE;</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">POPULATION</div><div style="font-size:.88rem;font-weight:700;color:var(--primary)">34M</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">TO KOREA / YR</div><div style="font-size:.88rem;font-weight:700;color:#1D9E75">380K</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">FEMALE</div><div style="font-size:.88rem;font-weight:700;color:#9d174d">61%</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">MALE</div><div style="font-size:.88rem;font-weight:700;color:#185FA5">39%</div></div>
+      </div>
+      <div style="font-size:.7rem;color:var(--light-text);margin-top:.6rem;font-style:italic">+109% vs 2019 &middot; halal beauty demand &middot; analyst&rsquo;s own market</div>
+    </div>
+
+    <div style="border:1px solid var(--border);border-top:3px solid #1D9E75;border-radius:0 0 8px 8px;padding:1.1rem">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem">
+        <div style="font-family:var(--font-h);font-size:1.1rem;color:var(--primary)">Thailand</div>
+        <div style="font-size:1.2rem">&#x1F1F9;&#x1F1ED;</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">POPULATION</div><div style="font-size:.88rem;font-weight:700;color:var(--primary)">72M</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">TO KOREA / YR</div><div style="font-size:.88rem;font-weight:700;color:#1D9E75">430K</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">FEMALE</div><div style="font-size:.88rem;font-weight:700;color:#9d174d">64%</div></div>
+        <div style="background:var(--light-bg);border-radius:6px;padding:.6rem;text-align:center"><div style="font-size:.65rem;color:var(--light-text);margin-bottom:2px">MALE</div><div style="font-size:.88rem;font-weight:700;color:#185FA5">36%</div></div>
+      </div>
+      <div style="font-size:.7rem;color:var(--light-text);margin-top:.6rem;font-style:italic">K-drama influence strong &middot; growing beauty tourism segment</div>
+    </div>
+
+  </div>
+
+  <div class="hl">
+    <strong>What the data shows:</strong> Across all top source markets, female visitors consistently represent 58&ndash;65% of tourists &mdash; exactly the demographic that drives beauty purchase decisions. The market is already walking through the door. The Naver passport verification launch confirms the technical infrastructure for non-phone verification is ready in Korea right now.
+    <span class="hl-ko">&#xBAA8;&#xB4E0; &#xC8FC;&#xC694; &#xC2DC;&#xC7A5;&#xC5D0;&#xC11C; &#xC5EC;&#xC131; &#xBC29;&#xBB38;&#xAC1D;&#xC774; 58&ndash;65%&#xB97C; &#xCC28;&#xC9C0;&#xD569;&#xB2C8;&#xB2E4;.</span>
+  </div>
+
+  <p style="font-size:.68rem;color:var(--light-text);font-style:italic;text-align:center;margin-top:.75rem">Sources: Korea Tourism Organization 2024 &middot; Ministry of Culture, Sports and Tourism &middot; UN World Population Data 2024 &middot; gender ratios estimated from KTO inbound tourism surveys</p>
+
+</div>
+</div>
 
 <!-- TAB: HOW I WORK -->
 <div id="tab-process" class="tab-pane">
@@ -907,9 +717,9 @@ customer_type values: 'domestic', 'sea', 'japan_taiwan', 'western'</pre>
   <p class="sec-eyebrow">06 · HOW I WORK</p>
   <h2 class="sec-title">From Discovery to Delivery</h2>
   <p class="sec-ko">발견에서 실행까지 — 업무 방식</p>
-  <p class="sec-intro">Business analysis isn't just data, it's translating messy stakeholder reality into clear documentation that development and design teams can actually build from.</p>
+  <p class="sec-intro">Business analysis isn't just data — it's translating messy stakeholder reality into clear documentation that development and design teams can actually build from.</p>
   <div class="card" style="overflow-x:auto">
-    <div class="card-title">Discovery to backlog process map</div>
+    <div class="card-title">Discovery-to-backlog process map</div>
     <p class="card-ko" style="margin-bottom:1.1rem">발견 워크숍 → 백로그 · 프로세스 맵</p>
     <div class="pmap">
       <div class="pphase"><div class="pnum">PHASE 1</div><div class="ptitle">Discovery</div><div class="pitems">· Stakeholder interviews<br>· In-store observation<br>· Pain point mapping<br>· As-is documentation</div><span class="pout">→ Problem brief</span></div>
@@ -939,152 +749,33 @@ customer_type values: 'domestic', 'sea', 'japan_taiwan', 'western'</pre>
 <!-- TAB: REFERENCES -->
 <div id="tab-references" class="tab-pane">
 <div class="container">
+  <p class="sec-eyebrow">SOURCES & ASSUMPTIONS</p>
+  <h2 class="sec-title">References & Declared Assumptions</h2>
+  <p class="sec-ko">참고 자료 및 가정 사항</p>
+  <p class="sec-intro">Every number in this case study is sourced or explicitly declared as an assumption. Academic integrity in analysis means stating what you know, what you estimated, and why the estimate is reasonable.</p>
 
-  <p class="sec-eyebrow">SOURCES &amp; ASSUMPTIONS</p>
-  <h2 class="sec-title">References &amp; Declared Assumptions</h2>
-  <p class="sec-ko">&#xCC38;&#xACE0; &#xC790;&#xB8CC; &amp; &#xAC00;&#xC815; &#xC0AC;&#xD56D;</p>
-  <p class="sec-intro">Every number in this case study is sourced or explicitly declared as an assumption. Stating what you know, what you estimated, and why the estimate is reasonable is the standard for credible analysis.</p>
+  <h3 style="font-family:var(--font-h);font-size:1.2rem;color:var(--primary);margin:1.5rem 0 1rem">Data sources · 데이터 출처</h3>
+  <div class="ref-card"><div class="ref-num">1</div><div><div class="ref-title">Korea Tourism Organization (KTO) — 2023 Annual Tourism Statistics</div><div class="ref-body">Source for inbound tourist volume by nationality. Used to estimate SEA visitor count (2.1M+) and total inbound tourists (17M). <br><a href="https://kto.visitkorea.or.kr" target="_blank">kto.visitkorea.or.kr</a></div><span class="ref-tag">USED FOR: Hero stats · Market sizing · SQL dataset seed values</span></div></div>
+  <div class="ref-card"><div class="ref-num">2</div><div><div class="ref-title">Olive Young Global App & Annual Report (CJ Olive Networks, 2023)</div><div class="ref-body">Source for Olive Young global expansion claims, app availability in 180+ countries, and sales trend data. Signup friction confirmed via personal testing (no international phone support).</div><span class="ref-tag">USED FOR: CRM gap diagnosis · Hero stats · Problem framing</span></div></div>
+  <div class="ref-card"><div class="ref-num">3</div><div><div class="ref-title">Korea Culture and Tourism Institute — Tourist Spending Survey 2023</div><div class="ref-body">Source for average beauty/personal care spend per tourist visit (₩380K proxy). Derived from total tourist retail spend divided by category share estimates.<br><a href="https://www.kcti.re.kr" target="_blank">kcti.re.kr</a></div><span class="ref-tag">USED FOR: ₩380K avg spend · Revenue leakage calculation</span></div></div>
+  <div class="ref-card"><div class="ref-num">4</div><div><div class="ref-title">Halal Industry Development Corporation (HDIC) / DinarStandard Global Islamic Economy Report 2023</div><div class="ref-body">Source for global halal cosmetics market size ($70B+) and projected CAGR (~10% to $130B by 2030).</div><span class="ref-tag">USED FOR: Muslim market sizing · Strategy rationale</span></div></div>
+  <div class="ref-card"><div class="ref-num">5</div><div><div class="ref-title">Delivery Hero Internal Data (2022–2023) — personal work experience</div><div class="ref-body">AOV +12% and partner churn reduction from 15.90% to 14.71% are from my own work at Delivery Hero Malaysia. Used as methodology reference (funnel analysis approach), not as Olive Young data.</div><span class="ref-tag">USED FOR: About me · Methodology credibility</span></div></div>
 
-  <!-- DIVIDER -->
-  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
-    <div style="height:1px;flex:1;background:var(--border)"></div>
-    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">DATA SOURCES &middot; &#xB370;&#xC774;&#xD130; &#xCD9C;&#xCC98;</span>
-    <div style="height:1px;flex:1;background:var(--border)"></div>
+  <hr class="soft">
+  <h3 style="font-family:var(--font-h);font-size:1.2rem;color:var(--primary);margin:1.5rem 0 1rem">Declared assumptions · 선언된 가정</h3>
+  <p style="font-size:.85rem;color:var(--light-text);margin-bottom:1rem">All assumptions are stated before analysis. Undeclared assumptions receive no analytical credit — this is declared upfront.</p>
+  <div style="background:var(--card-bg);border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.05);padding:1.5rem;">
+    <div class="assumption-row"><div class="ass-label">Base demand (Laneige Lip Mask)</div><div class="ass-val">18,000–23,000 units/month domestic baseline. Proxy from Olive Young top-seller category share estimates and Korean beauty market size reports. Tourist overlay adds 38% in peak months (Jul–Aug, Jan–Feb) based on KTO seasonality data.</div></div>
+    <div class="assumption-row"><div class="ass-label">SQL dataset scale</div><div class="ass-val">Simulated: ~383,000 total transactions across 4 customer types. Ratios (prompted, attempted, completed) derived from reasonable assumptions about loyalty program UX friction. Completion rate of 63.7% for domestic users aligns with industry loyalty signup benchmarks (60–70%).</div></div>
+    <div class="assumption-row"><div class="ass-label">Revenue leakage model</div><div class="ass-val">25% retention rate is conservative (industry e-commerce re-engagement benchmarks: 20–35% for travel-triggered purchases). 6 annual reorders at ₩38,000 average derived from Olive Young global average order value estimates and repurchase cycle for skincare (every 2 months).</div></div>
+    <div class="assumption-row"><div class="ass-label">APP strategy (Hybrid)</div><div class="ass-val">Hybrid chosen over Level because tourist peaks are concentrated (4–6 weeks, not spread). Overtime cost assumed at 1.5× regular labour. Holding cost assumed ₩500/unit/month. No backlog assumed — stockouts filled by safety stock drawdown then subcontracting.</div></div>
+    <div class="assumption-row"><div class="ass-label">+22% basket size uplift</div><div class="ass-val">Based on duty-free in-store shipping services (Japan, Singapore airport retail) where eliminating luggage friction increased average transaction value by 18–26%. Applied 22% as midpoint.</div></div>
+    <div class="assumption-row"><div class="ass-label">Shipping counter revenue (₩18B)</div><div class="ass-val">₩30,000 average shipping fee (competitive with EMS/K-Post international rates) × 600,000 estimated annual shipments (conservative: ~10% of total international tourist transactions opting in).</div></div>
   </div>
-
-  <!-- SOURCE 1 -->
-  <div class="ref-card">
-    <div class="ref-num">1</div>
-    <div>
-      <div class="ref-title">Korea Tourism Organization (KTO) &mdash; 2023 &amp; 2024 Annual Tourism Statistics</div>
-      <div class="ref-body">Source for inbound tourist volume by nationality. Used to derive SEA visitor count (2.1M+), total inbound tourists (11M in 2023, 16.4M in 2024), and YoY growth rate (+48%). Singapore +163%, Philippines +109% vs pre-pandemic baseline.<br><a href="https://kto.visitkorea.or.kr" target="_blank">kto.visitkorea.or.kr</a></div>
-      <span class="ref-tag">USED FOR: Q1 growth data &middot; hero stats &middot; SQL dataset seed values &middot; Insight 1</span>
-    </div>
-  </div>
-
-  <!-- SOURCE 2 -->
-  <div class="ref-card">
-    <div class="ref-num">2</div>
-    <div>
-      <div class="ref-title">Korea Herald &mdash; &ldquo;Olive Young sees surge in foreign shoppers&rdquo; (August 2025)</div>
-      <div class="ref-body">Source for 5.96 million foreign purchases at Olive Young in January&ndash;May 2025, equating to approximately 80% of all inbound tourists during that period. Also cited for foreign customer share growing from 2% of offline sales in 2022 to 28% in 2025.</div>
-      <span class="ref-tag">USED FOR: Q2 penetration data &middot; business question framing &middot; Insight 2</span>
-    </div>
-  </div>
-
-  <!-- SOURCE 3 -->
-  <div class="ref-card">
-    <div class="ref-num">3</div>
-    <div>
-      <div class="ref-title">Seoulz &mdash; &ldquo;Olive Young Myeongdong Town&rdquo; (June 2026)</div>
-      <div class="ref-body">Source for the statistic that foreign customers account for 95% of total sales at Olive Young&rsquo;s Myeongdong Town flagship store. Used to demonstrate that in-store tourist capture is concentrated and strong at key locations.<br><a href="https://seoulz.com" target="_blank">seoulz.com</a></div>
-      <span class="ref-tag">USED FOR: Insight 2 &middot; Q2 penetration evidence</span>
-    </div>
-  </div>
-
-  <!-- SOURCE 4 -->
-  <div class="ref-card">
-    <div class="ref-num">4</div>
-    <div>
-      <div class="ref-title">Seoul Economic Daily &mdash; Olive Young Global Mall performance (March 2026)</div>
-      <div class="ref-body">Source for Olive Young Global Mall reaching 3.3 million members by H1 2024, with orders up 60% and revenue up 70% year-on-year. Also used to establish that Global Mall growth is diaspora-driven rather than tourist-driven, supporting the conversion gap finding.</div>
-      <span class="ref-tag">USED FOR: Q3 conversion data &middot; Insight 3 &middot; recommendation framing</span>
-    </div>
-  </div>
-
-  <!-- SOURCE 5 -->
-  <div class="ref-card">
-    <div class="ref-num">5</div>
-    <div>
-      <div class="ref-title">CJ Olive Networks &mdash; Q2 2025 Earnings Release &amp; Annual Report 2023</div>
-      <div class="ref-body">Source for Olive Young global app availability in 180+ countries and overall sales trend data. Signup friction (Korean phone number required) confirmed via personal testing of the app and in-store experience as a foreign resident in Seoul.</div>
-      <span class="ref-tag">USED FOR: CRM gap diagnosis &middot; hero stats &middot; problem framing</span>
-    </div>
-  </div>
-
-  <!-- SOURCE 6 -->
-  <div class="ref-card">
-    <div class="ref-num">6</div>
-    <div>
-      <div class="ref-title">Korea Culture and Tourism Institute (KCTI) &mdash; Tourist Spending Survey 2023</div>
-      <div class="ref-body">Source for average beauty and personal care spend per tourist visit (&#x20A9;380K proxy). Derived from total tourist retail spend divided by category share estimates.<br><a href="https://www.kcti.re.kr" target="_blank">kcti.re.kr</a></div>
-      <span class="ref-tag">USED FOR: &#x20A9;380K avg spend &middot; revenue leakage calculation &middot; metric cards</span>
-    </div>
-  </div>
-
-  <!-- SOURCE 7 -->
-  <div class="ref-card">
-    <div class="ref-num">7</div>
-    <div>
-      <div class="ref-title">Delivery Hero Malaysia &mdash; Internal analytics (2022&ndash;2023) &middot; Personal work experience</div>
-      <div class="ref-body">AOV +12% and partner churn reduction from 15.90% to 14.71% are results from my own work at Delivery Hero Malaysia. Used as a methodology reference for funnel analysis approach, not as Olive Young data. The same diagnostic logic (trace the funnel step by step to isolate the drop-off) is applied in Query 1 of the SQL analysis.</div>
-      <span class="ref-tag">USED FOR: SQL methodology &middot; About me &middot; analyst credibility</span>
-    </div>
-  </div>
-
-  <!-- DIVIDER -->
-  <div style="display:flex;align-items:center;gap:12px;margin:1.75rem 0 1.25rem">
-    <div style="height:1px;flex:1;background:var(--border)"></div>
-    <span style="font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--light-text)">DECLARED ASSUMPTIONS &middot; &#xC120;&#xC5B8;&#xB41C; &#xAC00;&#xC815;</span>
-    <div style="height:1px;flex:1;background:var(--border)"></div>
-  </div>
-
-  <p style="font-size:.85rem;color:var(--light-text);margin-bottom:1rem">All assumptions are stated before analysis. Undeclared assumptions receive no analytical credit &mdash; this is standard practice in rigorous business analysis.</p>
-
-  <div style="background:var(--card-bg);border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.05);overflow:hidden">
-
-    <div style="display:grid;grid-template-columns:200px 1fr;font-size:.82rem;border-bottom:1px solid var(--border)">
-      <div style="padding:.9rem 1rem;font-weight:700;color:var(--primary);background:var(--light-bg)">SQL dataset scale</div>
-      <div style="padding:.9rem 1rem;color:var(--light-text);line-height:1.6">~383,000 simulated transactions across 4 customer types. Completion rates seeded from loyalty UX benchmarks (domestic 60&ndash;70%). SEA 3% derived from observed Korean phone-number friction in practice.</div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:200px 1fr;font-size:.82rem;border-bottom:1px solid var(--border)">
-      <div style="padding:.9rem 1rem;font-weight:700;color:var(--primary);background:var(--light-bg)">&#x20A9;380K avg tourist spend</div>
-      <div style="padding:.9rem 1rem;color:var(--light-text);line-height:1.6">Derived from KCTI total retail spend &times; estimated beauty category share (~15%). Used as a conservative proxy for basket size per visit.</div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:200px 1fr;font-size:.82rem;border-bottom:1px solid var(--border)">
-      <div style="padding:.9rem 1rem;font-weight:700;color:var(--primary);background:var(--light-bg)">25% retention rate</div>
-      <div style="padding:.9rem 1rem;color:var(--light-text);line-height:1.6">Conservative. Industry e-commerce re-engagement benchmarks for travel-triggered purchases: 20&ndash;35%. Lower bound applied to keep the &#x20A9;5.6B estimate credible and defensible.</div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:200px 1fr;font-size:.82rem;border-bottom:1px solid var(--border)">
-      <div style="padding:.9rem 1rem;font-weight:700;color:var(--primary);background:var(--light-bg)">6 annual reorders</div>
-      <div style="padding:.9rem 1rem;color:var(--light-text);line-height:1.6">Skincare repurchase cycle ~60 days. 6 reorders per year = one reorder every 2 months post-return. Consistent with standard skincare consumption patterns.</div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:200px 1fr;font-size:.82rem;border-bottom:1px solid var(--border)">
-      <div style="padding:.9rem 1rem;font-weight:700;color:var(--primary);background:var(--light-bg)">APP hybrid strategy</div>
-      <div style="padding:.9rem 1rem;color:var(--light-text);line-height:1.6">Hybrid chosen over Level because tourist peaks are concentrated (4&ndash;6 weeks, not spread). Overtime cost assumed at 1.5&times; regular labour. Holding cost assumed &#x20A9;500/unit/month. No backlog assumed &mdash; stockouts filled by safety stock then subcontracting.</div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:200px 1fr;font-size:.82rem;border-bottom:1px solid var(--border)">
-      <div style="padding:.9rem 1rem;font-weight:700;color:var(--primary);background:var(--light-bg)">+22% basket uplift</div>
-      <div style="padding:.9rem 1rem;color:var(--light-text);line-height:1.6">Based on duty-free in-store shipping services in Japan and Singapore airport retail, where eliminating luggage friction increased average transaction value by 18&ndash;26%. Midpoint of 22% applied.</div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:200px 1fr;font-size:.82rem;border-bottom:1px solid var(--border)">
-      <div style="padding:.9rem 1rem;font-weight:700;color:var(--primary);background:var(--light-bg)">&#x20A9;18B shipping revenue</div>
-      <div style="padding:.9rem 1rem;color:var(--light-text);line-height:1.6">&#x20A9;30,000 average shipping fee (competitive with EMS/K-Post international rates) &times; 600,000 estimated annual shipments (conservative: ~10% of total international tourist transactions opting in).</div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:200px 1fr;font-size:.82rem">
-      <div style="padding:.9rem 1rem;font-weight:700;color:var(--primary);background:var(--light-bg)">Q4 retention data</div>
-      <div style="padding:.9rem 1rem;color:var(--light-text);line-height:1.6">No public data exists on tourist-to-global-app retention rates for Olive Young. This is explicitly the gap this analysis identifies. The 12&ndash;18% wishlist conversion estimate is based on general e-commerce post-browse email retargeting benchmarks.</div>
-    </div>
-
-  </div>
-
-  <!-- NOTE -->
-  <div style="margin-top:1.5rem;padding:1rem 1.25rem;background:var(--light-bg);border-radius:8px;border:1px solid var(--border)">
-    <p style="font-size:.8rem;color:var(--light-text);line-height:1.7"><strong style="color:var(--dark-text)">Note on dataset simulation:</strong> The SQL dataset used in the analysis tab is simulated for portfolio demonstration purposes. Transaction volumes, funnel ratios, and SKU-level data are seeded from publicly available sources listed above. The schema and query logic reflect how I would approach this problem with real Olive Young transaction data. All simulated figures are clearly labelled as such throughout the case study.</p>
-  </div>
-
 </div>
 </div>
 
-
-<!-- TAB: MY THOUGHTS -->
+<!-- TAB: MY THINKING -->
 <div id="tab-thoughts" class="tab-pane">
 <div class="container">
   <p class="sec-eyebrow">ANALYST REFLECTION</p>
@@ -1094,7 +785,7 @@ customer_type values: 'domestic', 'sea', 'japan_taiwan', 'western'</pre>
   <div class="card">
     <div class="card-title">Why I chose this problem</div>
     <div class="card-ko">이 문제를 선택한 이유</div>
-    <div class="card-body">This portfolio started because of my personal experience. When I first visited Seoul, I noticed immediately that Korean retail infrastructure wasn't built for people like me: foreign, non Korean speaking at first, without a local phone number. The Olive Young loyalty system was just one example of a broader pattern.<br><br>
+    <div class="card-body">Most portfolio projects start from a dataset. This one started from a personal frustration. When I moved to Seoul, I noticed immediately that Korean retail infrastructure wasn't built for people like me — foreign, non-Korean-speaking at first, without a local phone number. The Olive Young loyalty system was just one example of a broader pattern.<br><br>
     What made it interesting analytically is that this isn't a product problem or a brand problem. Olive Young's products are excellent — that's exactly why international tourists love them. It's a systems and data architecture problem. The brand wins the customer in-store and then has no mechanism to keep them. That gap between in-store success and zero post-purchase relationship is where the business case lives.</div>
   </div>
 
@@ -1102,19 +793,19 @@ customer_type values: 'domestic', 'sea', 'japan_taiwan', 'western'</pre>
     <div class="card-title">Skills I applied and what I learned</div>
     <div class="card-ko">적용한 역량과 배운 점</div>
     <div class="card-body">
-      <p style="margin-bottom:1rem"><strong style="color:var(--primary)">Funnel analysis thinking:</strong> At Delivery Hero I learned to ask "where exactly does the drop-off happen?" before jumping to solutions. That same discipline shapes Query 1 here — Foreigners don't sign up and I traced the funnel step by step to identify which specific gate fails.</p>
-      <p style="margin-bottom:1rem"><strong style="color:var(--primary)">SQL as my thinking tool:</strong> The three queries represent three different analytical lenses: funnel analysis (Query 1), segmentation (Query 2), and financial modelling (Query 3 with CTEs). I chose CTEs for Query 3 specifically because the leakage calculation has two logical stages which are tourist sizing, then revenue projection. CTEs make that logic readable and auditable.</p>
-      <p style="margin-bottom:1rem"><strong style="color:var(--primary)">Demand forecasting method selection:</strong> The most important decision in forecasting is choosing the right method for the demand pattern. Applying ARIMA to a viral spike SKU like COSRX would produce meaningless forecasts. The method to pattern matching table in the "Forecasting" tab is the core analytical judgment, not the numbers themselves.</p>
+      <p style="margin-bottom:1rem"><strong style="color:var(--primary)">Funnel analysis thinking:</strong> At Delivery Hero I learned to ask "where exactly does the drop-off happen?" before jumping to solutions. That same discipline shapes Query 1 here — I didn't just note that foreigners don't sign up, I traced the funnel step by step to identify which specific gate fails. This is the difference between observing a problem and diagnosing it.</p>
+      <p style="margin-bottom:1rem"><strong style="color:var(--primary)">SQL as a thinking tool, not just an output tool:</strong> The three queries here aren't just code — they represent three different analytical lenses: funnel analysis (Query 1), segmentation (Query 2), and financial modelling (Query 3 with CTEs). I chose CTEs for Query 3 specifically because the leakage calculation has two logical stages — tourist sizing, then revenue projection — and CTEs make that logic readable and auditable.</p>
+      <p style="margin-bottom:1rem"><strong style="color:var(--primary)">Demand forecasting method selection:</strong> The most important decision in forecasting isn't the calculation — it's choosing the right method for the demand pattern. Applying ARIMA to a viral-spike SKU like COSRX would produce meaningless forecasts. The method-to-pattern matching table in the Forecasting tab is the core analytical judgment, not the numbers themselves.</p>
       <p style="margin-bottom:1rem"><strong style="color:var(--primary)">Business analyst documentation (user stories):</strong> Writing user stories with proper acceptance criteria is harder than it looks. "As a tourist, I want to sign up" is not a user story — it has no context, no goal, and no testable outcome. The stories in the How I Work tab are written to be implementable: a developer could read them and know exactly what to build and how to test it.</p>
-      <p><strong style="color:var(--primary)">What I would do differently with more time/data:</strong> I would validate the funnel drop-off rates with real Olive Young app analytics rather than simulated proxies. I would also run A/B tests on the QR signup flow maybe (at) a single store before recommending full rollout. The 25% retention assumption is reasonable but unvalidated. The shipping counter basket uplift (+22%) relies on duty ffree analogues, a pilot at one famous Myeongdong store would give real lift data within 3 months.</p>
+      <p><strong style="color:var(--primary)">What I would do differently with more time/data:</strong> I would validate the funnel drop-off rates with real Olive Young app analytics rather than simulated proxies. I would also run A/B tests on the QR signup flow at a single store before recommending full rollout — the 25% retention assumption is reasonable but unvalidated. The shipping counter basket uplift (+22%) relies on duty-free analogues; a pilot at one Myeongdong store would give real lift data within 3 months.</p>
     </div>
   </div>
 
   <div class="card">
     <div class="card-title">My edge as an analyst for this problem</div>
     <div class="card-ko">이 문제에 대한 나만의 강점</div>
-    <div class="card-body">I am one of the customers this analysis is about. Not metaphorically, but literally. I have walked into Olive Young as a foreign tourist, tried to sign up, failed and left my data footprint nowhere. I have carried heavy shopping bags through Incheon Airport because there was no in store shipping option. I have navigated product labels in a language I was still learning.<br><br>
-    This is different as a pre-built intuition for which friction points matter most to the customer. The four pain points in the Problem tab are not just the result of desk research, but they are the result of lived experience and structured into a business framework.</div>
+    <div class="card-body">I am the customer this analysis is about. Not metaphorically — literally. I have walked into Olive Young as a foreign tourist, tried to sign up, failed, and left my data footprint nowhere. I have carried heavy shopping bags through Incheon Airport because there was no in-store shipping option. I have navigated product labels in a language I was still learning.<br><br>
+    This gives me something most analysts don't have: a pre-built intuition for which friction points matter most to the customer. The four pain points in the Problem tab are not the result of desk research — they are the result of lived experience, structured into a business framework.</div>
   </div>
 
   <hr class="soft">
@@ -1257,6 +948,247 @@ function runSQL() {
 document.getElementById('sql-input').addEventListener('keydown', e => {
   if (e.ctrlKey && e.key === 'Enter') runSQL();
 });
+
+// INLINE LIVE SQL TOGGLE
+function toggleLiveSQL() {
+  const panel = document.getElementById('live-sql-panel');
+  const arrow = document.getElementById('live-sql-arrow');
+  if (panel.style.display === 'none') {
+    panel.style.display = 'block';
+    arrow.style.transform = 'rotate(180deg)';
+    initDB();
+  } else {
+    panel.style.display = 'none';
+    arrow.style.transform = '';
+  }
+}
+
+function loadPreset2(key) { document.getElementById('sql-input2').value = PRESETS[key]; }
+
+function runSQL2() {
+  const query = document.getElementById('sql-input2').value.trim();
+  const resultArea = document.getElementById('sql-result-area2');
+  if (!query) { resultArea.innerHTML = '<p class="sql-msg">Please enter a SQL query.</p>'; return; }
+  resultArea.innerHTML = '<p class="sql-msg">Running...</p>';
+  initDB().then(() => {
+    try {
+      const results = db.exec(query);
+      if (!results.length) { resultArea.innerHTML = '<p class="sql-msg">Query ran successfully. No rows returned.</p>'; return; }
+      const {columns, values} = results[0];
+      let html = '<table><thead><tr>' + columns.map(c => `<th>${c}</th>`).join('') + '</tr></thead><tbody>';
+      values.forEach(row => { html += '<tr>' + row.map(v => `<td>${v !== null ? v : 'NULL'}</td>`).join('') + '</tr>'; });
+      html += `</tbody></table><p class="sql-msg">${values.length} row${values.length !== 1 ? 's' : ''} returned</p>`;
+      resultArea.innerHTML = html;
+    } catch(e) { resultArea.innerHTML = `<p class="sql-msg" style="color:#ff8a80">Error: ${e.message}</p>`; }
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey && e.key === 'Enter') {
+    const panel = document.getElementById('live-sql-panel');
+    if (panel && panel.style.display !== 'none') runSQL2();
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// INTERACTIVE GLOBE
+(function() {
+  const MARKERS = [
+    { name: 'South Korea', lat: 37.5, lon: 127.0, color: 0x1A2A4C, size: 0.045, pop: '51M', tourists: 'Destination', female: '—', note: 'Olive Young headquarters & flagship stores', isKorea: true },
+    { name: 'Japan', lat: 36.2, lon: 138.2, color: 0x185FA5, size: 0.038, pop: '124M', tourists: '2.4M / yr to Korea', female: '62% female', note: 'Largest inbound group · high K-beauty affinity' },
+    { name: 'China', lat: 35.9, lon: 104.2, color: 0x3D5A80, size: 0.04, pop: '1.4B', tourists: '2.0M / yr to Korea', female: '58% female', note: 'Recovering post-pandemic · luxury beauty demand' },
+    { name: 'Taiwan', lat: 23.7, lon: 121.0, color: 0x29B6F6, size: 0.030, pop: '23M', tourists: '890K / yr to Korea', female: '65% female', note: 'Highest female ratio · strong K-beauty intent' },
+    { name: 'Malaysia', lat: 4.2, lon: 108.0, color: 0x1D9E75, size: 0.030, pop: '34M', tourists: '380K / yr to Korea', female: '61% female', note: '+109% vs 2019 · analyst\'s own market' },
+    { name: 'Thailand', lat: 15.9, lon: 100.9, color: 0x1D9E75, size: 0.028, pop: '72M', tourists: '430K / yr to Korea', female: '64% female', note: 'K-drama influence · growing beauty tourism' },
+    { name: 'USA', lat: 39.5, lon: -98.4, color: 0x3D5A80, size: 0.036, pop: '335M', tourists: '680K / yr to Korea', female: '55% female', note: 'TikTok-driven K-beauty · fastest growing western' },
+    { name: 'Europe', lat: 50.0, lon: 10.0, color: 0x3D5A80, size: 0.032, pop: '448M', tourists: '~500K / yr to Korea', female: '~54% female', note: 'Growing interest in K-beauty & K-culture' },
+    { name: 'Singapore', lat: 1.3, lon: 103.8, color: 0x1D9E75, size: 0.025, pop: '5.9M', tourists: '+163% vs 2019', female: '60% female', note: 'Highest per-capita tourist volume relative to population' },
+  ];
+
+  function latLonToVec3(lat, lon, r) {
+    const phi = (90 - lat) * Math.PI / 180;
+    const theta = (lon + 180) * Math.PI / 180;
+    return new THREE.Vector3(
+      -r * Math.sin(phi) * Math.cos(theta),
+       r * Math.cos(phi),
+       r * Math.sin(phi) * Math.sin(theta)
+    );
+  }
+
+  function initGlobe() {
+    const canvas = document.getElementById('globe-canvas');
+    if (!canvas) return;
+    const W = canvas.clientWidth, H = 460;
+    canvas.width = W; canvas.height = H;
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setSize(W, H);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x1A2A4C, 1);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, W / H, 0.1, 1000);
+    camera.position.z = 2.8;
+
+    // Atmosphere glow
+    const atmGeo = new THREE.SphereGeometry(1.02, 64, 64);
+    const atmMat = new THREE.MeshPhongMaterial({ color: 0x29B6F6, transparent: true, opacity: 0.08, side: THREE.FrontSide });
+    scene.add(new THREE.Mesh(atmGeo, atmMat));
+
+    // Globe
+    const geo = new THREE.SphereGeometry(1, 64, 64);
+    const loader = new THREE.TextureLoader();
+    // Use a solid colored globe with grid lines since we can't load external textures
+    const mat = new THREE.MeshPhongMaterial({ color: 0x0d2137, shininess: 15 });
+    const globe = new THREE.Mesh(geo, mat);
+    scene.add(globe);
+
+    // Grid lines (latitude/longitude)
+    const gridMat = new THREE.LineBasicMaterial({ color: 0x1e3a5f, transparent: true, opacity: 0.4 });
+    for (let lat = -80; lat <= 80; lat += 20) {
+      const pts = [];
+      for (let lon = 0; lon <= 360; lon += 3) pts.push(latLonToVec3(lat, lon - 180, 1.001));
+      scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), gridMat));
+    }
+    for (let lon = -180; lon < 180; lon += 20) {
+      const pts = [];
+      for (let lat = -90; lat <= 90; lat += 3) pts.push(latLonToVec3(lat, lon, 1.001));
+      scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), gridMat));
+    }
+
+    // Lighting
+    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+    const sun = new THREE.DirectionalLight(0xffffff, 0.8);
+    sun.position.set(5, 3, 5);
+    scene.add(sun);
+
+    // Markers
+    const markerMeshes = [];
+    MARKERS.forEach(m => {
+      const pos = latLonToVec3(m.lat, m.lon, 1.0);
+      // Spike
+      const spikeGeo = new THREE.CylinderGeometry(0, m.size * 0.3, m.isKorea ? 0.12 : 0.07, 8);
+      const spikeMat = new THREE.MeshPhongMaterial({ color: m.color, shininess: 80 });
+      const spike = new THREE.Mesh(spikeGeo, spikeMat);
+      spike.position.copy(pos);
+      spike.lookAt(0, 0, 0);
+      spike.rotateX(Math.PI / 2);
+      scene.add(spike);
+      // Dot
+      const dotGeo = new THREE.SphereGeometry(m.isKorea ? m.size * 1.2 : m.size, 16, 16);
+      const dotMat = new THREE.MeshPhongMaterial({ color: m.color, shininess: 100, emissive: m.color, emissiveIntensity: 0.3 });
+      const dot = new THREE.Mesh(dotGeo, dotMat);
+      dot.position.copy(pos.multiplyScalar(m.isKorea ? 1.06 : 1.04));
+      scene.add(dot);
+      markerMeshes.push({ mesh: dot, data: m });
+    });
+
+    // Draw arc lines from markets to Korea
+    const koreaPos = latLonToVec3(37.5, 127.0, 1.03);
+    MARKERS.filter(m => !m.isKorea).forEach(m => {
+      const from = latLonToVec3(m.lat, m.lon, 1.03);
+      const to = koreaPos.clone();
+      const mid = from.clone().add(to).multiplyScalar(0.5).normalize().multiplyScalar(1.4);
+      const curve = new THREE.QuadraticBezierCurve3(from, mid, to);
+      const pts = curve.getPoints(40);
+      const arcGeo = new THREE.BufferGeometry().setFromPoints(pts);
+      const arcMat = new THREE.LineBasicMaterial({ color: 0x29B6F6, transparent: true, opacity: 0.25 });
+      scene.add(new THREE.Line(arcGeo, arcMat));
+    });
+
+    // Interaction
+    let isDragging = false, prevX = 0, prevY = 0;
+    let rotX = 0.3, rotY = 2.0;
+    let autoRotate = true;
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    const tooltip = document.getElementById('globe-tooltip');
+
+    canvas.addEventListener('mousedown', e => { isDragging = true; autoRotate = false; prevX = e.clientX; prevY = e.clientY; canvas.style.cursor = 'grabbing'; });
+    canvas.addEventListener('mouseup', () => { isDragging = false; canvas.style.cursor = 'grab'; });
+    canvas.addEventListener('mouseleave', () => { isDragging = false; if (tooltip) tooltip.style.display = 'none'; });
+    canvas.addEventListener('mousemove', e => {
+      if (isDragging) {
+        rotY += (e.clientX - prevX) * 0.005;
+        rotX += (e.clientY - prevY) * 0.005;
+        rotX = Math.max(-1.2, Math.min(1.2, rotX));
+        prevX = e.clientX; prevY = e.clientY;
+      }
+      // Hover
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+      const hits = raycaster.intersectObjects(markerMeshes.map(m => m.mesh));
+      if (hits.length) {
+        const d = markerMeshes.find(m => m.mesh === hits[0].object);
+        if (d && tooltip) {
+          document.getElementById('tt-country').textContent = d.data.name + (d.data.isKorea ? ' 🇰🇷 (Destination)' : '');
+          document.getElementById('tt-pop').textContent = 'Population: ' + d.data.pop;
+          document.getElementById('tt-tourists').textContent = 'Tourists to Korea: ' + d.data.tourists;
+          document.getElementById('tt-gender').textContent = d.data.female;
+          document.getElementById('tt-note').textContent = d.data.note;
+          tooltip.style.display = 'block';
+          tooltip.style.left = (e.clientX - rect.left + 16) + 'px';
+          tooltip.style.top = (e.clientY - rect.top - 40) + 'px';
+        }
+        canvas.style.cursor = 'pointer';
+      } else {
+        if (tooltip) tooltip.style.display = 'none';
+        if (!isDragging) canvas.style.cursor = 'grab';
+      }
+    });
+    canvas.addEventListener('wheel', e => {
+      camera.position.z = Math.max(1.8, Math.min(5.0, camera.position.z + e.deltaY * 0.003));
+      e.preventDefault();
+    }, { passive: false });
+
+    // Touch support
+    let lastTouch = null;
+    canvas.addEventListener('touchstart', e => { lastTouch = e.touches[0]; autoRotate = false; });
+    canvas.addEventListener('touchmove', e => {
+      if (lastTouch) {
+        rotY += (e.touches[0].clientX - lastTouch.clientX) * 0.005;
+        rotX += (e.touches[0].clientY - lastTouch.clientY) * 0.005;
+        rotX = Math.max(-1.2, Math.min(1.2, rotX));
+        lastTouch = e.touches[0];
+      }
+      e.preventDefault();
+    }, { passive: false });
+
+    // Animate
+    function animate() {
+      requestAnimationFrame(animate);
+      if (autoRotate) rotY += 0.003;
+      globe.rotation.x = rotX;
+      globe.rotation.y = rotY;
+      scene.children.forEach(c => { if (c !== globe && c.type !== 'AmbientLight' && c.type !== 'DirectionalLight') { c.rotation.x = rotX; c.rotation.y = rotY; } });
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Resize
+    window.addEventListener('resize', () => {
+      const w = canvas.clientWidth;
+      renderer.setSize(w, H);
+      camera.aspect = w / H;
+      camera.updateProjectionMatrix();
+    });
+  }
+
+  // Init when map tab is clicked
+  document.addEventListener('DOMContentLoaded', () => {
+    const mapBtn = document.querySelector('[onclick*="map"]');
+    if (mapBtn) {
+      mapBtn.addEventListener('click', () => { setTimeout(initGlobe, 100); });
+    }
+  });
+  // Also init if map tab is active on load
+  if (document.getElementById('tab-map') && document.getElementById('tab-map').classList.contains('active')) {
+    setTimeout(initGlobe, 300);
+  }
+})();
 </script>
 </body>
 </html>
