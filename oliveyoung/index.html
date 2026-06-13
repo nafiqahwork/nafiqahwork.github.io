@@ -365,7 +365,6 @@ footer .disc{font-size:.72rem;opacity:.35;margin-top:6px;}
   ) <span class="kw">AS</span> tourist_share_pct,
   <span class="fn">ROUND</span>(<span class="fn">AVG</span>(t.basket_size_krw)) <span class="kw">AS</span> t_avg_basket_krw,
   <span class="fn">COUNT</span>(<span class="kw">CASE WHEN</span> t.customer_type = <span class="str">'domestic'</span> <span class="kw">THEN</span> 1 <span class="kw">END</span>) <span class="kw">AS</span> domestic_orders,
-  <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total_orders,
   <span class="fn">ROUND</span>(
     <span class="fn">COUNT</span>(<span class="kw">CASE WHEN</span> t.customer_type = <span class="str">'domestic'</span> <span class="kw">THEN</span> 1 <span class="kw">END</span>) * 100.0
     / <span class="fn">NULLIF</span>(<span class="fn">COUNT</span>(*), 0), 1
