@@ -15,13 +15,13 @@ This portfolio is designed to demonstrate skills in:
 This template is set up to showcase your best work. You can easily customize the project cards in the `index.html` file.
 
 ### Project Title One
-*A brief description of your project, the tools used, and the key insights derived.*
+*A brief description of your project, the tools used and the key insights derived.*
 
 ### Project Title Two
-*A brief description of your project, the tools used, and the key insights derived.*
+*A brief description of your project, the tools used and the key insights derived.*
 
 ### Project Title Three
-*A brief description of your project, the tools used, and the key insights derived.*
+*A brief description of your project, the tools used and the key insights derived.*
 
 
 ## 🛠️ Skills
@@ -50,7 +50,7 @@ Open the `index.html` file and begin personalizing it. The file contains helpful
 - Your name and title
 - Social media links
 - The "About Me" section
-- Your project titles, descriptions, and links
+- Your project titles, descriptions and links
 - Your list of skills
 
 ### 4. Add Your Files
